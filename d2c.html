@@ -1,0 +1,835 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Best AI Tools for Indian D2C &amp; Ecommerce Sellers (2026)</title>
+    <meta name="description" content="Curated AI tools for Indian D2C brands and Amazon, Flipkart and Shopify sellers, by job: product photos, listings, ads, WhatsApp, COD/RTO and GST. India labels shown only when verified." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Exo+2:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" />
+    <style>
+      :root {
+        --bg: #0a0a0b; --surface: #111113; --surface-2: #17171a; --line: rgba(255,255,255,.08); --line-2: rgba(255,255,255,.16);
+        --text: #ededed; --muted: #8a8a8f; --gold: #c8b27c; --gold-soft: rgba(200,178,124,.12); --on-gold: #0a0a0b; --err: #ff7a7a;
+        --head: "Exo 2", system-ui, sans-serif; --body: Inter, system-ui, sans-serif;
+        --r: 12px; --r-l: 18px; --tap: 44px; --g: 16px; --max: 1160px; --ease: cubic-bezier(.2,.8,.2,1);
+        color-scheme: dark;
+      }
+      html[data-theme="light"] {
+        --bg: #f5f4f0; --surface: #fff; --surface-2: #faf9f6; --line: rgba(0,0,0,.09); --line-2: rgba(0,0,0,.18);
+        --text: #0e0e0e; --muted: #5f5f63; --gold: #74653d; --gold-soft: rgba(140,122,75,.1); --on-gold: #fff; --err: #b42318;
+        color-scheme: light;
+      }
+      * { box-sizing: border-box; }
+      [hidden] { display: none !important; }
+      html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; scrollbar-gutter: stable; }
+      html, body { overscroll-behavior-y: contain; }
+      a, button, summary, label, input, select, textarea { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+      @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; } }
+      body { margin: 0; background: var(--bg); color: var(--text); font: 400 15px/1.55 var(--body); }
+      h1, h2, h3 { font-family: var(--head); line-height: 1.15; margin: 0; letter-spacing: -.01em; }
+      a { color: inherit; }
+      button, input, select, textarea { font: inherit; color: inherit; }
+      :focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+      .wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--g); }
+      .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+      section[id] { scroll-margin-top: 72px; }
+
+      /* header */
+      .hdr { position: sticky; top: 0; z-index: 30; background: var(--bg); border-bottom: 1px solid var(--line); }
+      .hdr .wrap { display: flex; align-items: center; gap: 8px; min-height: 60px; }
+      .brand { display: flex; align-items: center; gap: 8px; font: 700 18px var(--head); text-decoration: none; min-height: var(--tap); margin-right: auto; min-width: 0; white-space: nowrap; }
+      .hdr .iconbtn { flex: none; }
+      .pill { display: inline-block; font: 600 12px/1 var(--body); letter-spacing: .06em; padding: 5px 8px; border-radius: 99px; background: var(--gold); color: var(--on-gold); }
+      .nav { display: none; gap: 4px; }
+      .nav a, .back { display: inline-flex; align-items: center; min-height: var(--tap); padding: 0 10px; border-radius: 10px; text-decoration: none; color: var(--muted); font-size: 14px; }
+      @media (hover: hover) { .nav a:hover, .back:hover { color: var(--text); } }
+      .back { display: none; }
+      .iconbtn { width: var(--tap); height: var(--tap); display: inline-grid; place-items: center; border: 1px solid var(--line); background: var(--surface); border-radius: 10px; cursor: pointer; }
+      .iconbtn svg { width: 18px; height: 18px; }
+      .menu { display: none; border-top: 1px solid var(--line); padding: 8px var(--g) 12px; }
+      .menu.open { display: grid; }
+      .menu a { display: flex; align-items: center; min-height: var(--tap); text-decoration: none; border-bottom: 1px solid var(--line); }
+      .menu a:last-child { border: 0; color: var(--gold); }
+      @media (min-width: 1000px) { .nav, .back { display: inline-flex; } #menuBtn, .menu, .menu.open { display: none; } }
+
+      /* hero */
+      .hero { padding: 48px 0 32px; }
+      .eyebrow { color: var(--gold); font: 500 13px var(--body); letter-spacing: .04em; text-transform: uppercase; margin: 0 0 14px; }
+      .hero h1 { font-size: clamp(32px, 7vw, 56px); font-weight: 700; max-width: 16ch; }
+      .gold { color: var(--gold); }
+      .sub { color: var(--muted); font-size: 16px; max-width: 60ch; margin: 16px 0 28px; }
+      .search { display: flex; align-items: center; gap: 8px; background: var(--surface); border: 1px solid var(--line-2); border-radius: var(--r-l); padding: 6px 6px 6px 16px; max-width: 680px; }
+      .search:focus-within { border-color: var(--gold); }
+      .search svg { width: 20px; height: 20px; color: var(--muted); flex: none; }
+      .search input { flex: 1; min-width: 0; width: 100%; min-height: 48px; border: 0; background: none; font-size: 17px; outline: none; }
+      .search input::placeholder { color: var(--muted); }
+      .btn-gold { min-height: 48px; padding: 0 18px; border: 0; border-radius: 12px; background: var(--gold); color: var(--on-gold); font-weight: 600; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; }
+      .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+      .chip { display: inline-flex; align-items: center; min-height: var(--tap); padding: 0 14px; border-radius: 99px; border: 1px solid var(--line); background: var(--surface); font-size: 14px; cursor: pointer; white-space: nowrap; }
+      @media (hover: hover) { .chip:hover { border-color: var(--line-2); } }
+      .chip[aria-pressed="true"] { border-color: var(--gold); color: var(--on-gold); background: var(--gold); }
+      .news { margin-top: 32px; max-width: 680px; padding: 14px; border: 1px solid var(--line); border-radius: var(--r); display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; }
+      .news p { margin: 0; font-size: 14px; color: var(--muted); }
+      .news form { display: flex; gap: 8px; }
+      .news input { flex: 1; min-width: 0; width: 100%; min-height: var(--tap); padding: 0 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+      .news .btn-ghost { min-height: var(--tap); padding: 0 14px; border-radius: 10px; border: 1px solid var(--gold); background: none; color: var(--gold); font-weight: 600; cursor: pointer; }
+      .news .done { color: var(--gold); }
+
+      /* directory */
+      .dir { padding: 32px 0 56px; }
+      .dir h2 { font-size: clamp(26px, 5vw, 36px); margin-bottom: 18px; }
+      .scroller { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; min-width: 0; max-width: 100%; padding: 2px 0 6px; }
+      .scroller > * { flex: none; }
+      .scroller::-webkit-scrollbar { display: none; }
+      .controls { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; margin: 10px 0 14px; }
+      .controls > * { min-width: 0; }
+      .news .msg { font-size: 13px; color: var(--muted); }
+      .seg { display: inline-flex; border: 1px solid var(--line); border-radius: 12px; padding: 3px; background: var(--surface); overflow-x: auto; max-width: 100%; }
+      .seg button { min-height: var(--tap); min-width: var(--tap); padding: 0 12px; border: 0; background: none; border-radius: 9px; cursor: pointer; color: var(--muted); font-size: 14px; white-space: nowrap; }
+      .seg button[aria-pressed="true"] { background: var(--gold); color: var(--on-gold); }
+      .note { font-size: 13px; color: var(--muted); margin: 0 0 6px; }
+      .count { font-size: 14px; margin: 14px 0; }
+      .grid { display: grid; gap: 12px; grid-template-columns: minmax(0, 1fr); }
+      .card, .card__top > span:nth-child(2) { min-width: 0; overflow-wrap: anywhere; }
+      @media (min-width: 640px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .controls { grid-template-columns: auto minmax(0, 1fr); align-items: center; } }
+      @media (min-width: 1000px) { .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+      .card { text-align: left; display: flex; flex-direction: column; gap: 10px; padding: 16px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-l); cursor: pointer; }
+      @media (hover: hover) { .card:hover { border-color: var(--line-2); } }
+      .card__top { display: flex; align-items: center; gap: 12px; }
+      .fav { width: 40px; height: 40px; border-radius: 10px; flex: none; display: grid; place-items: center; background: var(--surface-2); border: 1px solid var(--line); overflow: hidden; font: 700 16px var(--head); color: var(--gold); }
+      .fav img { width: 24px; height: 24px; }
+      .card__name { display: block; font: 600 17px/1.2 var(--head); }
+      .cat { display: block; font-size: 13px; color: var(--muted); }
+      .badge { margin-left: auto; flex: none; font-size: 12px; padding: 4px 8px; border-radius: 99px; border: 1px solid var(--line-2); color: var(--muted); }
+      .desc { margin: 0; font-size: 14px; color: var(--muted); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+      .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+      .tag { font-size: 12px; padding: 3px 8px; border-radius: 99px; border: 1px solid var(--gold); color: var(--gold); }
+      .tag--fill { background: var(--gold); color: var(--on-gold); }
+      .vin { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 600; padding: 3px 8px; border-radius: 99px; border: 1px solid var(--gold); background: var(--gold); color: var(--on-gold); white-space: nowrap; }
+      .chip__n { margin-left: 6px; font-size: 12px; opacity: .75; }
+      .muted--note { font-size: 13px; margin: 4px 0 0; }
+      .ver { font-size: 12px; color: var(--muted); margin-top: auto; }
+      .ver b { color: var(--gold); font-weight: 600; }
+      .empty { padding: 32px; text-align: center; border: 1px dashed var(--line-2); border-radius: var(--r-l); color: var(--muted); }
+      .pager { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 20px; font-size: 14px; }
+      .pager button { min-height: var(--tap); padding: 0 14px; border-radius: 10px; border: 1px solid var(--line); background: var(--surface); cursor: pointer; }
+      .pager button:disabled { opacity: .4; cursor: default; }
+
+      /* sheet */
+      .scrim { position: fixed; inset: 0; z-index: 40; background: rgba(0,0,0,.6); opacity: 0; visibility: hidden; transition: opacity .25s var(--ease), visibility .25s; }
+      .sheet { position: fixed; z-index: 41; left: 0; right: 0; bottom: 0; max-height: 88vh; max-height: 88dvh; overflow-y: auto; overscroll-behavior: contain; background: var(--surface); border: 1px solid var(--line); border-radius: 20px 20px 0 0; padding: 8px 20px 24px; transform: translateY(100%); opacity: 0; visibility: hidden; transition: transform .3s var(--ease), opacity .3s var(--ease), visibility .3s; }
+      .scrim, .sheet { pointer-events: none; }
+      .open-sheet .scrim, .open-sheet .sheet { opacity: 1; visibility: visible; pointer-events: auto; }
+      .open-sheet .sheet { transform: none; }
+      @media (min-width: 760px) {
+        .sheet { left: 50%; top: 50%; bottom: auto; width: min(620px, 92vw); max-height: 86vh; border-radius: 20px; transform: translate(-50%, -46%) scale(.98); }
+        .open-sheet .sheet { transform: translate(-50%, -50%); }
+      }
+      .grab { width: 40px; height: 4px; border-radius: 4px; background: var(--line-2); margin: 4px auto 8px; }
+      .sheet__head { display: flex; align-items: center; gap: 12px; position: sticky; top: -8px; background: var(--surface); padding: 8px 0 12px; }
+      .sheet__head h2 { font-size: 22px; }
+      .sheet__head .iconbtn { margin-left: auto; flex: none; }
+      .sheet h3 { font: 600 12px var(--body); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 20px 0 8px; }
+      .sheet p { margin: 0; }
+      .meta { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 4px; }
+      .meta span { font-size: 12px; padding: 4px 8px; border-radius: 99px; border: 1px solid var(--line-2); color: var(--muted); }
+      .bf { display: flex; flex-wrap: wrap; gap: 6px; }
+      .bf span { font-size: 13px; padding: 5px 10px; border-radius: 99px; background: var(--surface-2); border: 1px solid var(--line); }
+      .india { list-style: none; margin: 0; padding: 0; }
+      .india li { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: var(--tap); border-bottom: 1px solid var(--line); font-size: 14px; }
+      .india a { color: var(--gold); font-size: 13px; display: inline-flex; align-items: center; min-height: var(--tap); }
+      .muted { color: var(--muted); font-size: 14px; }
+      .sim { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+      .sim button { display: flex; align-items: center; gap: 10px; min-height: 56px; padding: 8px 10px; text-align: left; border: 1px solid var(--line); border-radius: 12px; background: var(--surface-2); cursor: pointer; font-size: 14px; overflow: hidden; }
+      .sim .fav { width: 32px; height: 32px; font-size: 13px; }
+      .sim .fav img { width: 20px; height: 20px; }
+      .sim span:last-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+      .visit { width: 100%; margin-top: 24px; min-height: 52px; font-size: 16px; }
+
+      /* footer */
+      .foot { border-top: 1px solid var(--line); padding: 28px 0 40px; }
+      .foot .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; font-size: 14px; color: var(--muted); }
+      .foot .brand { margin: 0; color: var(--text); }
+      .foot a.lnk { display: inline-flex; align-items: center; justify-content: center; min-height: var(--tap); min-width: var(--tap); }
+      .flinks { display: flex; flex-wrap: wrap; gap: 0 16px; flex-basis: 100%; min-width: 0; }
+      body.lock { overflow: hidden; }
+
+      /* content sections */
+      .sec { padding: 48px 0; border-top: 1px solid var(--line); content-visibility: auto; contain-intrinsic-size: auto 720px; }
+      .sec h2 { font-size: clamp(26px, 5vw, 36px); margin-bottom: 18px; }
+      .sec .eyebrow { margin-bottom: 10px; }
+      a.card { text-decoration: none; }
+      .card h3 { font: 600 17px/1.25 var(--head); }
+      .card p { margin: 0; font-size: 14px; color: var(--muted); }
+      .card--static { cursor: default; }
+      @media (hover: hover) { .card--static:hover { border-color: var(--line); } }
+      .go { font-size: 14px; font-weight: 600; color: var(--gold); }
+      .box { padding: 16px; border: 1px solid var(--line); border-radius: var(--r-l); background: var(--surface); margin-bottom: 16px; }
+      .box ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; font-size: 14px; color: var(--muted); }
+      .box b { color: var(--text); font-weight: 600; }
+      .faq { max-width: 760px; }
+      .faq details { border-bottom: 1px solid var(--line); }
+      .faq summary { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: var(--tap); padding: 12px 0; cursor: pointer; font-weight: 600; list-style: none; }
+      .faq summary::-webkit-details-marker { display: none; }
+      .faq summary::after { content: "+"; flex: none; color: var(--gold); font: 500 22px/1 var(--head); }
+      .faq details[open] summary::after { content: "–"; }
+      .faq details p { margin: 0 0 14px; font-size: 14px; color: var(--muted); }
+      .form { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; max-width: 680px; }
+      .field { display: grid; gap: 6px; min-width: 0; min-inline-size: 0; border: 0; padding: 0; margin: 0; }
+      .field > label, .field legend { font-size: 14px; font-weight: 500; padding: 0; }
+      .field input, .field select, .field textarea { width: 100%; min-height: var(--tap); padding: 10px 12px; border: 1px solid var(--line-2); border-radius: 10px; background: var(--surface); }
+      .field textarea { min-height: 88px; resize: vertical; }
+      .field [aria-invalid="true"] { border-color: var(--err); }
+      .opt { color: var(--muted); font-weight: 400; }
+      .hint { margin: 0; font-size: 13px; color: var(--muted); }
+      .err { margin: 0; font-size: 13px; color: var(--err); }
+      .err:empty { display: none; }
+      .checks { display: flex; flex-wrap: wrap; gap: 8px; }
+      .checks label { display: inline-flex; align-items: center; gap: 8px; min-height: var(--tap); padding: 0 14px; border: 1px solid var(--line); border-radius: 99px; background: var(--surface); font-size: 14px; cursor: pointer; }
+      .checks label:has(input:checked) { border-color: var(--gold); }
+      .checks input { width: 18px; height: 18px; margin: 0; accent-color: var(--gold); }
+      .form .btn-gold { justify-self: start; }
+      .btn-gold:disabled { opacity: .6; cursor: progress; }
+      .thanks { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; max-width: 680px; }
+      .thanks p { margin: 0; }
+      .row { display: flex; flex-wrap: wrap; gap: 8px; }
+      /* pull to refresh */
+      .x-ptr { position: fixed; z-index: 60; top: 0; left: 50%; width: 220px; margin-left: -110px; display: flex; flex-direction: column; align-items: center; gap: 8px; pointer-events: none; visibility: hidden; opacity: 0; transform: translate3d(0, -40px, 0); }
+      .x-ptr.is-on { visibility: visible; will-change: transform, opacity; }
+      .x-ptr__disc { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: var(--surface); border: 1px solid var(--line-2); box-shadow: 0 4px 12px rgba(0,0,0,.14); }
+      .x-ptr.is-on .x-ptr__disc { will-change: transform; }
+      .x-ptr__svg { width: 32px; height: 32px; display: block; overflow: visible; }
+      .x-ptr__track { stroke: var(--line); }
+      .x-ptr__arc { stroke: var(--gold); stroke-dasharray: 75.4; stroke-dashoffset: 75.4; opacity: 0; transform: rotate(-90deg); transform-origin: 16px 16px; }
+      .x-ptr__arrow { color: var(--gold); transform-box: fill-box; transform-origin: center; transition: transform .22s cubic-bezier(.22,1,.36,1), opacity .15s linear; }
+      .x-ptr.is-ready .x-ptr__arrow { transform: rotate(180deg); }
+      .x-ptr.is-loading .x-ptr__arrow { opacity: 0; }
+      .x-ptr.is-loading .x-ptr__arc { transition: stroke-dashoffset .3s cubic-bezier(.22,1,.36,1); }
+      .x-ptr.is-loading .x-ptr__svg { animation: x-spin .75s linear infinite; }
+      .x-ptr__label { display: grid; font: 600 12px/1 var(--body); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); background: var(--surface); border: 1px solid var(--line); border-radius: 99px; padding: 6px 10px; box-shadow: 0 2px 8px rgba(0,0,0,.08); opacity: 0; }
+      .x-ptr__label span { grid-area: 1 / 1; text-align: center; white-space: nowrap; opacity: 0; transition: opacity .18s linear; }
+      .x-ptr:not(.is-ready):not(.is-loading) [data-s="pull"], .x-ptr.is-ready:not(.is-loading) [data-s="release"], .x-ptr.is-loading [data-s="load"] { opacity: 1; }
+      .x-ptr.is-back, .x-ptr.is-back .x-ptr__disc { transition: transform .3s cubic-bezier(.22,1,.36,1), opacity .3s cubic-bezier(.22,1,.36,1); }
+      .x-ptr.is-back .x-ptr__label { transition: opacity .2s linear; }
+      .x-ptr.is-back .x-ptr__arc { transition: stroke-dashoffset .3s cubic-bezier(.22,1,.36,1), opacity .3s linear; }
+      .x-ptr.is-spring, .x-ptr.is-spring .x-ptr__disc { transition: transform .5s cubic-bezier(.34,1.56,.64,1), opacity .2s linear; }
+      .x-ptr-move { will-change: transform; }
+      .x-ptr-anim { transition: transform .3s cubic-bezier(.22,1,.36,1), opacity .2s linear; }
+      .x-ptr-fade { opacity: .6; }
+      @keyframes x-spin { to { transform: rotate(360deg); } }
+      @media (prefers-reduced-motion: reduce) {
+        .x-ptr.is-loading .x-ptr__svg { animation: none; }
+        .x-ptr__arrow, .x-ptr.is-loading .x-ptr__arc { transition: none; }
+        .x-ptr.is-back, .x-ptr.is-back .x-ptr__disc, .x-ptr.is-spring, .x-ptr.is-spring .x-ptr__disc { transition: opacity .2s linear; }
+      }
+      .btn-line { min-height: var(--tap); padding: 0 14px; border-radius: 10px; border: 1px solid var(--gold); background: none; color: var(--gold); font-weight: 600; cursor: pointer; }
+    </style>
+  </head>
+  <body>
+    <header class="hdr">
+      <div class="wrap">
+        <a class="brand" href="#top" id="top">AI Tools Hub <span class="pill">D2C</span></a>
+        <nav class="nav" aria-label="Sections">
+          <a href="#tools">Tools</a><a href="#guides">Guides</a><a href="#india">Made in India</a><a href="#trust">Verify</a><a href="#faq">FAQ</a><a href="#submit">Submit</a>
+        </nav>
+        <a class="back" href="./" target="_blank" rel="noopener">← All AI tools</a>
+        <button class="iconbtn" id="themeBtn" type="button" aria-label="Switch to light theme">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        </button>
+        <button class="iconbtn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+      <nav class="menu" id="menu" aria-label="Menu">
+        <a href="#tools">Tools</a><a href="#guides">Guides</a><a href="#india">Made in India</a><a href="#trust">How we verify</a><a href="#faq">FAQ</a><a href="#submit">Submit</a>
+        <a href="./" target="_blank" rel="noopener">← All AI tools</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="wrap">
+          <p class="eyebrow">For Indian D2C brands &amp; marketplace sellers</p>
+          <h1>The best AI tools for <span class="gold">Indian D2C</span> brands</h1>
+          <p class="sub">Hand-picked for sellers on Shopify, Amazon, Flipkart, Meesho and WhatsApp. INR, UPI, GST and Indian-language labels appear only when verified on the tool's official page.</p>
+          <form class="search" id="heroSearch" role="search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+            <input id="q" type="search" aria-label="Search AI tools" placeholder="Search tools, e.g. background removal" autocomplete="off" />
+            <button class="btn-gold" type="submit">Search</button>
+          </form>
+          <div class="chips" id="quick" role="group" aria-label="Popular searches">
+            <button class="chip" type="button" data-q="Product photo">Product photos</button>
+            <button class="chip" type="button" data-q="WhatsApp">WhatsApp</button>
+            <button class="chip" type="button" data-q="COD">COD &amp; RTO</button>
+            <button class="chip" type="button" data-q="GST">GST</button>
+            <button class="chip" type="button" data-q="Amazon">Amazon</button>
+            <button class="chip" type="button" data-q="Reels">Reels</button>
+          </div>
+          
+        </div>
+      </section>
+
+      <section class="dir" id="tools">
+        <div class="wrap">
+          <h2>Tools by job</h2>
+          <div class="scroller" id="cats" role="group" aria-label="Categories"></div>
+          <div class="controls">
+            <div class="seg" id="price" role="group" aria-label="Pricing"></div>
+            <div class="scroller" id="flags" role="group" aria-label="India labels"></div>
+          </div>
+          <p class="note">India labels appear only when verified on an official page. Blank means not verified.</p>
+          <p class="count" id="count" aria-live="polite"></p>
+          <div class="grid" id="grid"></div>
+          <div class="pager" id="pager">
+            <button type="button" id="prev">← Previous</button>
+            <span id="pageInfo"></span>
+            <button type="button" id="next">Next →</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="sec" id="guides">
+        <div class="wrap">
+          <p class="eyebrow">01 — Guides</p>
+          <h2>Guides for Indian sellers</h2>
+          <div class="grid">
+            <a class="card" href="guide-amazon.html" target="_blank" rel="noopener">
+              <h3>Best AI Tools for Amazon Sellers in India</h3>
+              <p>Amazon's free AI tools plus Helium 10, SellerApp and Insydz, compared for amazon.in.</p>
+              <span class="go">Read guide →</span>
+              <span class="ver"><b>✓</b> Facts checked 11 Oct 2026</span>
+            </a>
+            <a class="card" href="guide-whatsapp.html" target="_blank" rel="noopener">
+              <h3>AiSensy vs Interakt vs Wati</h3>
+              <p>WhatsApp marketing tools compared: INR prices, message charges, UPI and Shopify.</p>
+              <span class="go">Read guide →</span>
+              <span class="ver"><b>✓</b> Facts checked 11 Oct 2026</span>
+            </a>
+            <a class="card" href="guide-shopify.html" target="_blank" rel="noopener">
+              <h3>Best AI Tools for Indian D2C Brands on Shopify</h3>
+              <p>One pick per job, from product photos to COD and GST.</p>
+              <span class="go">Read guide →</span>
+              <span class="ver"><b>✓</b> Facts checked 11 Oct 2026</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="sec" id="india">
+        <div class="wrap">
+          <p class="eyebrow">03 — Made in India</p>
+          <h2>Built in India</h2>
+          <div class="box" role="note" aria-label="Status">
+            <ul>
+              <li><b>Sarvam AI:</b> live.</li>
+              <li><b>BharatGPT (CoRover):</b> enterprise-only, no consumer chatbot.</li>
+              <li><b>Ola Krutrim:</b> consumer app Kruti shut down April 2026; Krutrim now offers developer cloud only.</li>
+            </ul>
+          </div>
+          <div class="grid" id="indiaGrid"></div>
+        </div>
+      </section>
+
+      <section class="sec" id="trust">
+        <div class="wrap">
+          <p class="eyebrow">04 — How we verify</p>
+          <h2>Every label is checked at the source</h2>
+          <div class="grid">
+            <div class="card card--static">
+              <h3>Official sources only</h3>
+              <p>INR, UPI, GST and Indian-language labels come from the tool's own pages, with a source link.</p>
+            </div>
+            <div class="card card--static">
+              <h3>Dated checks</h3>
+              <p>A verified date shows only when we actually checked the tool. We re-check every month.</p>
+            </div>
+            <div class="card card--static">
+              <h3>Affiliate disclosure</h3>
+              <p>Some links may be affiliate links. They're always labelled "Affiliate" and never change which tools we list or recommend. No links here are affiliate links today.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="sec" id="faq">
+        <div class="wrap">
+          <p class="eyebrow">05 — FAQ</p>
+          <h2>Common questions</h2>
+          <div class="faq">
+            <details><summary>What is this?</summary><p>A curated list of AI tools for Indian D2C brands and marketplace sellers.</p></details>
+            <details><summary>Why are some India labels blank?</summary><p>We only show a label when the tool's official page confirms it.</p></details>
+            <details><summary>How often is it updated?</summary><p>Links, labels and prices are re-checked monthly.</p></details>
+            <details><summary>Do you earn from links?</summary><p>Some links may become affiliate links; they'll always be labelled and never affect rankings.</p></details>
+            <details><summary>Can I submit my tool?</summary><p>Yes, every submission is reviewed manually before listing.</p></details>
+          </div>
+        </div>
+        <script type="application/ld+json">
+          {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+            {"@type":"Question","name":"What is this?","acceptedAnswer":{"@type":"Answer","text":"A curated list of AI tools for Indian D2C brands and marketplace sellers."}},
+            {"@type":"Question","name":"Why are some India labels blank?","acceptedAnswer":{"@type":"Answer","text":"We only show a label when the tool's official page confirms it."}},
+            {"@type":"Question","name":"How often is it updated?","acceptedAnswer":{"@type":"Answer","text":"Links, labels and prices are re-checked monthly."}},
+            {"@type":"Question","name":"Do you earn from links?","acceptedAnswer":{"@type":"Answer","text":"Some links may become affiliate links; they'll always be labelled and never affect rankings."}},
+            {"@type":"Question","name":"Can I submit my tool?","acceptedAnswer":{"@type":"Answer","text":"Yes, every submission is reviewed manually before listing."}}
+          ]}
+        </script>
+      </section>
+
+      <section class="sec" id="submit">
+        <div class="wrap">
+          <p class="eyebrow">06 — Submit a tool</p>
+          <h2>Know a tool we missed?</h2>
+          <form class="form" id="subForm" novalidate>
+            <div class="field">
+              <label for="fName">Tool name</label>
+              <input id="fName" name="name" maxlength="80" autocomplete="off" aria-describedby="fNameErr" />
+              <p class="err" id="fNameErr" aria-live="polite"></p>
+            </div>
+            <div class="field">
+              <label for="fSite">Website</label>
+              <input id="fSite" name="website" type="url" inputmode="url" placeholder="https://" autocomplete="off" aria-describedby="fSiteErr" />
+              <p class="err" id="fSiteErr" aria-live="polite"></p>
+            </div>
+            <div class="field">
+              <label for="fCat">Category</label>
+              <select id="fCat" name="category" aria-describedby="fCatErr"><option value="">Choose a category</option></select>
+              <p class="err" id="fCatErr" aria-live="polite"></p>
+            </div>
+            <div class="field">
+              <label for="fPrice">Pricing</label>
+              <select id="fPrice" name="pricing" aria-describedby="fPriceErr">
+                <option value="">Choose pricing</option><option>Free</option><option>Freemium</option><option>Paid</option><option>Free trial</option>
+              </select>
+              <p class="err" id="fPriceErr" aria-live="polite"></p>
+            </div>
+            <div class="field">
+              <label for="fDesc">Short description</label>
+              <textarea id="fDesc" name="description" maxlength="140" rows="3" aria-describedby="fDescCount fDescErr"></textarea>
+              <p class="hint" id="fDescCount">0 / 140</p>
+              <p class="err" id="fDescErr" aria-live="polite"></p>
+            </div>
+            <fieldset class="field">
+              <legend>India details <span class="opt">(optional)</span></legend>
+              <p class="hint">We'll verify these before showing them.</p>
+              <div class="checks">
+                <label><input type="checkbox" name="labels" value="INR pricing" /> INR pricing</label>
+                <label><input type="checkbox" name="labels" value="UPI" /> UPI</label>
+                <label><input type="checkbox" name="labels" value="GST" /> GST</label>
+                <label><input type="checkbox" name="labels" value="Indian languages" /> Indian languages</label>
+                <label><input type="checkbox" name="labels" value="Made in India" /> Made in India</label>
+              </div>
+            </fieldset>
+            <div class="field">
+              <label for="fEmail">Your email <span class="opt">(optional)</span></label>
+              <input id="fEmail" name="email" type="email" placeholder="you@brand.in" autocomplete="email" aria-describedby="fEmailErr" />
+              <p class="err" id="fEmailErr" aria-live="polite"></p>
+            </div>
+            <div class="sr" aria-hidden="true">
+              <label for="fHp">Company website</label>
+              <input id="fHp" name="company_website" tabindex="-1" autocomplete="off" />
+            </div>
+            <button class="btn-gold" type="submit" id="subBtn">Submit tool</button>
+            <p class="err" id="subErr" role="alert"></p>
+          </form>
+          <div class="thanks box" id="subDone" tabindex="-1" hidden>
+            <p>Thanks — we review every submission manually before it goes live.</p>
+            <div class="row">
+              <button class="btn-line" type="button" id="copyBtn" hidden>Copy details</button>
+              <button class="btn-line" type="button" id="againBtn">Submit another</button>
+            </div>
+            <p class="hint" id="copyMsg" aria-live="polite"></p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <div class="wrap">
+        <a class="brand" href="#top">AI Tools Hub <span class="pill">D2C</span></a>
+        <a class="lnk" href="./" target="_blank" rel="noopener">All AI tools</a>
+        <span>© 2026 AI Tools Hub</span>
+        <nav class="flinks" aria-label="Footer">
+          <a class="lnk" href="#tools">Tools</a><a class="lnk" href="#guides">Guides</a><a class="lnk" href="#india">Made in India</a><a class="lnk" href="#trust">How we verify</a><a class="lnk" href="#faq">FAQ</a><a class="lnk" href="#submit">Submit a tool</a>
+        </nav>
+      </div>
+    </footer>
+
+    <div class="scrim" id="scrim"></div>
+    <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sName" tabindex="-1"></div>
+
+    <div class="x-ptr" id="ptr" aria-hidden="true">
+      <span class="x-ptr__disc"><svg class="x-ptr__svg" viewBox="0 0 32 32" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle class="x-ptr__track" cx="16" cy="16" r="12" stroke-width="2"/><circle class="x-ptr__arc" cx="16" cy="16" r="12" stroke-width="2"/><path class="x-ptr__arrow" d="M16 12v8M13 17l3 3 3-3" stroke="currentColor" stroke-width="1.75"/></svg></span>
+      <span class="x-ptr__label"><span data-s="pull">Pull to refresh</span><span data-s="release">Release to refresh</span><span data-s="load">Refreshing</span></span>
+    </div>
+    <div class="sr" role="status" id="ptrLive"></div>
+
+    <script type="application/json" id="tools-data">[{"n": "Photoroom", "u": "https://www.photoroom.com", "c": "Product Photos & Catalog", "p": "Freemium", "d": "Removes backgrounds and generates studio-style product scenes, formatting images for multiple marketplaces and listings at scale.", "b": ["Background removal", "Marketplace-ready", "Batch edits"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Pebblely", "u": "https://pebblely.com", "c": "Product Photos & Catalog", "p": "Freemium", "d": "Places your product photo into AI-generated themed backgrounds in seconds, replacing plain shots without a photoshoot.", "b": ["Product scenes", "Themed backgrounds", "No photoshoot"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Claid.ai", "u": "https://claid.ai", "c": "Product Photos & Catalog", "p": "Freemium", "d": "Turns simple phone shots into lifestyle scenes, on-model photos and clean cutouts for product pages.", "b": ["Lifestyle scenes", "On-model photos", "Clean cutouts"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Flair.ai", "u": "https://flair.ai", "c": "Product Photos & Catalog", "p": "Freemium", "d": "Drag-and-drop AI editor that builds studio-quality ecommerce photoshoots around your product image in seconds.", "b": ["Product photoshoots", "Drag-and-drop", "Brand scenes"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Pixelcut", "u": "https://www.pixelcut.ai", "c": "Product Photos & Catalog", "p": "Freemium", "d": "Mobile-friendly AI photo editor for background removal, upscaling and quick product photo touch-ups.", "b": ["Mobile editing", "Background removal", "Quick fixes"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Remove.bg", "u": "https://www.remove.bg", "c": "Product Photos & Catalog", "p": "Freemium", "d": "Removes image backgrounds automatically in about five seconds, with bulk processing and API for larger catalogs.", "b": ["Background removal", "Bulk processing", "API"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Erase.bg", "u": "https://www.erase.bg", "c": "Product Photos & Catalog", "p": "Free", "d": "Free background remover producing transparent, high-resolution cutouts of products for ecommerce use, no card needed.", "b": ["Free cutouts", "HD downloads", "Ecommerce images"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "PixelBin.io", "u": "https://www.pixelbin.io", "c": "Product Photos & Catalog", "p": "See site", "d": "AI photo studio to change backgrounds, upscale, remove watermarks and generate product images and videos.", "b": ["Background change", "Upscaling", "Image to video"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Picsart AI", "u": "https://picsart.com", "c": "Product Photos & Catalog", "p": "Freemium", "d": "Creative app with templates, asset libraries and generative AI tools for product edits and social graphics.", "b": ["Photo editing", "Templates", "Social graphics"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Mokker", "u": "https://mokker.ai", "c": "Product Photos & Catalog", "p": "Freemium", "d": "Replaces product photo backgrounds with realistic AI scenes so items look professionally photographed, not photoshopped.", "b": ["Product backgrounds", "Realistic scenes", "Quick staging"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Let's Enhance", "u": "https://letsenhance.io", "c": "Product Photos & Catalog", "p": "Freemium", "d": "Upscales, sharpens and improves low-quality product images online or via API, fixing blurry supplier photos.", "b": ["Upscaling", "Sharpening", "API"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Picwish", "u": "https://picwish.com", "c": "Product Photos & Catalog", "p": "Freemium", "d": "Free online and mobile editor to remove backgrounds, unblur and enhance product photos in a few clicks.", "b": ["Background removal", "Unblurring", "Mobile app"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Clipdrop", "u": "https://clipdrop.co", "c": "Product Photos & Catalog", "p": "Freemium", "d": "Quick AI photo tools for background removal, cleanup of unwanted objects, upscaling and relighting product shots.", "b": ["Object cleanup", "Relighting", "Upscaling"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Adobe Firefly", "u": "https://firefly.adobe.com", "c": "Product Photos & Catalog", "p": "Freemium", "d": "Adobe's generative studio for images, video and audio, useful for product scenes and campaign visuals.", "b": ["Generative images", "Video", "Adobe workflow"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Freepik AI", "u": "https://www.freepik.com/ai", "c": "Product Photos & Catalog", "p": "Freemium", "d": "Combines several AI image and video models with stock assets and mockups for product and marketing visuals.", "b": ["Stock plus AI", "Mockups", "Marketing visuals"], "india_made": false, "verified": "", "labels": {}}, {"n": "Botika", "u": "https://botika.com/", "c": "Product Photos & Catalog", "p": "See site", "d": "Turns flat-lay and ghost-mannequin clothing shots into on-model photos with AI fashion models, skipping photoshoots.", "b": ["Fashion sellers", "Flat lay to model", "No photoshoot"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Caimera", "u": "https://www.caimera.ai/", "c": "Product Photos & Catalog", "p": "Free trial", "d": "Converts flat-lay apparel images into on-model shoots in bulk, plus product videos and social content.", "b": ["AI fashion models", "Bulk shoots", "Apparel brands"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "FASHN", "u": "https://fashn.ai", "c": "Product Photos & Catalog", "p": "See site", "d": "Fashion AI agent that creates on-model product visuals, learns your brand style and monitors your market.", "b": ["Apparel visuals", "Virtual try-on", "Brand learning"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "WeShop AI", "u": "https://www.weshop.ai", "c": "Product Photos & Catalog", "p": "See site", "d": "Generates ecommerce product images and videos with current AI models, including model and background swaps.", "b": ["Product images", "AI models", "Video generation"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Rytr", "u": "https://rytr.me", "c": "Listings & SEO Copy", "p": "Freemium", "d": "Budget AI writer with templates and tones for product descriptions, ad lines, emails and social captions.", "b": ["Product descriptions", "Templates", "Low cost"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Hypotenuse AI", "u": "https://www.hypotenuse.ai", "c": "Listings & SEO Copy", "p": "Paid", "d": "Ecommerce content platform that enriches catalog data and generates on-brand product descriptions and images in bulk.", "b": ["Bulk descriptions", "Catalog enrichment", "Product images"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Describely", "u": "https://describely.ai", "c": "Listings & SEO Copy", "p": "See site", "d": "Generates, enriches and optimizes product descriptions at scale for ecommerce catalogs, aimed at higher conversion.", "b": ["Product descriptions", "Bulk generation", "SEO content"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Anyword", "u": "https://www.anyword.com/", "c": "Listings & SEO Copy", "p": "Paid", "d": "Marketing copy generator that predicts performance of each ad or product copy variant before you publish.", "b": ["Ad copy", "Performance scores", "A/B variants"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Writesonic", "u": "https://writesonic.com", "c": "Listings & SEO Copy", "p": "Freemium", "d": "SEO and AI-search platform that tracks how your brand appears in ChatGPT and similar engines and writes content.", "b": ["AI search visibility", "SEO articles", "Brand tracking"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Semrush", "u": "https://www.semrush.com", "c": "Listings & SEO Copy", "p": "Paid", "d": "SEO and competitor research suite with keyword data, site audits and AI tools for content and AI-search visibility.", "b": ["Keyword research", "Competitor analysis", "Site audits"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Surfer SEO", "u": "https://surferseo.com", "c": "Listings & SEO Copy", "p": "Paid", "d": "Scores your store blog and collection content against top-ranking pages and tracks visibility in AI search engines.", "b": ["Content scoring", "On-page SEO", "AI search"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Ahrefs", "u": "https://ahrefs.com", "c": "Listings & SEO Copy", "p": "See site", "d": "Large search and AI-visibility database for keyword research, competitor backlinks and content ideas for your store.", "b": ["Keyword research", "Backlinks", "AI visibility"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Ubersuggest", "u": "https://neilpatel.com/ubersuggest/", "c": "Listings & SEO Copy", "p": "Freemium", "d": "Beginner-friendly keyword research, competitor analysis and site audit tool to find search terms shoppers use.", "b": ["Keyword ideas", "Site audits", "Beginners"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Grammarly", "u": "https://www.grammarly.com", "c": "Listings & SEO Copy", "p": "Freemium", "d": "Checks grammar, clarity and tone in product copy, emails and replies, with AI rewrites in any app.", "b": ["Error checking", "Tone fixes", "AI rewrites"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "AdCreative.ai", "u": "https://www.adcreative.ai", "c": "Ads & Creatives", "p": "Free trial", "d": "Generates ad images, videos and copy at scale and scores creatives for predicted conversion and ROAS.", "b": ["Ad banners", "Conversion scores", "Shopify plan"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Predis.ai", "u": "https://predis.ai", "c": "Ads & Creatives", "p": "Freemium", "d": "Turns a text prompt or product link into image ads, video ads and social posts with built-in scheduling.", "b": ["Video ads", "Product to post", "Scheduling"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Canva", "u": "https://www.canva.com", "c": "Ads & Creatives", "p": "Freemium", "d": "Drag-and-drop design platform with templates and Magic Studio AI for ads, social posts, banners and packaging.", "b": ["Templates", "Magic Studio", "Non-designers"], "india_made": false, "verified": "", "labels": {}}, {"n": "Adobe Express", "u": "https://www.adobe.com/express/", "c": "Ads & Creatives", "p": "Freemium", "d": "Quick design app with templates and Firefly generative AI for social graphics, flyers and short promo videos.", "b": ["Quick graphics", "Firefly AI", "Templates"], "india_made": false, "verified": "", "labels": {}}, {"n": "Meta Advantage+", "u": "https://www.facebook.com/business/ads/meta-advantage-plus", "c": "Ads & Creatives", "p": "See site", "d": "Meta's AI ad suite that automates audience, placement, budget and creative variations for Facebook and Instagram sales campaigns.", "b": ["Facebook ads", "Instagram ads", "Auto-targeting"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Google Ads AI", "u": "https://business.google.com/us/google-ads/", "c": "Ads & Creatives", "p": "See site", "d": "Google's ad platform whose AI-driven campaigns reach shoppers across Search, YouTube and other Google surfaces.", "b": ["Search ads", "YouTube ads", "Automated bidding"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Creatify", "u": "https://creatify.ai", "c": "Ads & Creatives", "p": "Freemium", "d": "Turns a product link into many AI image and video ad variations, including avatar-led ads, for testing.", "b": ["Video ads", "Ad variations", "AI avatars"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Arcads", "u": "https://www.arcads.ai", "c": "Ads & Creatives", "p": "Paid", "d": "Generates UGC-style video and image ads featuring realistic AI actors reading your script.", "b": ["UGC ads", "AI actors", "Paid social"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Simplified", "u": "https://simplified.com", "c": "Ads & Creatives", "p": "Freemium", "d": "AI marketing agents and design tools that handle recurring content, launches and reporting for small teams.", "b": ["Marketing agents", "Design", "Small teams"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Microsoft Designer", "u": "https://designer.microsoft.com", "c": "Ads & Creatives", "p": "Free", "d": "Free design app that generates social posts and graphics from a text prompt.", "b": ["Social posts", "Prompt to design", "Free"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Kittl", "u": "https://www.kittl.com", "c": "Ads & Creatives", "p": "Freemium", "d": "AI-first design platform with image generation, mockups and text effects, handy for merch and print-on-demand designs.", "b": ["Merch design", "Mockups", "Typography"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "CapCut", "u": "https://www.capcut.com", "c": "Social & Reels", "p": "Freemium", "d": "Video editor for phone and desktop with AI tools, auto captions and templates for Instagram Reels and YouTube Shorts.", "b": ["Reels editing", "Auto captions", "Templates"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "InVideo", "u": "https://invideo.io", "c": "Social & Reels", "p": "Freemium", "d": "Creates and edits complete videos from a prompt using its AI agent, with stock footage and voiceover.", "b": ["Prompt to video", "Voiceover", "Stock footage"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Kapwing", "u": "https://www.kapwing.com", "c": "Social & Reels", "p": "Freemium", "d": "Online video editor that generates full video projects from a prompt, with subtitles and resizing for every channel.", "b": ["Prompt to video", "Subtitles", "Resizing"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Veed", "u": "https://www.veed.io", "c": "Social & Reels", "p": "Freemium", "d": "Browser video editor with AI talking heads, dubbing and auto subtitles, built for marketers and solopreneurs.", "b": ["Subtitles", "AI avatars", "Dubbing"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Opus Clip", "u": "https://www.opus.pro", "c": "Social & Reels", "p": "Freemium", "d": "Turns long videos like live sessions into short viral clips with captions and publishes them to social platforms.", "b": ["Long to shorts", "Auto captions", "One-click publish"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Submagic", "u": "https://www.submagic.co", "c": "Social & Reels", "p": "Paid", "d": "Adds AI captions, B-roll and smart edits to short-form videos to boost Reels and Shorts engagement.", "b": ["Animated captions", "B-roll", "Reels"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Captions", "u": "https://captions.ai/", "c": "Social & Reels", "p": "Freemium", "d": "AI video generator and editor for talking-head product videos, with auto captions and AI edits.", "b": ["Talking heads", "Auto captions", "AI edits"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "HeyGen", "u": "https://www.heygen.com", "c": "Social & Reels", "p": "Freemium", "d": "Creates videos with an AI avatar of your face and voice, plus narration and captions, without filming each time.", "b": ["AI avatars", "Product explainers", "Video translation"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Ocoya", "u": "https://www.ocoya.com", "c": "Social & Reels", "p": "Paid", "d": "Social media hub that drafts AI posts, designs graphics and schedules content across platforms.", "b": ["Post scheduling", "AI captions", "Multi-platform"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Metricool", "u": "https://metricool.com", "c": "Social & Reels", "p": "Freemium", "d": "Schedules and analyses posts and ad results across Instagram, Facebook and other networks from one dashboard, with a free plan.", "b": ["Post scheduling", "Social analytics", "Ad reporting"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Buffer", "u": "https://buffer.com", "c": "Social & Reels", "p": "Freemium", "d": "Simple social scheduler with an AI assistant that drafts, rewrites and repurposes product posts for each channel; forever-free plan available.", "b": ["Simple scheduling", "AI post ideas", "Small teams"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Hootsuite", "u": "https://www.hootsuite.com", "c": "Social & Reels", "p": "See site", "d": "Social media manager combining scheduling, content creation, analytics and social listening, with OwlyWriter AI for captions and post ideas.", "b": ["Caption writing", "Social listening", "Analytics"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Vista Social", "u": "https://vistasocial.com", "c": "Social & Reels", "p": "See site", "d": "AI-powered social media command center for publishing, a shared inbox, listening and AI content tools across brand accounts.", "b": ["Social inbox", "AI content", "Publishing"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Later", "u": "https://later.com", "c": "Social & Reels", "p": "See site", "d": "Social media and influencer marketing platform to schedule posts, run creator campaigns and track performance with AI-powered insights.", "b": ["Influencer campaigns", "Scheduling", "AI insights"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "ElevenLabs", "u": "https://elevenlabs.io", "c": "Social & Reels", "p": "Freemium", "d": "Lifelike AI voice generator with 5,000+ voices in 90+ languages, useful for product video voiceovers, dubbing and voice agents.", "b": ["AI voiceovers", "Voice cloning", "Dubbing"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Murf AI", "u": "https://murf.ai", "c": "Social & Reels", "p": "See site", "d": "AI voice platform that generates human-like voiceovers for product demos and ads, plus conversational voice agents for businesses.", "b": ["Voiceovers", "Product demos", "Voice agents"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Pictory", "u": "https://pictory.ai", "c": "Social & Reels", "p": "See site", "d": "Turns text, URLs, slides and images into branded videos with captions, AI voices and avatars, handy for quick product clips.", "b": ["Text to video", "Auto captions", "Product clips"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Fliki", "u": "https://fliki.ai", "c": "Social & Reels", "p": "Freemium", "d": "Turns scripts and blog posts into voiced videos using 2,000+ AI voices in 80+ languages, no camera needed; free plan offered.", "b": ["Faceless videos", "AI voices", "Text to video"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Descript", "u": "https://www.descript.com", "c": "Social & Reels", "p": "See site", "d": "AI video and audio editor where you edit by editing the transcript, useful for cleaning up product demos and reels.", "b": ["Text-based editing", "Transcription", "Video cleanup"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "AiSensy", "u": "https://aisensy.com", "c": "WhatsApp & Chat Commerce", "p": "Freemium", "d": "WhatsApp Business API platform with AI chatbot and AI agent add-ons, broadcasts, catalog/cart and Shopify and Razorpay integrations.", "b": ["WhatsApp broadcasts", "AI chatbot", "Catalog & cart"], "india_made": true, "verified": "2026-10-11", "labels": {"inr": "https://aisensy.com/pricing", "upi": "https://aisensy.com/pricing"}}, {"n": "Interakt", "u": "https://www.interakt.shop", "c": "WhatsApp & Chat Commerce", "p": "Free trial", "d": "WhatsApp platform from Jio Haptik with AI agents, catalog, checkout bot and abandoned-checkout recovery, integrating with Shopify and WooCommerce.", "b": ["Abandoned checkout", "AI agents", "Shopify sync"], "india_made": true, "verified": "2026-10-11", "labels": {}}, {"n": "Wati", "u": "https://www.wati.io", "c": "WhatsApp & Chat Commerce", "p": "Free trial", "d": "AI-powered engagement platform turning WhatsApp, Instagram and Messenger chats into sales, with Astra AI agents and a 7-day trial.", "b": ["WhatsApp inbox", "AI agents", "Broadcasts"], "india_made": false, "verified": "2026-10-11", "labels": {"inr": "https://www.wati.io/pricing/"}}, {"n": "Gallabox", "u": "https://gallabox.com", "c": "WhatsApp & Chat Commerce", "p": "Paid", "d": "Deploys AI agents across WhatsApp, Instagram, web chat and voice to capture leads, qualify intent and move shoppers to purchase.", "b": ["Omnichannel AI agents", "Lead capture", "WhatsApp"], "india_made": false, "verified": "2026-10-11", "labels": {"inr": "https://gallabox.com/pricing"}}, {"n": "Gupshup", "u": "https://www.gupshup.ai", "c": "WhatsApp & Chat Commerce", "p": "See site", "d": "Conversational messaging platform offering AI agents for sales, marketing and support across WhatsApp and other channels.", "b": ["AI agents", "WhatsApp marketing", "Support bots"], "india_made": false, "verified": "", "labels": {}}, {"n": "DoubleTick", "u": "https://doubletick.io", "c": "WhatsApp & Chat Commerce", "p": "See site", "d": "WhatsApp Business API platform with a shared team inbox, bulk messaging, no-code chatbot builder and AI agents for sales teams.", "b": ["Team inbox", "Bulk messaging", "AI agents"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "QuickReply.ai", "u": "https://www.quickreply.ai", "c": "WhatsApp & Chat Commerce", "p": "See site", "d": "AI that identifies anonymous shoppers and decides what offer to send, when and where, across WhatsApp, SMS, RCS, email and voice.", "b": ["Shopper retargeting", "WhatsApp & SMS", "AI offers"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Bik.ai", "u": "https://bik.ai", "c": "WhatsApp & Chat Commerce", "p": "See site", "d": "Marketing automation platform for ecommerce brands with 100+ AI commerce agents across WhatsApp and Instagram; Shopify app free to install.", "b": ["AI commerce agents", "WhatsApp automation", "Shopify brands"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "LimeChat", "u": "https://www.limechat.ai", "c": "WhatsApp & Chat Commerce", "p": "Paid", "d": "WhatsApp, chat and voice AI agents for D2C brands, including COD order verification, offered via a Shopify app from $199/month.", "b": ["Voice AI", "COD verification", "D2C brands"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "ManyChat", "u": "https://manychat.com", "c": "WhatsApp & Chat Commerce", "p": "Freemium", "d": "Automates Instagram, WhatsApp and Messenger DMs and comment-to-DM replies; Manychat AI adds intent recognition and AI replies on paid plans.", "b": ["Comment-to-DM", "Instagram DMs", "AI replies"], "india_made": false, "verified": "", "labels": {}}, {"n": "Freshdesk", "u": "https://www.freshworks.com/freshdesk/", "c": "Customer Support", "p": "See site", "d": "Help desk with Freddy AI that automates replies, summarises tickets and runs omnichannel ticketing for growing support teams.", "b": ["Help desk AI", "Ticket summaries", "Omnichannel"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Zoho Desk", "u": "https://www.zoho.com/desk/", "c": "Customer Support", "p": "Free trial", "d": "Unified help desk built for AI-human collaboration, handling customer tickets across channels; flexible free trial available.", "b": ["Ticketing", "AI assist", "Multichannel"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Tidio", "u": "https://www.tidio.com", "c": "Customer Support", "p": "See site", "d": "Live chat for online stores whose Lyro AI agent answers common questions and turns chats into sales and leads.", "b": ["Lyro AI agent", "Live chat", "Store FAQs"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Gorgias", "u": "https://www.gorgias.com", "c": "Customer Support", "p": "See site", "d": "Ecommerce help desk with an AI Agent that automates support and drives sales across chat, email and FAQ, integrated with store data.", "b": ["Ecommerce helpdesk", "AI Agent", "Shopify support"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Intercom Fin", "u": "https://fin.ai", "c": "Customer Support", "p": "See site", "d": "Intercom's AI support agent that answers customer questions from your help content across chat, email and other channels.", "b": ["AI support agent", "Help content", "Chat & email"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Zendesk AI", "u": "https://www.zendesk.com", "c": "Customer Support", "p": "Free trial", "d": "Customer service platform with AI agents that resolve issues end-to-end, plus ticket triage and reply suggestions; free trial offered.", "b": ["AI agents", "Ticket triage", "Agent assist"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Chatbase", "u": "https://www.chatbase.co", "c": "Customer Support", "p": "See site", "d": "Builds an AI support agent trained on your website and documents to answer customer queries and cut ticket volume.", "b": ["Website chatbot", "Trained on docs", "Ticket deflection"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Richpanel", "u": "https://www.richpanel.com", "c": "Customer Support", "p": "See site", "d": "AI-powered customer service platform for ecommerce, managing email, chat and social messages from one dashboard.", "b": ["Ecommerce support", "AI replies", "Unified inbox"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Botpress", "u": "https://botpress.com", "c": "Customer Support", "p": "See site", "d": "AI agent platform for building support chatbots with knowledge bases and multichannel deployment, with no per-seat cost.", "b": ["Custom chatbots", "Knowledge base", "WhatsApp bots"], "india_made": false, "verified": "", "labels": {}}, {"n": "Klaviyo", "u": "https://www.klaviyo.com", "c": "Email & Retention", "p": "See site", "d": "AI-powered email and SMS marketing CRM for ecommerce, with K:AI agents for personalised campaigns across email, SMS and WhatsApp.", "b": ["Email & SMS", "K:AI agents", "Segmentation"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Mailchimp", "u": "https://mailchimp.com", "c": "Email & Retention", "p": "Freemium", "d": "Email and SMS marketing platform using behaviour data and AI to draft campaigns and convert more customers; free to start.", "b": ["Email campaigns", "AI drafting", "Segments"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Brevo", "u": "https://www.brevo.com", "c": "Email & Retention", "p": "See site", "d": "All-in-one platform for email, SMS and WhatsApp campaigns, automation, CRM and live chat, with AI-assisted content.", "b": ["Email & SMS", "WhatsApp campaigns", "Automation"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Omnisend", "u": "https://www.omnisend.com", "c": "Email & Retention", "p": "Freemium", "d": "Ecommerce email and SMS tool whose AI writes emails and subject lines, recommends products and builds segments; AI on free plan.", "b": ["AI subject lines", "Product recommendations", "Ecommerce email"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Mailmodo", "u": "https://www.mailmodo.com", "c": "Email & Retention", "p": "See site", "d": "AI email marketing tool that creates emails, automates customer journeys and adds interactive elements to lift conversions.", "b": ["Interactive emails", "AI email writing", "Journeys"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Shopify Messaging", "u": "https://www.shopify.com/email-marketing", "c": "Email & Retention", "p": "See site", "d": "Shopify's built-in email and SMS campaigns using store-branded templates, with Sidekick AI generating on-brand copy; pay per send.", "b": ["Shopify stores", "AI copy", "Email & SMS"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Shopify Sidekick", "u": "https://www.shopify.com/sidekick", "c": "Store & Checkout", "p": "Paid", "d": "Shopify's AI commerce assistant included with plans, helping build the store, write product descriptions and answer business questions.", "b": ["Store setup", "Product descriptions", "Store insights"], "india_made": false, "verified": "2026-10-11", "labels": {"inr": "https://www.shopify.com/in/sidekick"}}, {"n": "Dukaan", "u": "https://mydukaan.io", "c": "Store & Checkout", "p": "See site", "d": "Online store platform with an AI generator for SEO product titles and meta descriptions and an AI RTO-prediction plugin for COD orders.", "b": ["Online store", "AI SEO copy", "RTO prediction"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Wix", "u": "https://www.wix.com", "c": "Store & Checkout", "p": "Freemium", "d": "Free website builder with 2,000+ templates and built-in AI tools that can generate an editable site and online store.", "b": ["Website builder", "AI site creation", "Online store"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Hostinger Website Builder", "u": "https://www.hostinger.com/website-builder", "c": "Store & Checkout", "p": "See site", "d": "Drag-and-drop builder from a hosting provider with an AI tool that generates a site from a short brief, hosting included.", "b": ["Budget websites", "AI site builder", "Hosting included"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Zoho Commerce", "u": "https://www.zoho.com/commerce/", "c": "Store & Checkout", "p": "Free trial", "d": "Online store builder with Zia AI product recommendations and an AI writing assistant for product copy; 14-day free trial.", "b": ["Store builder", "AI recommendations", "Product copy"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "GoKwik", "u": "https://www.gokwik.co", "c": "Shipping & COD", "p": "Paid", "d": "D2C checkout platform with AI-driven COD and RTO risk insights, AI upsells and an AI support assistant.", "b": ["RTO reduction", "Smart COD", "Checkout"], "india_made": false, "verified": "2026-10-11", "labels": {"inr": "https://www.gokwik.co/pricing"}}, {"n": "Razorpay Magic Checkout", "u": "https://razorpay.com/magic-checkout/", "c": "Shipping & COD", "p": "See site", "d": "One-click checkout whose AI model scores RTO risk and can switch off COD for risky orders.", "b": ["COD control", "Faster checkout", "RTO reduction"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Cashfree Payments", "u": "https://www.cashfree.com", "c": "Shipping & COD", "p": "See site", "d": "Payments platform with AI RTO intelligence and Relay AI agents for cart recovery and COD confirmation.", "b": ["Cart recovery", "COD confirmation", "Payment gateway"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Fynd Platform", "u": "https://www.fynd.com/solutions/website-builder", "c": "Store & Checkout", "p": "Free trial", "d": "Store builder with an AI section builder, AI-assisted product descriptions and AI image transforms; 30-day free trial.", "b": ["Online store", "AI page sections", "Product content"], "india_made": true, "verified": "2026-10-11", "labels": {}}, {"n": "Zoho Books", "u": "https://www.zoho.com/in/books/", "c": "Accounting & GST", "p": "Freemium", "d": "Accounting and GST filing software that answers plain-English questions about your books and flags unusual entries.", "b": ["GST filing", "Bookkeeping", "Free under ₹25 lakh"], "india_made": false, "verified": "2026-10-11", "labels": {"inr": "https://www.zoho.com/in/books/pricing/", "gst": "https://www.zoho.com/in/books/pricing/"}}, {"n": "Clear", "u": "https://cleartax.in/sme", "c": "Accounting & GST", "p": "Free trial", "d": "GST software for businesses with AI-powered GST reconciliation to catch mismatches before you file.", "b": ["GST reconciliation", "Return filing", "Input credit checks"], "india_made": false, "verified": "2026-10-11", "labels": {"gst": "https://cleartax.in/sme"}}, {"n": "myBillBook", "u": "https://mybillbook.in", "c": "Accounting & GST", "p": "See site", "d": "Billing and inventory app with Mira AI bill scanning and AI bank reconciliation for small shops and sellers.", "b": ["GST invoices", "Bill scanning", "Bank reconciliation"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Refrens", "u": "https://www.refrens.com", "c": "Accounting & GST", "p": "See site", "d": "Invoicing and accounting with the Freya AI assistant and bill capture straight from WhatsApp or email.", "b": ["Invoicing", "Bill capture", "Accounting"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Swipe", "u": "https://getswipe.in", "c": "Accounting & GST", "p": "See site", "d": "GST billing app whose Swipe AI autofills invoices, flags errors and creates bulk invoices from images.", "b": ["Fast invoicing", "E-way bills", "Error checks"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "TallyPrime", "u": "https://tallysolutions.com", "c": "Accounting & GST", "p": "Paid", "d": "Accounting software whose Docs by Ira AI turns invoices and documents into accounting entries automatically.", "b": ["Accounting entries", "GST compliance", "Accountant workflows"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Shiprocket", "u": "https://www.shiprocket.in", "c": "Shipping & COD", "p": "See site", "d": "Shipping aggregator with fastrr Shield AI that flags high-risk COD orders and voice-based COD verification.", "b": ["Courier shipping", "RTO reduction", "COD verification"], "india_made": false, "verified": "2026-10-11", "labels": {"inr": "https://www.shiprocket.in/"}}, {"n": "NimbusPost", "u": "https://nimbuspost.com", "c": "Shipping & COD", "p": "See site", "d": "Shipping platform that uses AI to pick the best courier per order and automates failed-delivery follow-ups.", "b": ["Courier allocation", "NDR handling", "Multi-courier shipping"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "iThink Logistics", "u": "https://www.ithinklogistics.com", "c": "Shipping & COD", "p": "See site", "d": "Shipping platform with an AI courier recommendation engine and an AI tool for handling failed deliveries.", "b": ["Courier choice", "NDR automation", "D2C shipping"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Shipway", "u": "https://www.shipway.com", "c": "Shipping & COD", "p": "See site", "d": "Shipping and tracking platform whose ShipSense AI allocates couriers and scores COD orders for fraud risk.", "b": ["Courier allocation", "COD fraud checks", "Order tracking"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Unicommerce", "u": "https://unicommerce.com", "c": "Marketplace Tools", "p": "See site", "d": "Multichannel order and inventory software with UniBot, a generative AI assistant for daily operations questions.", "b": ["Multichannel orders", "Inventory sync", "Ops assistant"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Prediko", "u": "https://www.prediko.io", "c": "Store & Checkout", "p": "Free trial", "d": "AI inventory forecasting for Shopify brands that predicts demand and drafts purchase orders; 14-day trial.", "b": ["Demand forecasting", "Purchase orders", "Stock planning"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Helium 10", "u": "https://www.helium10.com", "c": "Marketplace Tools", "p": "Paid", "d": "Amazon seller suite for keyword research, listing analysis, ads and follow-up emails; most tools support amazon.in.", "b": ["Amazon keywords", "Listing analysis", "Sponsored ads"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Jungle Scout", "u": "https://www.junglescout.com", "c": "Marketplace Tools", "p": "Paid", "d": "Amazon product and keyword research tool; offers only limited support for amazon.in, with no India seasonality data.", "b": ["Product research", "Keyword research", "Rank tracking"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "SellerApp", "u": "https://www.sellerapp.com", "c": "Marketplace Tools", "p": "Freemium", "d": "Amazon seller software with AI ad bid automation, listing quality scores and English and Hindi keyword research.", "b": ["PPC automation", "Keyword research", "Listing quality"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Amazon Seller Assistant", "u": "https://sell.amazon.in", "c": "Marketplace Tools", "p": "Free", "d": "Free AI assistant inside Amazon Seller Central India, in English and Hinglish, that drafts listings and suggests reorders.", "b": ["Listing drafts", "Hinglish help", "Inventory tips"], "india_made": false, "verified": "2026-10-11", "labels": {"lang": "https://www.aboutamazon.in/news/small-business/amazon-seller-assistant-ai-tool-india"}}, {"n": "Amazon Ads Creative Studio", "u": "https://advertising.amazon.com/resources/whats-new/image-generation-available-for-india", "c": "Ads & Creatives", "p": "Free", "d": "Amazon Ads image generator, available in India, that creates lifestyle product images for ads at no extra cost.", "b": ["Ad images", "Sponsored Brands", "Lifestyle shots"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Meesho Supplier Hub", "u": "https://supplier.meesho.com", "c": "Marketplace Tools", "p": "Free", "d": "Meesho supplier panel with price and product recommendation tools to help sellers choose what and how to list.", "b": ["Pricing suggestions", "Product ideas", "Meesho selling"], "india_made": false, "verified": "", "labels": {}}, {"n": "Sarvam AI", "u": "https://www.sarvam.ai", "c": "Made in India AI", "p": "See site", "d": "Bengaluru AI lab offering voice agents for Indian languages, with ecommerce uses like cart recovery and order status.", "b": ["Indian-language voice", "Cart recovery calls", "Translation API"], "india_made": true, "verified": "2026-10-11", "labels": {"inr": "https://www.sarvam.ai/api-pricing", "lang": "https://www.sarvam.ai/products/voice-agents"}}, {"n": "Krutrim Cloud", "u": "https://www.olakrutrim.com", "c": "Made in India AI", "p": "See site", "d": "Ola’s Krutrim now offers developer AI cloud and GPUs only; its consumer Kruti assistant shut down in April 2026.", "b": ["Developers", "AI cloud", "GPU compute"], "india_made": true, "verified": "2026-10-11", "labels": {"inr": "https://www.olakrutrim.com/"}}, {"n": "Bhashini", "u": "https://bhashini.gov.in", "c": "Made in India AI", "p": "Free", "d": "Government of India language platform offering translation and speech tools across Indian languages.", "b": ["Translation", "Indian languages", "Speech tools"], "india_made": true, "verified": "2026-10-11", "labels": {}}, {"n": "BharatGPT (CoRover)", "u": "https://corover.ai/products/bharatgpt", "c": "Made in India AI", "p": "See site", "d": "CoRover’s generative AI platform for businesses in Indian languages; enterprise-only, with the self-serve builder in beta.", "b": ["Enterprise bots", "Indian languages", "Voice and text"], "india_made": true, "verified": "2026-10-11", "labels": {"lang": "https://bharatgpt.ai/"}}, {"n": "Smallest.ai", "u": "https://smallest.ai", "c": "Customer Support", "p": "See site", "d": "Voice AI agents, text-to-speech and speech-to-text for handling support and order calls automatically.", "b": ["Voice agents", "Order calls", "Text to speech"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Gnani.ai", "u": "https://www.gnani.ai", "c": "Customer Support", "p": "See site", "d": "Voice AI agents for support and sales calls covering Hindi, Tamil, Telugu, Kannada and other Indian languages.", "b": ["Voice support", "Indian languages", "Sales calls"], "india_made": false, "verified": "2026-10-11", "labels": {"lang": "https://www.gnani.ai"}}, {"n": "ChatGPT", "u": "https://chatgpt.com", "c": "AI Assistants", "p": "Freemium", "d": "OpenAI's general-purpose assistant for writing, coding, analysis, images and voice, with web search and custom GPTs.", "b": ["All-purpose help", "Custom GPTs", "Voice chat"], "india_made": false, "verified": "", "labels": {}}, {"n": "Claude", "u": "https://claude.ai", "c": "AI Assistants", "p": "Freemium", "d": "Anthropic's assistant known for careful long-form writing, coding and analyzing large documents with long context.", "b": ["Long documents", "Writing quality", "Coding help"], "india_made": false, "verified": "", "labels": {}}, {"n": "Gemini", "u": "https://gemini.google.com", "c": "AI Assistants", "p": "Freemium", "d": "Google's assistant connected to Search, Gmail, Docs and YouTube, handling text, images and video with Deep Research.", "b": ["Google apps", "Deep Research", "Multimodal tasks"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Microsoft Copilot", "u": "https://copilot.microsoft.com", "c": "AI Assistants", "p": "Free", "d": "Microsoft's free consumer assistant in Windows and Edge that chats, searches the web and creates images.", "b": ["Windows users", "Web answers", "Free images"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Perplexity", "u": "https://perplexity.ai", "c": "AI Assistants", "p": "Freemium", "d": "Answer engine that searches the web live and responds with concise answers backed by cited sources.", "b": ["Cited answers", "Live research", "Fact finding"], "india_made": false, "verified": "", "labels": {}}, {"n": "Meta AI", "u": "https://meta.ai", "c": "AI Assistants", "p": "Free", "d": "Meta's assistant built into WhatsApp, Instagram, Facebook and Ray-Ban glasses, powered by Llama models.", "b": ["WhatsApp chats", "Social apps", "Quick answers"], "india_made": false, "verified": "", "labels": {}}, {"n": "NotebookLM", "u": "https://notebooklm.google.com", "c": "AI Assistants", "p": "Free", "d": "Google's research notebook that answers questions grounded in your uploaded sources and creates audio overviews.", "b": ["Source-grounded Q&A", "Audio overviews", "Study notes"], "india_made": false, "verified": "", "labels": {}}, {"n": "Notion AI", "u": "https://notion.so", "c": "AI Assistants", "p": "Freemium", "d": "AI built into Notion that writes, summarizes and answers questions across your workspace pages, databases and connected apps.", "b": ["Workspace search", "Docs & wikis", "Meeting notes"], "india_made": false, "verified": "", "labels": {}}, {"n": "Zapier", "u": "https://zapier.com", "c": "AI Assistants", "p": "Freemium", "d": "Connects thousands of apps with trigger-and-action workflows, now adding AI steps, agents and chatbots to automations.", "b": ["app integrations", "simple workflows", "non-technical teams"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Make", "u": "https://make.com", "c": "AI Assistants", "p": "Freemium", "d": "Visual automation builder with branching scenarios and fine-grained data mapping, cheaper per operation for complex flows.", "b": ["complex workflows", "visual mapping", "agencies"], "india_made": false, "verified": "", "labels": {}}, {"n": "n8n", "u": "https://n8n.io", "c": "AI Assistants", "p": "Freemium", "d": "Workflow automation tool you can self-host, with code steps and AI agent nodes for technical teams wanting control.", "b": ["self-hosting", "AI agents", "developers"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "Julius AI", "u": "https://julius.ai", "c": "AI Assistants", "p": "Freemium", "d": "Analyzes spreadsheets and datasets through chat, generating charts, statistics and Python code automatically.", "b": ["Data analysis", "Charts", "Statistics"], "india_made": false, "verified": "2026-10-11", "labels": {}}, {"n": "GPT for Sheets", "u": "https://gptforwork.com", "c": "AI Assistants", "p": "Freemium", "d": "Add-on bringing GPT, Claude and other models into Google Sheets and Excel as formulas for bulk text tasks.", "b": ["bulk text tasks", "Sheets formulas", "content at scale"], "india_made": false, "verified": "2026-10-11", "labels": {}}]</script>
+    <script>
+      const SUBMIT_CONFIG = { endpoint: "" };
+      (function () {
+        var TOOLS = [];
+        try { TOOLS = JSON.parse(document.getElementById("tools-data").textContent || "[]"); } catch (e) {}
+        var $ = function (id) { return document.getElementById(id); };
+        var esc = function (s) { return String(s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); };
+        var LABELS = { inr: "INR pricing", upi: "UPI", gst: "GST", lang: "Indian languages" };
+        var MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        var fmtDate = function (s) { var p = s.split("-"); return +p[2] + " " + MONTHS[+p[1] - 1] + " " + p[0]; };
+        var domain = function (u) { try { return new URL(u).hostname.replace(/^www\./, ""); } catch (e) { return ""; } };
+        var fav = function (t) {
+          var d = domain(t.u), m = esc(t.n.charAt(0).toUpperCase());
+          return '<span class="fav" aria-hidden="true" data-m="' + m + '">' + (d ? '<img loading="lazy" decoding="async" alt="" width="24" height="24" src="https://www.google.com/s2/favicons?domain=' + esc(d) + '&amp;sz=64">' : m) + "</span>";
+        };
+        /* favicon fallback: one delegated listener instead of an inline handler per image */
+        document.addEventListener("error", function (e) {
+          var img = e.target;
+          if (img && img.tagName === "IMG" && img.parentNode && img.parentNode.classList.contains("fav")) img.parentNode.textContent = img.parentNode.getAttribute("data-m");
+        }, true);
+        var toFrag = function (html) { var tpl = document.createElement("template"); tpl.innerHTML = html; return tpl.content; };
+
+        var state = { q: "", cat: "All", price: "All", flags: {}, page: 1 };
+        var PER = 20;
+
+        /* theme, menu */
+        var root = document.documentElement;
+        $("themeBtn").onclick = function () {
+          var light = root.getAttribute("data-theme") !== "light";
+          root.setAttribute("data-theme", light ? "light" : "dark");
+          this.setAttribute("aria-label", light ? "Switch to dark theme" : "Switch to light theme");
+        };
+        var menu = $("menu"), menuBtn = $("menuBtn");
+        var setMenu = function (o) {
+          menu.classList.toggle("open", o);
+          menuBtn.setAttribute("aria-expanded", o ? "true" : "false");
+          menuBtn.setAttribute("aria-label", o ? "Close menu" : "Open menu");
+        };
+        menuBtn.onclick = function () { setMenu(!menu.classList.contains("open")); };
+        menu.addEventListener("click", function (e) { if (e.target.closest("a")) setMenu(false); });
+        document.addEventListener("keydown", function (e) { if (e.key === "Escape" && menu.classList.contains("open")) { setMenu(false); menuBtn.focus(); } });
+
+        /* controls */
+        var cats = ["All"];
+        TOOLS.forEach(function (t) { if (cats.indexOf(t.c) < 0) cats.push(t.c); });
+        /* job chips: data categories under job names, the key jobs first */
+        var JOB = { "WhatsApp & Chat Commerce": "WhatsApp Marketing", "Ads & Creatives": "Ad Creatives", "Accounting & GST": "GST & Invoicing", "Shipping & COD": "COD & RTO", "Customer Support": "Support Bots" };
+        var FIRST = ["Product Photos & Catalog", "Listings & SEO Copy", "WhatsApp & Chat Commerce", "Ads & Creatives", "Accounting & GST", "Shipping & COD", "Customer Support"];
+        var catCount = { All: TOOLS.length };
+        TOOLS.forEach(function (t) { catCount[t.c] = (catCount[t.c] || 0) + 1; });
+        var chipCats = ["All"].concat(FIRST.filter(function (c) { return catCount[c]; }), cats.slice(1).filter(function (c) { return FIRST.indexOf(c) < 0; }));
+        $("cats").innerHTML = chipCats.map(function (c) { return '<button class="chip" type="button" data-cat="' + esc(c) + '" aria-pressed="' + (c === "All") + '">' + esc(JOB[c] || c) + '<span class="chip__n">' + catCount[c] + "</span></button>"; }).join("");
+        var isVin = function (t) { return !!(t.labels && (t.labels.inr || t.labels.upi)); };
+        var vinFirst = function (arr) { return arr.filter(isVin).concat(arr.filter(function (t) { return !isVin(t); })); };
+        var ORDERED = vinFirst(TOOLS);
+        var VIN = '<span class="vin" title="Verified INR pricing or UPI"><b aria-hidden="true">✓</b> Verified India</span>';
+        $("price").innerHTML = ["All", "Free", "Freemium", "Paid", "Free trial"].map(function (p) { return '<button type="button" data-p="' + p + '" aria-pressed="' + (p === "All") + '">' + p + "</button>"; }).join("");
+        var FLAGS = [["inr", "INR pricing"], ["upi", "UPI"], ["gst", "GST"], ["lang", "Indian languages"], ["india", "Made in India"]];
+        $("flags").innerHTML = FLAGS.map(function (f) { return '<button class="chip" type="button" data-f="' + f[0] + '" aria-pressed="false">' + f[1] + "</button>"; }).join("");
+
+        var press = function (box, attr, val) { box.querySelectorAll("button").forEach(function (b) { b.setAttribute("aria-pressed", b.getAttribute(attr) === val); }); };
+        $("cats").onclick = function (e) { var b = e.target.closest("button"); if (!b) return; state.cat = b.dataset.cat; press(this, "data-cat", state.cat); update(); };
+        $("price").onclick = function (e) { var b = e.target.closest("button"); if (!b) return; state.price = b.dataset.p; press(this, "data-p", state.price); update(); };
+        $("flags").onclick = function (e) { var b = e.target.closest("button"); if (!b) return; var f = b.dataset.f; state.flags[f] = !state.flags[f]; b.setAttribute("aria-pressed", !!state.flags[f]); update(); };
+
+        var q = $("q");
+        var quick = $("quick"), tools = $("tools"), qTimer = 0;
+        var syncQuick = function () { press(quick, "data-q", state.q); };
+        var runSearch = function () { clearTimeout(qTimer); qTimer = 0; state.q = q.value.trim(); syncQuick(); update(); };
+        q.addEventListener("input", function () { clearTimeout(qTimer); qTimer = setTimeout(runSearch, 120); });
+        $("heroSearch").onsubmit = function (e) { e.preventDefault(); runSearch(); q.blur(); tools.scrollIntoView(); };
+        quick.onclick = function (e) {
+          var b = e.target.closest("button"); if (!b) return;
+          clearTimeout(qTimer);
+          state.q = state.q === b.dataset.q ? "" : b.dataset.q;
+          q.value = state.q; syncQuick(); update(); if (state.q) tools.scrollIntoView();
+        };
+        
+
+        /* filtering */
+        var filtered = function () {
+          var words = state.q.toLowerCase().split(/\s+/).filter(Boolean);
+          return ORDERED.filter(function (t) {
+            if (state.cat !== "All" && t.c !== state.cat) return false;
+            if (state.price !== "All" && t.p !== state.price) return false;
+            for (var f in state.flags) if (state.flags[f] && !(f === "india" ? t.india_made : t.labels && t.labels[f])) return false;
+            if (words.length) {
+              var hay = (t.n + " " + t.c + " " + t.d + " " + (t.b || []).join(" ")).toLowerCase();
+              return words.every(function (w) { return hay.indexOf(w) > -1; });
+            }
+            return true;
+          });
+        };
+        var tagsHtml = function (t) {
+          var h = Object.keys(LABELS).filter(function (k) { return t.labels && t.labels[k]; }).map(function (k) { return '<span class="tag">' + LABELS[k] + "</span>"; }).join("");
+          if (t.india_made) h += '<span class="tag tag--fill">Made in India</span>';
+          if (isVin(t)) h = VIN + h;
+          return h ? '<div class="tags">' + h + "</div>" : "";
+        };
+        function cardHtml(t) {
+          return '<button class="card" type="button" data-n="' + esc(t.n) + '">' +
+            '<span class="card__top">' + fav(t) + '<span><span class="card__name">' + esc(t.n) + '</span><span class="cat">' + esc(t.c) + '</span></span><span class="badge">' + esc(t.p) + "</span></span>" +
+            '<p class="desc">' + esc(t.d) + "</p>" + tagsHtml(t) +
+            (t.verified ? '<span class="ver"><b>✓</b> Verified ' + fmtDate(t.verified) + "</span>" : "") + "</button>";
+        }
+        var grid = $("grid"), countEl = $("count"), pager = $("pager"), pageInfo = $("pageInfo"), prevBtn = $("prev"), nextBtn = $("next");
+        function update() { state.page = 1; render(); }
+        function render() {
+          var list = filtered();
+          var pages = Math.max(1, Math.ceil(list.length / PER));
+          if (state.page > pages) state.page = pages;
+          if (state.page < 1) state.page = 1;
+          var slice = list.slice((state.page - 1) * PER, state.page * PER);
+          countEl.textContent = "Showing " + list.length + (list.length === 1 ? " tool" : " tools");
+          grid.replaceChildren(toFrag(slice.length ? slice.map(cardHtml).join("") : '<div class="empty">No tools match these filters. Try fewer filters or another search.</div>'));
+          pager.hidden = pages < 2;
+          pageInfo.textContent = "Page " + state.page + " of " + pages;
+          prevBtn.disabled = state.page <= 1;
+          nextBtn.disabled = state.page >= pages;
+        }
+        var turn = function (d) { state.page += d; render(); tools.scrollIntoView(); };
+        prevBtn.onclick = function () { turn(-1); };
+        nextBtn.onclick = function () { turn(1); };
+        grid.onclick = $("indiaGrid").onclick = function (e) { var b = e.target.closest(".card"); if (b) openSheet(b.dataset.n); };
+        $("indiaGrid").replaceChildren(toFrag(ORDERED.filter(function (t) { return t.india_made; }).map(cardHtml).join("")));
+
+        /* sheet */
+        var sheet = $("sheet"), isOpen = false, pushed = false, backing = false, wantPush = false, lastFocus = null, focusTimer = 0;
+        /* a reload while the sheet was open leaves a stale sheet entry; drop its marker */
+        if (history.state && history.state.sheet) { try { history.replaceState(null, ""); } catch (e) {} }
+        var push = function () { try { history.pushState({ sheet: 1 }, ""); pushed = true; } catch (e) { pushed = false; } };
+        var focusEl = function (el) { if (!el) return; try { el.focus({ preventScroll: true }); } catch (e) { el.focus(); } };
+        var byName = function (n) { for (var i = 0; i < TOOLS.length; i++) if (TOOLS[i].n === n) return TOOLS[i]; };
+        var similar = function (t) {
+          var same = TOOLS.filter(function (x) { return x !== t && x.c === t.c; });
+          var bf = (t.b || []).map(function (s) { return s.toLowerCase(); });
+          var rest = TOOLS.filter(function (x) { return x !== t && x.c !== t.c && (x.b || []).some(function (s) { return bf.indexOf(s.toLowerCase()) > -1; }); });
+          return same.concat(rest).slice(0, 4);
+        };
+        function fill(t) {
+          var keys = Object.keys(LABELS).filter(function (k) { return t.labels && t.labels[k]; });
+          var india = keys.length ? '<ul class="india">' + keys.map(function (k) { return "<li><span>" + LABELS[k] + '</span><a href="' + esc(t.labels[k]) + '" target="_blank" rel="noopener">Source ↗</a></li>'; }).join("") + "</ul>" : '<p class="muted">No India-specific details verified yet.</p>' +
+            (t.india_made ? "" : '<p class="muted muted--note">Global tool, but widely used by Indian sellers. Pay via international card.</p>');
+          var badges = (isVin(t) ? VIN : "") + (t.india_made ? '<span class="tag tag--fill">Made in India</span>' : "");
+          if (badges) india = '<div class="tags" style="margin-bottom:8px">' + badges + "</div>" + india;
+          var sims = similar(t);
+          sheet.innerHTML = '<div class="grab" aria-hidden="true"></div>' +
+            '<div class="sheet__head">' + fav(t) + '<h2 id="sName">' + esc(t.n) + '</h2><button class="iconbtn" type="button" id="sClose" aria-label="Close">✕</button></div>' +
+            '<div class="meta"><span>' + esc(t.c) + "</span><span>" + esc(t.p) + "</span></div>" +
+            "<h3>About</h3><p>" + esc(t.d) + "</p>" +
+            ((t.b || []).length ? '<h3>Best for</h3><div class="bf">' + t.b.map(function (s) { return "<span>" + esc(s) + "</span>"; }).join("") + "</div>" : "") +
+            "<h3>India details</h3>" + india +
+            (t.verified ? '<p class="ver" style="margin-top:10px"><b>✓</b> Verified ' + fmtDate(t.verified) + "</p>" : "") +
+            (sims.length ? '<h3>Similar tools</h3><div class="sim">' + sims.map(function (s) { return '<button type="button" data-n="' + esc(s.n) + '">' + fav(s) + "<span>" + esc(s.n) + "</span></button>"; }).join("") + "</div>" : "") +
+            '<a class="btn-gold visit" href="' + esc(t.u) + '" target="_blank" rel="noopener">Visit ' + esc(t.n) + " →</a>";
+          sheet.scrollTop = 0;
+        }
+        sheet.addEventListener("click", function (e) {
+          if (e.target.closest("#sClose")) return closeSheet();
+          var s = e.target.closest(".sim button");
+          if (s) { var nt = byName(s.dataset.n); if (nt) { fill(nt); focusEl(sheet); } }
+        });
+        function openSheet(n) {
+          var t = byName(n); if (!t) return;
+          if (!isOpen) lastFocus = document.activeElement;
+          fill(t);
+          if (!isOpen) {
+            isOpen = true;
+            setMenu(false);
+            document.body.classList.add("open-sheet", "lock");
+            /* a close's history.back() may still be in flight: push only after it lands */
+            if (backing) wantPush = true; else push();
+          }
+          clearTimeout(focusTimer);
+          focusTimer = setTimeout(function () { if (isOpen) focusEl($("sClose")); }, 50);
+        }
+        function hide() {
+          if (!isOpen) return;
+          isOpen = false; wantPush = false;
+          clearTimeout(focusTimer);
+          document.body.classList.remove("open-sheet", "lock");
+          if (lastFocus && document.contains(lastFocus)) focusEl(lastFocus);
+        }
+        function closeSheet() {
+          if (!isOpen) return;
+          /* release the lock right away; never wait on popstate */
+          hide();
+          if (pushed) { pushed = false; backing = true; try { history.back(); } catch (e) { backing = false; } }
+        }
+        window.addEventListener("popstate", function () {
+          if (backing) { backing = false; if (wantPush && isOpen) { wantPush = false; push(); } return; }
+          pushed = false; if (isOpen) hide();
+        });
+        /* restored from back/forward cache: make sure nothing stays locked */
+        window.addEventListener("pageshow", function () {
+          if (!isOpen) document.body.classList.remove("open-sheet", "lock");
+          setMenu(false);
+        });
+        $("scrim").onclick = closeSheet;
+        document.addEventListener("keydown", function (e) {
+          if (!isOpen) return;
+          if (e.key === "Escape") closeSheet();
+          if (e.key === "Tab") {
+            var f = sheet.querySelectorAll("button, a[href]"); if (!f.length) return;
+            var a = f[0], z = f[f.length - 1];
+            if (e.shiftKey && document.activeElement === a) { e.preventDefault(); z.focus(); }
+            else if (!e.shiftKey && document.activeElement === z) { e.preventDefault(); a.focus(); }
+          }
+        });
+
+        /* submit a tool */
+        var form = $("subForm"), done = $("subDone"), subBtn = $("subBtn"), copyText = "";
+        var F = function (n) { return form.elements[n]; };
+        $("fCat").insertAdjacentHTML("beforeend", cats.slice(1).map(function (c) { return "<option>" + esc(c) + "</option>"; }).join(""));
+        var count = function () { $("fDescCount").textContent = F("description").value.length + " / 140"; };
+        F("description").addEventListener("input", count);
+        var setErr = function (el, msg) { $(el.id + "Err").textContent = msg; el.setAttribute("aria-invalid", msg ? "true" : "false"); return !msg; };
+        form.addEventListener("input", function (e) { if (e.target.getAttribute("aria-invalid") === "true") setErr(e.target, ""); });
+        form.addEventListener("change", function (e) { if (e.target.tagName === "SELECT" && e.target.value) setErr(e.target, ""); });
+        var isHttps = function (u) { try { var x = new URL(u); return x.protocol === "https:" && /\.[a-z]{2,}$/i.test(x.hostname); } catch (e) { return false; } };
+        var finish = function (text) {
+          copyText = text || "";
+          form.hidden = true; done.hidden = false;
+          $("copyBtn").hidden = !copyText; $("copyMsg").textContent = "";
+          done.focus();
+        };
+        var loading = function (on) { subBtn.disabled = on; subBtn.textContent = on ? "Submitting…" : "Submit tool"; form.setAttribute("aria-busy", on); };
+        form.onsubmit = function (e) {
+          e.preventDefault();
+          $("subErr").textContent = "";
+          var v = function (n) { return F(n).value.trim(); };
+          var site = v("website"), em = v("email"), desc = v("description");
+          var checks = [
+            setErr(F("name"), v("name") ? "" : "Enter the tool's name."),
+            setErr(F("website"), !site ? "Enter the tool's website." : isHttps(site) ? "" : "Use a full https:// address, e.g. https://example.com"),
+            setErr(F("category"), v("category") ? "" : "Choose a category."),
+            setErr(F("pricing"), v("pricing") ? "" : "Choose a pricing type."),
+            setErr(F("description"), !desc ? "Add a short description." : desc.length > 140 ? "Keep it to 140 characters." : ""),
+            setErr(F("email"), !em || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em) ? "" : "Enter a valid email, or leave it blank.")
+          ];
+          if (checks.indexOf(false) > -1) { var bad = form.querySelector('[aria-invalid="true"]'); if (bad) bad.focus(); return; }
+          var labels = [].slice.call(form.querySelectorAll('input[name="labels"]:checked')).map(function (c) { return c.value; });
+          var data = { name: v("name"), website: site, category: v("category"), pricing: v("pricing"), description: desc, labels: labels, email: em, submitted_at: new Date().toISOString() };
+          var text = "Tool: " + data.name + "\nWebsite: " + data.website + "\nCategory: " + data.category + "\nPricing: " + data.pricing +
+            "\nDescription: " + data.description + "\nIndia details (to verify): " + (labels.join(", ") || "none") + (em ? "\nEmail: " + em : "");
+          loading(true);
+          if (F("company_website").value) { setTimeout(function () { loading(false); finish(""); }, 600); return; }
+          if (!SUBMIT_CONFIG.endpoint) { setTimeout(function () { loading(false); finish(text); }, 400); return; }
+          fetch(SUBMIT_CONFIG.endpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) })
+            .then(function (r) { if (!r.ok) throw new Error(r.status); loading(false); finish(""); })
+            .catch(function () { loading(false); $("subErr").textContent = "Couldn't send your submission. Please try again."; });
+        };
+        $("copyBtn").onclick = function () {
+          var btn = this, msg = $("copyMsg"), ok = function () { msg.textContent = "Copied to clipboard."; };
+          var fallback = function () {
+            var ta = document.createElement("textarea"), copied = false;
+            ta.value = copyText; ta.setAttribute("readonly", "");
+            ta.style.cssText = "position:fixed;top:0;left:0;width:1px;height:1px;opacity:0;font-size:16px";
+            document.body.appendChild(ta); ta.focus({ preventScroll: true }); ta.select(); ta.setSelectionRange(0, copyText.length);
+            try { copied = document.execCommand("copy"); } catch (e) { copied = false; }
+            ta.remove(); focusEl(btn);
+            if (copied) ok(); else msg.textContent = "Couldn't copy. Please try again.";
+          };
+          if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(copyText).then(ok, fallback); else fallback();
+        };
+        $("againBtn").onclick = function () {
+          form.reset(); count(); $("subErr").textContent = ""; $("copyMsg").textContent = "";
+          form.querySelectorAll("[aria-invalid]").forEach(function (el) { setErr(el, ""); });
+          done.hidden = true; form.hidden = false; F("name").focus();
+        };
+
+        render();
+      })();
+    </script>
+    <script>
+      /* pull to refresh: touch only, passive listeners, never blocks taps or scrolling */
+      (function () {
+        if (!("ontouchstart" in window) && !(navigator.maxTouchPoints > 0)) return;
+        var el = document.getElementById("ptr"); if (!el) return;
+        var disc = el.querySelector(".x-ptr__disc"), arc = el.querySelector(".x-ptr__arc"), label = el.querySelector(".x-ptr__label"), live = document.getElementById("ptrLive");
+        /* the header moves with the content so no gap opens under it */
+        var content = [document.querySelector(".hdr"), document.querySelector("main"), document.querySelector(".foot")].filter(Boolean);
+        var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+        var TH = 70, MAX = 120, SETTLE = 56, SHIFT = 24, C = 75.4, sx = 0, sy = 0, dist = 0, tracking = false, pulling = false, ready = false, loading = false, raf = 0, timer = 0;
+        var SKIP = ".sheet, .scrim, .menu, .scroller, .seg, input, textarea, select, label, [contenteditable]";
+        var clamp = function (v) { return v < 0 ? 0 : v > 1 ? 1 : v; };
+        /* rubber band: 1:1 with pull*0.5 up to the threshold, then easing toward MAX */
+        var band = function (raw) { if (raw <= TH) return raw; var room = MAX - TH; return TH + room * (1 - Math.exp(-(raw - TH) / room)); };
+        var paint = function () {
+          raf = 0;
+          var p = clamp(dist / TH), y = (reduce ? SETTLE : dist) - 20, s = reduce ? 0 : Math.min(SHIFT, dist * 0.32);
+          el.style.transform = "translate3d(0," + y.toFixed(2) + "px,0)";
+          el.style.opacity = reduce ? p : clamp(dist / 28);
+          disc.style.transform = reduce ? "" : "scale(" + (0.7 + 0.3 * clamp(dist / 40)).toFixed(3) + ")";
+          if (!loading) { arc.style.strokeDashoffset = (C * (1 - p)).toFixed(2); arc.style.opacity = p > 0.02 ? 1 : 0; }
+          label.style.opacity = clamp((dist - 24) / 30);
+          content.forEach(function (c) { c.style.transform = s > 0.1 ? "translate3d(0," + s.toFixed(2) + "px,0)" : ""; });
+        };
+        var schedule = function () { if (!raf) raf = requestAnimationFrame(paint); };
+        var contentClass = function (add, cls) { content.forEach(function (c) { c.classList[add ? "add" : "remove"].apply(c.classList, cls); }); };
+        var reset = function () {
+          tracking = pulling = ready = false; dist = 0;
+          el.classList.remove("is-ready", "is-spring"); el.classList.add("is-back");
+          contentClass(true, ["x-ptr-anim"]);
+          schedule();
+          clearTimeout(timer);
+          timer = setTimeout(function () {
+            if (pulling || loading) return;
+            el.classList.remove("is-on", "is-back");
+            contentClass(false, ["x-ptr-anim", "x-ptr-move"]);
+          }, 320);
+        };
+        document.addEventListener("touchstart", function (e) {
+          tracking = false;
+          if (loading || e.touches.length !== 1 || window.scrollY > 0) return;
+          if (document.body.classList.contains("lock") || document.body.classList.contains("open-sheet")) return;
+          var t = e.target;
+          if (!t.closest || t.closest(SKIP)) return;
+          sx = e.touches[0].clientX; sy = e.touches[0].clientY;
+          tracking = true; pulling = false;
+        }, { passive: true });
+        document.addEventListener("touchmove", function (e) {
+          if (!tracking) return;
+          var dx = e.touches[0].clientX - sx, dy = e.touches[0].clientY - sy;
+          if (!pulling) {
+            if (dy < 0 || Math.abs(dx) > Math.abs(dy) || window.scrollY > 0) { tracking = false; return; }
+            if (dy < 10) return;
+            pulling = true; clearTimeout(timer);
+            el.classList.remove("is-back", "is-spring"); el.classList.add("is-on");
+            contentClass(false, ["x-ptr-anim"]); contentClass(true, ["x-ptr-move"]);
+          }
+          if (window.scrollY > 0) { reset(); return; }
+          dist = band(Math.max(0, (dy - 10) * 0.5));
+          var r = dist >= TH;
+          if (r !== ready) {
+            ready = r; el.classList.toggle("is-ready", r);
+            /* vibrate only after a user activation, or Chrome logs an intervention warning */
+            if (r && navigator.vibrate && navigator.userActivation && navigator.userActivation.hasBeenActive) { try { navigator.vibrate(8); } catch (err) {} }
+          }
+          schedule();
+        }, { passive: true });
+        var end = function (e) {
+          if (!pulling) { tracking = false; return; }
+          if (ready && e.type === "touchend") {
+            loading = true; tracking = pulling = false;
+            el.classList.remove("is-back"); el.classList.add("is-loading"); if (!reduce) el.classList.add("is-spring");
+            arc.style.opacity = 1; arc.style.strokeDashoffset = (C * 0.72).toFixed(2);
+            contentClass(true, ["x-ptr-anim"]);
+            dist = SETTLE; schedule();
+            if (live) live.textContent = "Refreshing";
+            setTimeout(function () {
+              contentClass(true, ["x-ptr-fade"]);
+              setTimeout(function () { location.reload(); }, 180);
+            }, reduce ? 120 : 400);
+          } else { reset(); }
+        };
+        document.addEventListener("touchend", end, { passive: true });
+        document.addEventListener("touchcancel", end, { passive: true });
+        window.addEventListener("pageshow", function (e) {
+          if (!e.persisted) return;
+          loading = false; el.classList.remove("is-loading");
+          contentClass(false, ["x-ptr-fade"]); if (live) live.textContent = "";
+          reset();
+        });
+      })();
+    </script>
+  </body>
+</html>
