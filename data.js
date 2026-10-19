@@ -596,7 +596,13 @@ window.AITH_TOOLS = [
   {"n": "Swipe", "u": "https://getswipe.in", "c": "Business", "p": ""},
   {"n": "GoKwik", "u": "https://www.gokwik.co", "c": "Business", "p": "Paid"},
   {"n": "Shiprocket", "u": "https://www.shiprocket.in", "c": "Business", "p": ""},
-  {"n": "Razorpay Magic Checkout", "u": "https://razorpay.com/magic-checkout/", "c": "Business", "p": "Paid"}
+  {"n": "Razorpay Magic Checkout", "u": "https://razorpay.com/magic-checkout/", "c": "Business", "p": "Paid"},
+  {"n": "Mulltiply AI", "u": "https://mulltiply.ai", "c": "Business", "p": "Paid"},
+  {"n": "Inbox Zero", "u": "https://www.getinboxzero.com", "c": "Productivity", "p": "Freemium"},
+  {"n": "Retriever AI", "u": "https://www.rtrvr.ai", "c": "Automation", "p": "Freemium"},
+  {"n": "ngram", "u": "https://www.ngram.com", "c": "Video", "p": "Freemium"},
+  {"n": "Jockey by TwelveLabs", "u": "https://www.twelvelabs.io/jockey", "c": "Video", "p": "Freemium"},
+  {"n": "Eney", "u": "https://eney.ai", "c": "Productivity", "p": "Paid"}
 ];
 
 window.AITH_DESC = {
@@ -1191,5 +1197,11 @@ window.AITH_DESC = {
   "Swipe": {"d": "GST billing app whose Swipe AI autofills invoices, flags errors and creates bulk invoices from images.", "b": ["Fast invoicing", "E-way bills", "Error checks"]},
   "GoKwik": {"d": "D2C checkout platform with AI-driven COD and RTO risk insights, AI upsells and an AI support assistant.", "b": ["RTO reduction", "Smart COD", "Checkout"]},
   "Shiprocket": {"d": "Shipping aggregator with fastrr Shield AI that flags high-risk COD orders, plus voice-based COD verification.", "b": ["Courier shipping", "RTO reduction", "COD verification"]},
-  "Razorpay Magic Checkout": {"d": "One-click checkout whose AI model scores RTO risk and can switch off COD for risky orders.", "b": ["COD control", "Faster checkout", "RTO reduction"]}
+  "Razorpay Magic Checkout": {"d": "One-click checkout whose AI model scores RTO risk and can switch off COD for risky orders.", "b": ["COD control", "Faster checkout", "RTO reduction"]},
+  "Mulltiply AI": {"d": "Indian WhatsApp ordering AI for distributors and D2C brands: turns text, voice-note and handwritten orders into structured orders that sync with Marg, Tally or Busy. Plans from ₹1,499/month (AI from ₹3,499).", "b": ["WhatsApp orders", "Marg/Tally sync", "Distributors"]},
+  "Inbox Zero": {"d": "AI email assistant that sorts and labels your inbox, drafts replies in your voice and blocks cold emails; the email app itself is free on web, desktop and iPhone.", "b": ["Busy inbox", "Reply drafts", "Cold email blocking"]},
+  "Retriever AI": {"d": "AI web agent in Chrome that pulls Google Maps leads, turns websites into spreadsheets and fills forms for you; free ad-supported mode, paid plans from $9.99/month.", "b": ["Lead lists", "Web to sheet", "Form filling"]},
+  "ngram": {"d": "Turns documents, screen recordings and ideas into narrated explainer videos, product walkthroughs and AI-avatar videos you refine in chat.", "b": ["Explainer videos", "Product demos", "Training videos"]},
+  "Jockey by TwelveLabs": {"d": "Searches and understands your whole video and photo library, and breaks down why Reels, TikToks and YouTube videos go viral; works inside ChatGPT and Claude.", "b": ["Video library search", "Reels analysis", "Content teams"]},
+  "Eney": {"d": "MacPaw's proactive AI assistant for Mac and iPhone that handles tasks across your apps, drafts emails, takes meeting notes and asks before it acts. 14-day free trial, then from $14.99/month.", "b": ["Mac users", "Meeting notes", "Everyday tasks"]}
 };
