@@ -269,7 +269,7 @@
             <button class="chip" type="button" data-q="Amazon">Amazon</button>
             <button class="chip" type="button" data-q="Reels">Reels</button>
           </div>
-          
+
         </div>
       </section>
 
@@ -412,7 +412,7 @@
           var d = domain(t.u), m = esc(t.n.charAt(0).toUpperCase());
           return '<span class="fav" aria-hidden="true" data-m="' + m + '">' + (d ? '<img loading="lazy" decoding="async" alt="" width="24" height="24" src="https://www.google.com/s2/favicons?domain=' + esc(d) + '&amp;sz=64">' : m) + "</span>";
         };
-        /* favicon fallback: one delegated listener instead of an inline handler per image */
+
         document.addEventListener("error", function (e) {
           var img = e.target;
           if (img && img.tagName === "IMG" && img.parentNode && img.parentNode.classList.contains("fav")) img.parentNode.textContent = img.parentNode.getAttribute("data-m");
@@ -442,7 +442,7 @@
         /* controls */
         var cats = ["All"];
         TOOLS.forEach(function (t) { if (cats.indexOf(t.c) < 0) cats.push(t.c); });
-        /* job chips: data categories under job names, the key jobs first */
+
         var JOB = { "WhatsApp & Chat Commerce": "WhatsApp Marketing", "Ads & Creatives": "Ad Creatives", "Accounting & GST": "GST & Invoicing", "Shipping & COD": "COD & RTO", "Customer Support": "Support Bots" };
         var FIRST = ["Product Photos & Catalog", "Listings & SEO Copy", "WhatsApp & Chat Commerce", "Ads & Creatives", "Accounting & GST", "Shipping & COD", "Customer Support"];
         var catCount = { All: TOOLS.length };
@@ -474,7 +474,6 @@
           state.q = state.q === b.dataset.q ? "" : b.dataset.q;
           q.value = state.q; syncQuick(); update(); if (state.q) tools.scrollIntoView();
         };
-        
 
         /* filtering */
         var filtered = function () {
@@ -525,7 +524,7 @@
 
         /* sheet */
         var sheet = $("sheet"), isOpen = false, pushed = false, backing = false, wantPush = false, lastFocus = null, focusTimer = 0;
-        /* a reload while the sheet was open leaves a stale sheet entry; drop its marker */
+
         if (history.state && history.state.sheet) { try { history.replaceState(null, ""); } catch (e) {} }
         var push = function () { try { history.pushState({ sheet: 1 }, ""); pushed = true; } catch (e) { pushed = false; } };
         var focusEl = function (el) { if (!el) return; try { el.focus({ preventScroll: true }); } catch (e) { el.focus(); } };
@@ -567,7 +566,7 @@
             isOpen = true;
             setMenu(false);
             document.body.classList.add("open-sheet", "lock");
-            /* a close's history.back() may still be in flight: push only after it lands */
+
             if (backing) wantPush = true; else push();
           }
           clearTimeout(focusTimer);
@@ -582,7 +581,7 @@
         }
         function closeSheet() {
           if (!isOpen) return;
-          /* release the lock right away; never wait on popstate */
+
           hide();
           if (pushed) { pushed = false; backing = true; try { history.back(); } catch (e) { backing = false; } }
         }
@@ -590,7 +589,7 @@
           if (backing) { backing = false; if (wantPush && isOpen) { wantPush = false; push(); } return; }
           pushed = false; if (isOpen) hide();
         });
-        /* restored from back/forward cache: make sure nothing stays locked */
+
         window.addEventListener("pageshow", function () {
           if (!isOpen) document.body.classList.remove("open-sheet", "lock");
           setMenu(false);
@@ -611,18 +610,18 @@
       })();
     </script>
     <script>
-      /* pull to refresh: touch only, passive listeners, never blocks taps or scrolling */
+
       (function () {
         if (!("ontouchstart" in window) && !(navigator.maxTouchPoints > 0)) return;
         var el = document.getElementById("ptr"); if (!el) return;
         var disc = el.querySelector(".x-ptr__disc"), arc = el.querySelector(".x-ptr__arc"), label = el.querySelector(".x-ptr__label"), live = document.getElementById("ptrLive");
-        /* the header moves with the content so no gap opens under it */
+
         var content = [document.querySelector(".hdr"), document.querySelector("main"), document.querySelector(".foot")].filter(Boolean);
         var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
         var TH = 70, MAX = 120, SETTLE = 56, SHIFT = 24, C = 75.4, sx = 0, sy = 0, dist = 0, tracking = false, pulling = false, ready = false, loading = false, raf = 0, timer = 0;
         var SKIP = ".sheet, .scrim, .menu, .scroller, .seg, input, textarea, select, label, [contenteditable]";
         var clamp = function (v) { return v < 0 ? 0 : v > 1 ? 1 : v; };
-        /* rubber band: 1:1 with pull*0.5 up to the threshold, then easing toward MAX */
+
         var band = function (raw) { if (raw <= TH) return raw; var room = MAX - TH; return TH + room * (1 - Math.exp(-(raw - TH) / room)); };
         var paint = function () {
           raf = 0;
@@ -672,7 +671,7 @@
           var r = dist >= TH;
           if (r !== ready) {
             ready = r; el.classList.toggle("is-ready", r);
-            /* vibrate only after a user activation, or Chrome logs an intervention warning */
+
             if (r && navigator.vibrate && navigator.userActivation && navigator.userActivation.hasBeenActive) { try { navigator.vibrate(8); } catch (err) {} }
           }
           schedule();

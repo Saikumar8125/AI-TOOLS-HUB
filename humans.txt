@@ -1,0 +1,9 @@
+/* TEAM */
+Developer: J. Venkata Sai Kumar
+GitHub: https://github.com/Saikumar8125
+From: India
+
+/* SITE */
+Last update: 2026/10/21
+Standards: HTML5, CSS3, ES5+
+Software: Plain HTML, CSS and JavaScript
