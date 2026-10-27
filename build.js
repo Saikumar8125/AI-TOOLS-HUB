@@ -11,6 +11,7 @@ const SITE = "https://aitoolshub-in.vercel.app";
 const OUT = path.join(__dirname, "public");
 const TODAY = new Date().toISOString().slice(0, 10);
 const YEAR = TODAY.slice(0, 4);
+const GUIDES_PUBLISHED = "2026-10-27"; // change only when guides are really re-checked
 const SKIP = new Set(["public", "node_modules", "build.js", "guides.js", "vercel.json", "package.json", ".git", ".github", ".vercel", "CHANGELOG.md", "README.md", "LICENSE"]);
 
 // data
@@ -131,6 +132,12 @@ function card(t) {
   const d = DESC[t.n] || {};
   return `<li class="card"><div class="card__top"><h3><a href="/tools/${t.slug}">${esc(t.n)}</a></h3>${badge(t.p)}</div><p>${esc(d.d || t.c + " tool")}</p></li>`;
 }
+function guideCard(t, g) {
+  const d = DESC[t.n] || {};
+  const why = g.why && g.why[t.n];
+  const price = g.price && g.price[t.n];
+  return `<li class="card"><div class="card__top"><h3><a href="/tools/${t.slug}">${esc(t.n)}</a></h3>${badge(t.p)}</div><p>${esc(d.d || t.c + " tool")}</p>${why ? `<p class="why"><strong>Why it fits:</strong> ${esc(why)}</p>` : ""}${price ? `<p class="why"><strong>Price:</strong> ${esc(price)}</p>` : ""}</li>`;
+}
 function faqLd(qs) {
   return { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: qs.map((q) => ({ "@type": "Question", name: q[0], acceptedAnswer: { "@type": "Answer", text: q[1] } })) };
 }
@@ -235,15 +242,15 @@ function guidePage(g) {
   const title = `${g.t} (${YEAR}) | AI Tools Hub`;
   const desc = (g.i.split(". ")[0] + ". Hand-picked free and paid AI tools for " + g.who + ", with an Indian focus.").slice(0, 300);
   const crumbItems = [["Home", "/"], ["Guides", "/guides"], [g.t, p]];
-  const secs = g.sec.map((x, i) => `<section class="gsec"><h2><span class="n">${String(i + 1).padStart(2, "0")}</span>${esc(x.h)}</h2><p class="lead">${esc(x.p)}</p><ul class="cards">${x.tools.map((n) => byName[n]).filter(Boolean).map(card).join("")}</ul></section>`).join("");
+  const secs = g.sec.map((x, i) => `<section class="gsec"><h2><span class="n">${String(i + 1).padStart(2, "0")}</span>${esc(x.h)}</h2><p class="lead">${esc(x.p)}</p><ul class="cards">${x.tools.map((n) => byName[n]).filter(Boolean).map((t) => guideCard(t, g)).join("")}</ul></section>`).join("");
   const others = GUIDES.filter((x) => x !== g).map((x) => `<li><a href="/guides/${x.s}">${esc(x.who.replace(/^./, (c) => c.toUpperCase()))}</a></li>`).join("");
-  const art = { "@context": "https://schema.org", "@type": "Article", headline: g.t, description: desc, dateModified: TODAY, author: { "@type": "Person", name: "J. Venkata Sai Kumar" }, publisher: { "@type": "Organization", name: "AI Tools Hub" }, image: SITE + "/og-image.png", mainEntityOfPage: SITE + p };
+  const art = { "@context": "https://schema.org", "@type": "Article", headline: g.t, description: desc, datePublished: g.d || GUIDES_PUBLISHED, dateModified: g.d || GUIDES_PUBLISHED, author: { "@type": "Person", name: "J. Venkata Sai Kumar" }, publisher: { "@type": "Organization", name: "AI Tools Hub" }, image: SITE + "/og-image.png", mainEntityOfPage: SITE + p };
   const body = `<div class="wrap hero">
 ${crumbHtml(crumbItems)}
 <p class="kicker">Guide · ${esc(g.who)}</p>
 <h1>${esc(g.t)}</h1>
 <p class="sub">${esc(g.i)}</p>
-<p class="muted small">Updated ${new Date(TODAY).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })} · Tools from our directory of ${TOOLS.length}</p>
+<p class="muted small">Published ${new Date(g.d || GUIDES_PUBLISHED).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })} · Tools from our directory of ${TOOLS.length}</p>
 </div>
 <div class="wrap">${secs}
 <section class="panel"><h2>Start this week</h2><ol class="steps">${g.tip.map((x) => `<li>${esc(x)}</li>`).join("")}</ol></section>

@@ -76,3 +76,6 @@ h2.group{margin-top:28px}
 .steps{margin:0;padding-left:22px}
 .steps li{padding:5px 0}
 .panel h2{margin-bottom:.5em}
+
+.why{font-size:.9rem;line-height:1.45;margin:.5rem 0 0;opacity:.9}
+.why strong{font-weight:600}
