@@ -1,6 +1,6 @@
 // Static page generator for AI Tools Hub.
 // Runs on every Vercel deploy (see vercel.json): copies the site into public/
-// and writes one page per tool, one per category, two index pages and the sitemap.
+// and writes one page per tool, category and guide (guides.js), index pages and the sitemap.
 // Tools come from data.js, so editing data.js is still the only step needed.
 // Local run: node build.js
 "use strict";
@@ -11,13 +11,15 @@ const SITE = "https://aitoolshub-in.vercel.app";
 const OUT = path.join(__dirname, "public");
 const TODAY = new Date().toISOString().slice(0, 10);
 const YEAR = TODAY.slice(0, 4);
-const SKIP = new Set(["public", "node_modules", "build.js", "vercel.json", "package.json", ".git", ".github", ".vercel", "CHANGELOG.md", "README.md", "LICENSE"]);
+const SKIP = new Set(["public", "node_modules", "build.js", "guides.js", "vercel.json", "package.json", ".git", ".github", ".vercel", "CHANGELOG.md", "README.md", "LICENSE"]);
 
 // data
 global.window = {};
 require("./data.js");
+require("./guides.js");
 const TOOLS = window.AITH_TOOLS;
 const DESC = window.AITH_DESC || {};
+const GUIDES = window.AITH_GUIDES || [];
 const home = fs.readFileSync(path.join(__dirname, "index.html"), "utf8");
 let INDIA = {};
 try { INDIA = JSON.parse((home.match(/id="india-data">([\s\S]*?)<\/script>/) || [])[1] || "{}"); } catch (e) { INDIA = {}; }
@@ -105,13 +107,13 @@ ${ld}
 <body>
 <header class="topbar"><div class="wrap">
 <a class="brand" href="/">AI TOOLS <span>HUB</span></a>
-<nav class="toplinks"><a href="/categories">Categories</a><a href="/all-tools">All tools</a></nav>
+<nav class="toplinks"><a href="/guides">Guides</a><a href="/categories">Categories</a><a href="/all-tools">All tools</a></nav>
 </div></header>
 <main>
 ${o.body}
 </main>
 <footer class="foot"><div class="wrap">
-<p><a href="/">Home</a> · <a href="/categories">Categories</a> · <a href="/all-tools">All tools</a> · <a href="/d2c.html">D2C tools</a> · <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a></p>
+<p><a href="/">Home</a> · <a href="/guides">Guides</a> · <a href="/categories">Categories</a> · <a href="/all-tools">All tools</a> · <a href="/d2c.html">D2C tools</a> · <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a></p>
 <p class="muted">Built for Indian SMBs · © ${YEAR} AI Tools Hub · Designed &amp; developed by <span class="credit">J. Venkata Sai Kumar</span></p>
 </div></footer>
 </body>
@@ -225,10 +227,49 @@ function allToolsPage() {
   return page({ title: `All ${TOOLS.length} AI Tools A–Z | AI Tools Hub`, desc: `Full A–Z list of ${TOOLS.length} AI tools with category and pricing (free, freemium, paid).`, path: "/all-tools", body, ld: [crumbs([["Home", "/"], ["All tools", "/all-tools"]])] });
 }
 
+// guide pages
+const byName = {};
+TOOLS.forEach((t) => { byName[t.n] = t; });
+function guidePage(g) {
+  const p = "/guides/" + g.s;
+  const title = `${g.t} (${YEAR}) | AI Tools Hub`;
+  const desc = (g.i.split(". ")[0] + ". Hand-picked free and paid AI tools for " + g.who + ", with an Indian focus.").slice(0, 300);
+  const crumbItems = [["Home", "/"], ["Guides", "/guides"], [g.t, p]];
+  const secs = g.sec.map((x, i) => `<section class="gsec"><h2><span class="n">${String(i + 1).padStart(2, "0")}</span>${esc(x.h)}</h2><p class="lead">${esc(x.p)}</p><ul class="cards">${x.tools.map((n) => byName[n]).filter(Boolean).map(card).join("")}</ul></section>`).join("");
+  const others = GUIDES.filter((x) => x !== g).map((x) => `<li><a href="/guides/${x.s}">${esc(x.who.replace(/^./, (c) => c.toUpperCase()))}</a></li>`).join("");
+  const art = { "@context": "https://schema.org", "@type": "Article", headline: g.t, description: desc, dateModified: TODAY, author: { "@type": "Person", name: "J. Venkata Sai Kumar" }, publisher: { "@type": "Organization", name: "AI Tools Hub" }, image: SITE + "/og-image.png", mainEntityOfPage: SITE + p };
+  const body = `<div class="wrap hero">
+${crumbHtml(crumbItems)}
+<p class="kicker">Guide · ${esc(g.who)}</p>
+<h1>${esc(g.t)}</h1>
+<p class="sub">${esc(g.i)}</p>
+<p class="muted small">Updated ${new Date(TODAY).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })} · Tools from our directory of ${TOOLS.length}</p>
+</div>
+<div class="wrap">${secs}
+<section class="panel"><h2>Start this week</h2><ol class="steps">${g.tip.map((x) => `<li>${esc(x)}</li>`).join("")}</ol></section>
+${faqHtml(g.faq)}
+<section><h2>More guides</h2><ul class="chips">${others}</ul></section>
+</div>`;
+  return page({ title, desc, path: p, body, ld: [art, crumbs(crumbItems), faqLd(g.faq)] });
+}
+function guidesIndex() {
+  const body = `<div class="wrap hero">${crumbHtml([["Home", "/"], ["Guides", "/guides"]])}
+<p class="kicker">${GUIDES.length + 3} guides · India</p>
+<h1>AI guides for Indian businesses</h1>
+<p class="sub">Which AI tools to use, by business type. Plain picks, free options first where they exist.</p></div>
+<section class="wrap"><ul class="cards">${GUIDES.map((g) => `<li class="card"><div class="card__top"><h3><a href="/guides/${g.s}">${esc(g.t)}</a></h3></div><p>${esc(g.i.split(". ")[0])}.</p></li>`).join("")}
+<li class="card"><div class="card__top"><h3><a href="/guide-whatsapp.html">AiSensy vs Interakt vs Wati</a></h3></div><p>WhatsApp marketing tools compared for Indian D2C brands.</p></li>
+<li class="card"><div class="card__top"><h3><a href="/guide-shopify.html">AI tools for Shopify D2C brands</a></h3></div><p>One pick per job for Indian Shopify brands.</p></li>
+<li class="card"><div class="card__top"><h3><a href="/guide-amazon.html">AI tools for Amazon India sellers</a></h3></div><p>Listings, images and ads for Amazon India.</p></li>
+</ul></section>`;
+  return page({ title: `AI Guides for Indian Businesses (${GUIDES.length + 3}) | AI Tools Hub`, desc: `Best AI tools by business type in India: CA firms, restaurants, kirana shops, clinics, coaching centres and more.`, path: "/guides", body, ld: [crumbs([["Home", "/"], ["Guides", "/guides"]])] });
+}
+
 // build
 fs.rmSync(OUT, { recursive: true, force: true });
 fs.mkdirSync(path.join(OUT, "tools"), { recursive: true });
 fs.mkdirSync(path.join(OUT, "category"), { recursive: true });
+fs.mkdirSync(path.join(OUT, "guides"), { recursive: true });
 for (const f of fs.readdirSync(__dirname)) {
   if (SKIP.has(f) || f.startsWith(".")) continue;
   const src = path.join(__dirname, f);
@@ -236,12 +277,14 @@ for (const f of fs.readdirSync(__dirname)) {
 }
 TOOLS.forEach((t) => fs.writeFileSync(path.join(OUT, "tools", t.slug + ".html"), toolPage(t)));
 CATS.forEach((c) => fs.writeFileSync(path.join(OUT, "category", catSlug(c) + ".html"), catPage(c)));
+GUIDES.forEach((g) => fs.writeFileSync(path.join(OUT, "guides", g.s + ".html"), guidePage(g)));
+fs.writeFileSync(path.join(OUT, "guides.html"), guidesIndex());
 fs.writeFileSync(path.join(OUT, "categories.html"), categoriesPage());
 fs.writeFileSync(path.join(OUT, "all-tools.html"), allToolsPage());
 
 // sitemap: static pages from the repo's sitemap.xml + generated pages
 const fixed = (fs.readFileSync(path.join(__dirname, "sitemap.xml"), "utf8").match(/<loc>[^<]+<\/loc>/g) || []).map((x) => x.slice(5, -6));
-const urls = fixed.concat([SITE + "/categories", SITE + "/all-tools"], CATS.map((c) => SITE + "/category/" + catSlug(c)), TOOLS.map((t) => SITE + "/tools/" + t.slug));
+const urls = fixed.concat([SITE + "/guides", SITE + "/categories", SITE + "/all-tools"], GUIDES.map((g) => SITE + "/guides/" + g.s), CATS.map((c) => SITE + "/category/" + catSlug(c)), TOOLS.map((t) => SITE + "/tools/" + t.slug));
 fs.writeFileSync(path.join(OUT, "sitemap.xml"), '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + [...new Set(urls)].map((u) => `  <url><loc>${esc(u)}</loc><lastmod>${TODAY}</lastmod></url>`).join("\n") + "\n</urlset>\n");
 
-console.log(`Built ${TOOLS.length} tool pages, ${CATS.length} category pages, ${urls.length} sitemap URLs.`);
+console.log(`Built ${TOOLS.length} tool pages, ${CATS.length} category pages, ${GUIDES.length} guides, ${urls.length} sitemap URLs.`);

@@ -69,3 +69,10 @@ h2.group{margin-top:28px}
 .credit{background:linear-gradient(90deg,#e9c77b,#f3c6a5,#c9a6ff,#7fd6e6,#e9c77b);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sheen 6s linear infinite;font-weight:600}
 @keyframes sheen{to{background-position:200% 0}}
 @media(prefers-reduced-motion:reduce){.credit{animation:none}}
+.small{font-size:.85rem}
+.gsec{margin-bottom:36px}
+.gsec h2 .n{color:var(--gold);font-size:.8em;margin-right:.5em;font-weight:500}
+.lead{color:var(--muted);max-width:65ch;margin:0 0 16px}
+.steps{margin:0;padding-left:22px}
+.steps li{padding:5px 0}
+.panel h2{margin-bottom:.5em}

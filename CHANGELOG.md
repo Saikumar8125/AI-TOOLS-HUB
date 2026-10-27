@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.6 (2026-10-27)
+- 18 industry guides (/guides/name) from guides.js: CA firms, restaurants, kirana shops, clinics, coaching centres and more
+- /guides index page, Guides link in page headers and the home footer
+
 ## v1.5 (2026-10-27)
 - Static page for every tool (/tools/name) and category (/category/name), plus /categories and /all-tools
 - build.js generates the pages and the full sitemap on each Vercel deploy, straight from data.js
