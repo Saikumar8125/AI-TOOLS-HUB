@@ -85,7 +85,7 @@ window.AITH_GUIDES = [
     { h: "Online store", p: "Start a simple website or store when you are ready to grow beyond Instagram.", tools: ["Durable", "Wix ADI", "Shiprocket"] }
   ],
   tip: ["Shoot every new piece on the same plain background", "Batch-edit photos in Photoroom", "Send new arrivals to your WhatsApp list every Friday"],
-  faq: [["Do AI model photos look real?", "Good tools look close, but always show the real fabric and colour so returns stay low."], ["Where do I start with a small budget?", "Photoroom, Canva and CapCut all have free plans."]]
+  faq: [["Do AI model photos look real?", "Good tools look close, but always show the real fabric and colour so returns stay low."], ["Where do I start with a small budget?", "Canva and CapCut have free plans, and Photoroom offers a free trial on its paid plans."]]
 },
 {
   s: "salons", t: "Best AI Tools for Salons and Beauty Parlours in India", who: "salons, beauty parlours and spas",
