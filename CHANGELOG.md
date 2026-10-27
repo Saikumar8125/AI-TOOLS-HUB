@@ -1,5 +1,12 @@
 # Changelog
 
+## v1.5 (2026-10-27)
+- Static page for every tool (/tools/name) and category (/category/name), plus /categories and /all-tools
+- build.js generates the pages and the full sitemap on each Vercel deploy, straight from data.js
+- 1200x630 share image, summary_large_image cards on all pages
+- "Full details" link in the tool popup, category links in the footer
+- Link check on 27 Oct 2026; replaced the "Updated weekly" claim with the real check date
+
 ## v1.4 (2026-10-21)
 - Code cleanup: renamed stylesheets and scripts, removed unused chart files
 - Added README, LICENSE and this changelog
