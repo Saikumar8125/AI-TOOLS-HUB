@@ -21,6 +21,10 @@ require("./guides.js");
 const TOOLS = window.AITH_TOOLS;
 const DESC = window.AITH_DESC || {};
 const GUIDES = window.AITH_GUIDES || [];
+const guidesByTool = {};
+GUIDES.forEach((g) => g.sec.forEach((x) => x.tools.forEach((n) => { (guidesByTool[n] = guidesByTool[n] || new Set()).add(g); })));
+const titleCase = (x) => x.replace(/^./, (c) => c.toUpperCase());
+const SEARCH_ICON = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>';
 const home = fs.readFileSync(path.join(__dirname, "index.html"), "utf8");
 let INDIA = {};
 try { INDIA = JSON.parse((home.match(/id="india-data">([\s\S]*?)<\/script>/) || [])[1] || "{}"); } catch (e) { INDIA = {}; }
@@ -85,6 +89,7 @@ function page(o) {
 <meta name="description" content="${esc(o.desc)}">
 <link rel="canonical" href="${SITE}${o.path}">
 <meta name="theme-color" content="#0a0a0b">
+<meta name="color-scheme" content="dark">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="AI Tools Hub">
 <meta property="og:title" content="${esc(o.title)}">
@@ -105,18 +110,24 @@ function page(o) {
 <link rel="stylesheet" href="/pages.css">
 ${ld}
 </head>
-<body>
+<body${o.bodyClass ? ` class="${o.bodyClass}"` : ""}>
+<a class="skip" href="#main">Skip to content</a>
+${o.pre || ""}
 <header class="topbar"><div class="wrap">
-<a class="brand" href="/">AI TOOLS <span>HUB</span></a>
-<nav class="toplinks"><a href="/guides">Guides</a><a href="/categories">Categories</a><a href="/all-tools">All tools</a></nav>
+<a class="brand" href="/"><img src="/icon.svg" width="28" height="28" alt=""><b>AI TOOLS <span>HUB</span></b></a>
+<nav class="toplinks" aria-label="Main"><a href="/guides">Guides</a><a href="/categories">Categories</a><a href="/all-tools">All tools</a><button class="sbtn" type="button" data-search aria-label="Search tools, guides and categories">${SEARCH_ICON}<span>Search</span><kbd>/</kbd></button></nav>
 </div></header>
-<main>
+<main id="main">
 ${o.body}
 </main>
-<footer class="foot"><div class="wrap">
-<p><a href="/">Home</a> · <a href="/guides">Guides</a> · <a href="/categories">Categories</a> · <a href="/all-tools">All tools</a> · <a href="/d2c.html">D2C tools</a> · <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a></p>
-<p class="muted">Built for Indian SMBs · © ${YEAR} AI Tools Hub · Designed &amp; developed by <span class="credit">J. Venkata Sai Kumar</span></p>
-</div></footer>
+<footer class="foot"><div class="wrap foot__grid">
+<div><a class="brand" href="/"><img src="/icon.svg" width="28" height="28" alt=""><b>AI TOOLS <span>HUB</span></b></a><p class="muted">${TOOLS.length} hand-picked AI tools in ${CATS.length} categories, curated for Indian small businesses. Every link goes to the official site.</p></div>
+<div><h4>Guides</h4><ul>${GUIDES.slice(0, 6).map((g) => `<li><a href="/guides/${g.s}">${esc(titleCase(g.who))}</a></li>`).join("")}<li><a href="/guides">All ${GUIDES.length + 3} guides →</a></li></ul></div>
+<div><h4>Browse</h4><ul><li><a href="/categories">All categories</a></li><li><a href="/all-tools">All tools A–Z</a></li><li><a href="/d2c.html">D2C tools for Indian sellers</a></li><li><a href="/category/chatbots">Chatbots</a></li><li><a href="/category/writing">Writing</a></li><li><a href="/category/video">Video</a></li><li><a href="/category/marketing">Marketing</a></li></ul></div>
+</div>
+<div class="wrap foot__base"><p>Built for Indian SMBs · © ${YEAR} AI Tools Hub · <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a></p><p>Designed &amp; developed by <span class="credit">J. Venkata Sai Kumar</span></p></div>
+</footer>
+<script src="/pages.js" defer></script>
 </body>
 </html>
 `;
@@ -167,6 +178,8 @@ function toolPage(t) {
   const crumbItems = [["Home", "/"], [t.c, cpath], [t.n, "/tools/" + t.slug]];
   const app = { "@context": "https://schema.org", "@type": "SoftwareApplication", name: t.n, url: t.u, applicationCategory: t.c, operatingSystem: "Web", description: about };
   if (t.p === "Free") app.offers = { "@type": "Offer", price: "0", priceCurrency: "INR" };
+  const gl = [...(guidesByTool[t.n] || [])];
+  const feat = gl.length ? `<section class="wrap"><h2>Where ${esc(t.n)} fits</h2><p class="lead">Picked in these guides for Indian businesses.</p><ul class="chips">${gl.slice(0, 8).map((g) => `<li><a href="/guides/${g.s}">${esc(titleCase(g.who))}</a></li>`).join("")}${gl.length > 8 ? `<li><a href="/guides">+${gl.length - 8} more guides</a></li>` : ""}</ul></section>` : "";
   const body = `<article class="wrap hero">
 ${crumbHtml(crumbItems)}
 <p class="kicker">${esc(t.c)} · AI tool</p>
@@ -177,11 +190,13 @@ ${crumbHtml(crumbItems)}
 </article>
 <div class="wrap grid2">
 <section class="panel"><h2>Highlights</h2>${(d.b && d.b.length) ? "<ul class=\"ticks\">" + d.b.map((x) => `<li>${esc(x)}</li>`).join("") + "</ul>" : `<p class="muted">See the official site for features.</p>`}</section>
-<section class="panel"><h2>For Indian users</h2>${(inl.length || india.m) ? "<ul class=\"ticks\">" + (india.m ? "<li>Made in India</li>" : "") + inl.map((k) => `<li><a href="${esc(india.l[k])}" target="_blank" rel="noopener">${esc(IN_LABELS[k])}</a></li>`).join("") + "</ul>" : `<p class="muted">We have not verified INR pricing, UPI, GST invoices or Indian-language support for ${esc(t.n)} yet.</p>`}</section>
+<section class="panel"><h2>Quick facts</h2><dl class="facts"><div><dt>Category</dt><dd><a href="${cpath}">${esc(t.c)}</a></dd></div><div><dt>Pricing</dt><dd>${esc(priceText[t.p])}</dd></div>${host(t.u) ? `<div><dt>Official site</dt><dd>${esc(host(t.u))}</dd></div>` : ""}${india.m ? "<div><dt>Origin</dt><dd>Made in India</dd></div>" : ""}${inl.map((k) => `<div><dt>${esc(IN_LABELS[k])}</dt><dd><a href="${esc(india.l[k])}" target="_blank" rel="noopener">Verified ↗</a></dd></div>`).join("")}</dl></section>
 </div>
+${feat}
 ${pick.length ? `<section class="wrap"><h2>Alternatives to ${esc(t.n)}</h2><ul class="cards">${pick.map(card).join("")}</ul><p><a href="${cpath}">All ${byCat[t.c].length} ${esc(t.c)} AI tools →</a></p></section>` : ""}
-<div class="wrap">${faqHtml(qs)}</div>`;
-  return page({ title, desc, path: "/tools/" + t.slug, body, ld: [app, crumbs(crumbItems), faqLd(qs)] });
+<div class="wrap">${faqHtml(qs)}</div>
+<div class="visitbar"><b>${esc(t.n)}</b><a class="btn" href="${esc(t.u)}" target="_blank" rel="noopener">Visit ↗</a></div>`;
+  return page({ title, desc, path: "/tools/" + t.slug, body, bodyClass: "has-visitbar", ld: [app, crumbs(crumbItems), faqLd(qs)] });
 }
 
 // category pages
@@ -206,7 +221,8 @@ function catPage(c) {
 ${crumbHtml(crumbItems)}
 <p class="kicker">Category · ${list.length} tools</p>
 <h1>Best AI ${esc(c)} tools</h1>
-<p class="sub">${esc(intro)} ${mix(n)}.</p>
+<p class="sub">${esc(intro)}</p>
+<ul class="stats"><li><b>${list.length}</b> tools</li>${["Free", "Freemium", "Paid"].filter((k) => n[k]).map((k) => `<li><b>${n[k]}</b> ${k.toLowerCase()}</li>`).join("")}</ul>
 </div>
 <section class="wrap">${groups}</section>
 <section class="wrap"><h2>Other categories</h2><ul class="chips">${CATS.filter((x) => x !== c).map((x) => `<li><a href="/category/${catSlug(x)}">${esc(x)}</a></li>`).join("")}</ul></section>
@@ -242,7 +258,9 @@ function guidePage(g) {
   const title = `${g.t} (${YEAR}) | AI Tools Hub`;
   const desc = (g.i.split(". ")[0] + ". Hand-picked free and paid AI tools for " + g.who + ", with an Indian focus.").slice(0, 300);
   const crumbItems = [["Home", "/"], ["Guides", "/guides"], [g.t, p]];
-  const secs = g.sec.map((x, i) => `<section class="gsec"><h2><span class="n">${String(i + 1).padStart(2, "0")}</span>${esc(x.h)}</h2><p class="lead">${esc(x.p)}</p><ul class="cards">${x.tools.map((n) => byName[n]).filter(Boolean).map((t) => guideCard(t, g)).join("")}</ul></section>`).join("");
+  const secs = g.sec.map((x, i) => `<section class="gsec" id="s${i + 1}"><h2><span class="n">${String(i + 1).padStart(2, "0")}</span>${esc(x.h)}</h2><p class="lead">${esc(x.p)}</p><ul class="cards${x.tools.length === 4 || x.tools.length === 2 ? " cards--2" : ""}">${x.tools.map((n) => byName[n]).filter(Boolean).map((t) => guideCard(t, g)).join("")}</ul></section>`).join("");
+  const toc = `<nav class="toc" aria-label="On this page">${g.sec.map((x, i) => `<a href="#s${i + 1}">${esc(x.h)}</a>`).join("")}</nav>`;
+  const glance = `<section class="panel glance"><h2>Top picks at a glance</h2><ol>${g.sec.map((x) => { const f = byName[x.tools[0]]; return f ? `<li><span>${esc(x.h)}</span><a href="/tools/${f.slug}">${esc(f.n)}</a></li>` : ""; }).join("")}</ol></section>`;
   const others = GUIDES.filter((x) => x !== g).map((x) => `<li><a href="/guides/${x.s}">${esc(x.who.replace(/^./, (c) => c.toUpperCase()))}</a></li>`).join("");
   const art = { "@context": "https://schema.org", "@type": "Article", headline: g.t, description: desc, datePublished: g.d || GUIDES_PUBLISHED, dateModified: g.d || GUIDES_PUBLISHED, author: { "@type": "Person", name: "J. Venkata Sai Kumar" }, publisher: { "@type": "Organization", name: "AI Tools Hub" }, image: SITE + "/og-image.png", mainEntityOfPage: SITE + p };
   const body = `<div class="wrap hero">
@@ -252,12 +270,13 @@ ${crumbHtml(crumbItems)}
 <p class="sub">${esc(g.i)}</p>
 <p class="muted small">Published ${new Date(g.d || GUIDES_PUBLISHED).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })} · Tools from our directory of ${TOOLS.length}</p>
 </div>
-<div class="wrap">${secs}
+${toc}
+<div class="wrap">${glance}${secs}
 <section class="panel"><h2>Start this week</h2><ol class="steps">${g.tip.map((x) => `<li>${esc(x)}</li>`).join("")}</ol></section>
 ${faqHtml(g.faq)}
 <section><h2>More guides</h2><ul class="chips">${others}</ul></section>
 </div>`;
-  return page({ title, desc, path: p, body, ld: [art, crumbs(crumbItems), faqLd(g.faq)] });
+  return page({ title, desc, path: p, body, pre: '<div class="progress" aria-hidden="true"><i></i></div>', ld: [art, crumbs(crumbItems), faqLd(g.faq)] });
 }
 function guidesIndex() {
   const body = `<div class="wrap hero">${crumbHtml([["Home", "/"], ["Guides", "/guides"]])}
@@ -286,6 +305,14 @@ TOOLS.forEach((t) => fs.writeFileSync(path.join(OUT, "tools", t.slug + ".html"),
 CATS.forEach((c) => fs.writeFileSync(path.join(OUT, "category", catSlug(c) + ".html"), catPage(c)));
 GUIDES.forEach((g) => fs.writeFileSync(path.join(OUT, "guides", g.s + ".html"), guidePage(g)));
 fs.writeFileSync(path.join(OUT, "guides.html"), guidesIndex());
+{
+  // site search: [kind, name, url, category, price, short description]
+  const short = (x) => String(x || "").slice(0, 110);
+  const IDX = TOOLS.map((t) => ["tool", t.n, "/tools/" + t.slug, t.c, t.p, short((DESC[t.n] || {}).d)])
+    .concat(GUIDES.map((g) => ["guide", g.t, "/guides/" + g.s, "Guide", "", short(g.who)]))
+    .concat(CATS.map((c) => ["category", "AI " + c + " tools", "/category/" + catSlug(c), "Category", "", short(INTRO[c])]));
+  fs.writeFileSync(path.join(OUT, "search-index.json"), JSON.stringify(IDX));
+}
 fs.writeFileSync(path.join(OUT, "categories.html"), categoriesPage());
 fs.writeFileSync(path.join(OUT, "all-tools.html"), allToolsPage());
 
