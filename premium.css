@@ -1,0 +1,133 @@
+/* AI Tools Hub — premium visual layer
+   Add AFTER styles.css and hero.css. This file only enhances presentation. */
+:root {
+  --premium-ink: #09090b;
+  --premium-gold: #e9c77b;
+  --premium-line: rgba(233, 199, 123, .17);
+  --premium-ease: cubic-bezier(.22, 1, .36, 1);
+}
+
+html { scroll-behavior: smooth; }
+body { text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; }
+
+::selection { background: rgba(233, 199, 123, .28); color: inherit; }
+
+/* Navigation: clearer glass surface without changing its layout. */
+.x-header {
+  -webkit-backdrop-filter: blur(22px) saturate(145%);
+  backdrop-filter: blur(22px) saturate(145%);
+  transition: background-color .35s var(--premium-ease),
+              border-color .35s var(--premium-ease),
+              box-shadow .35s var(--premium-ease);
+}
+.x-header::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 -1px;
+  height: 1px;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(233,199,123,.42), transparent);
+  opacity: .55;
+}
+
+/* Hero: restrained ambient light, not another distracting animation. */
+.x-hero { isolation: isolate; }
+.x-hero__glass {
+  position: relative;
+  isolation: isolate;
+}
+.x-hero__glass::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: min(70vw, 760px);
+  aspect-ratio: 1;
+  left: 50%;
+  top: 4%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(233,199,123,.095), rgba(139,92,246,.045) 38%, transparent 70%);
+  filter: blur(18px);
+  opacity: .9;
+}
+.x-h1 { text-wrap: balance; }
+.x-sub { text-wrap: pretty; }
+
+/* Cards: refined borders, depth and responsive hover feedback. */
+.x-card, .x-pick, .x-bento > *, .x-how__step {
+  -webkit-tap-highlight-color: transparent;
+}
+.x-card, .x-pick {
+  border-color: var(--premium-line);
+  transition: transform .42s var(--premium-ease),
+              border-color .32s ease,
+              box-shadow .42s var(--premium-ease),
+              background-color .32s ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .x-card:hover, .x-pick:hover {
+    transform: translateY(-5px);
+    border-color: rgba(233,199,123,.48);
+    box-shadow: 0 18px 50px rgba(0,0,0,.19),
+                0 0 0 1px rgba(233,199,123,.055) inset;
+  }
+  .x-btn:hover { transform: translateY(-2px); }
+}
+.x-card:focus-visible, .x-pick:focus-visible, .x-btn:focus-visible {
+  outline: 2px solid var(--premium-gold);
+  outline-offset: 4px;
+}
+
+/* Section rhythm and heading legibility. */
+.x-section { scroll-margin-top: 92px; }
+.x-h2 { text-wrap: balance; }
+.x-head > p:not(.x-micro) { max-width: 62ch; }
+
+/* Search and filter controls: stronger focus state. */
+.x-field, .x-hsearch, .x-hs__field {
+  transition: border-color .25s ease, box-shadow .25s ease, background-color .25s ease;
+}
+.x-field:focus-within, .x-hsearch:focus-within, .x-hs__field:focus-within {
+  border-color: rgba(233,199,123,.7);
+  box-shadow: 0 0 0 4px rgba(233,199,123,.09);
+}
+
+/* Progressive entrance. JS only adds .premium-ready after initialization. */
+.premium-ready .premium-reveal {
+  opacity: 0;
+  transform: translate3d(0, 18px, 0);
+  transition: opacity .7s var(--premium-ease), transform .7s var(--premium-ease);
+}
+.premium-ready .premium-reveal.premium-visible {
+  opacity: 1;
+  transform: none;
+}
+.premium-ready .premium-reveal.premium-visible:nth-child(3n + 2) { transition-delay: .045s; }
+.premium-ready .premium-reveal.premium-visible:nth-child(3n + 3) { transition-delay: .09s; }
+
+/* Modal open/close polish while preserving the existing modal state machine. */
+.x-modal:not([hidden]) .x-sheet {
+  animation: premium-sheet-in .48s var(--premium-ease) both;
+}
+@keyframes premium-sheet-in {
+  from { opacity: .65; transform: translate3d(0, 18px, 0) scale(.985); }
+  to { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+}
+
+/* Mobile: reduce movement and avoid hover-only affordances. */
+@media (max-width: 767px) {
+  .x-hero__glass::before { width: 115vw; opacity: .62; }
+  .x-card, .x-pick { transition-duration: .25s; }
+  .x-section { scroll-margin-top: 76px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+  .premium-ready .premium-reveal { opacity: 1; transform: none; }
+}
