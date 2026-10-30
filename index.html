@@ -3626,13 +3626,82 @@
         doc.addEventListener("keydown", function (e) { if (e.key === "Tab" || e.key === "Enter" || e.key === " ") kbd = true; }, true);
         doc.addEventListener("pointerdown", function () { kbd = false; }, { capture: true, passive: true });
         function willChange(on, props) { sheet.style.willChange = on ? props : ""; }
-        function enterAnim() {
+        /* Open/close motion: the sheet grows out of the tapped card and shrinks back into it, while the tool icon flies between card and sheet (container transform). */
+        var EASE_OPEN = "cubic-bezier(.05,.7,.1,1)", EASE_CLOSE = "cubic-bezier(.3,0,0,1)", D_OPEN = 460, D_CLOSE = 300;
+        var origin = null; /* { el: tapped card, i: tool index } while the sheet was opened from a card */
+        function cardOf(src) { return src && src.closest ? src.closest(".x-card, [data-hs], [data-i]") : null; }
+        function rectOf(el) {
+          if (!el || !el.isConnected) return null;
+          var r = el.getBoundingClientRect(), vw = window.innerWidth, vh = window.innerHeight;
+          if (r.width < 24 || r.height < 24 || r.bottom < 0 || r.top > vh || r.right < 0 || r.left > vw) return null;
+          return r;
+        }
+        function cornerR(el) {
+          var c = getComputedStyle(el);
+          return [c.borderTopLeftRadius, c.borderTopRightRadius, c.borderBottomRightRadius, c.borderBottomLeftRadius].map(function (v) { return parseFloat(v) || 0; });
+        }
+        function flyIcon(fromEl, toEl, hide, dur, ease) {
+          if (!fromEl || !toEl) return;
+          var a = fromEl.getBoundingClientRect(), b = toEl.getBoundingClientRect();
+          if (!a.width || !b.width) return;
+          var g = fromEl.cloneNode(true);
+          g.removeAttribute("id"); g.setAttribute("aria-hidden", "true");
+          g.style.cssText += ";position:fixed;left:0;top:0;margin:0;z-index:130;pointer-events:none;transform-origin:0 0;width:" + a.width + "px;height:" + a.height + "px;will-change:transform";
+          doc.body.appendChild(g);
+          hide.forEach(function (h) { h.style.visibility = "hidden"; });
+          var k = b.width / a.width;
+          var fa = run(g, [
+            { transform: "translate3d(" + a.left.toFixed(1) + "px," + a.top.toFixed(1) + "px,0) scale(1)" },
+            { transform: "translate3d(" + b.left.toFixed(1) + "px," + b.top.toFixed(1) + "px,0) scale(" + k.toFixed(4) + ")" }
+          ], { duration: dur, easing: ease, fill: "both" });
+          var done = function () {
+            if (g.parentNode) g.parentNode.removeChild(g);
+            hide.forEach(function (h) { h.style.visibility = ""; });
+          };
+          if (fa) fa.onfinish = fa.oncancel = done; else done();
+        }
+        /* the sheet must be un-transformed when this runs, so its rect is its resting rect */
+        function morphFrames(card, fr) {
+          var sr = sheet.getBoundingClientRect();
+          if (!sr.width || !sr.height) return null;
+          var sx = fr.width / sr.width, sy = fr.height / sr.height;
+          var tx = fr.left - sr.left, ty = fr.top - sr.top;
+          var r = cornerR(card)[0] || 16, to = cornerR(sheet);
+          return {
+            sr: sr,
+            small: "translate3d(" + tx.toFixed(1) + "px," + ty.toFixed(1) + "px,0) scale(" + sx.toFixed(4) + "," + sy.toFixed(4) + ")",
+            smallR: (r / sx).toFixed(1) + "px / " + (r / sy).toFixed(1) + "px",
+            fullR: to.map(function (v) { return v + "px"; }).join(" ")
+          };
+        }
+        function fadeKids(from, to, dur, delay, fill) {
+          /* fill "backwards" on open: nothing may keep animating the children afterwards (a lingering opacity effect stacks m-body above the close button) */
+          Array.prototype.forEach.call(sheet.children, function (el) { run(el, [{ opacity: from }, { opacity: to }], { duration: dur, delay: delay || 0, easing: "linear", fill: fill || "both" }); });
+        }
+        function enterAnim(fr, card) {
           if (reduce) {
             run(mBg, [{ opacity: 0 }, { opacity: 1 }], { duration: 200 });
             run(sheet, [{ opacity: 0 }, { opacity: 1 }], { duration: 200 });
             return;
           }
           var phone = phoneMq.matches, o = { duration: D_SHEET, easing: EASE }, sa;
+          var mf = fr && card ? morphFrames(card, fr) : null;
+          if (mf) {
+            sheet.style.transformOrigin = "0 0";
+            willChange(true, "transform, opacity");
+            sa = run(sheet, [
+              { transform: mf.small, borderRadius: mf.smallR, opacity: 0 },
+              { opacity: 1, offset: .12 },
+              { transform: "translate3d(0,0,0) scale(1,1)", borderRadius: mf.fullR, opacity: 1 }
+            ], { duration: D_OPEN, easing: EASE_OPEN });
+            fadeKids(0, 1, 220, D_OPEN * .16, "backwards");
+            var ci = card.querySelector(".x-fav"), si = $("m-ico"), sf = si && si.querySelector(".x-fav");
+            if (ci && sf) flyIcon(ci, sf, [si, ci], D_OPEN * .92, EASE_OPEN);
+            run(mBg, [{ opacity: 0 }, { opacity: 1 }], { duration: D_BG, easing: "linear" });
+            var endM = function () { willChange(false); sheet.style.transformOrigin = ""; };
+            if (sa) { sa.onfinish = sa.oncancel = endM; } else endM();
+            return;
+          }
           if (phone) {
             willChange(true, "transform");
             sa = run(sheet, [{ transform: "translate3d(0,100%,0)" }, { transform: "translate3d(0,0,0)" }], o);
@@ -3689,6 +3758,8 @@
           clearTimeout(closing);
           var wasOpen = !modal.hidden && !modal.classList.contains("is-closing");
           if (!wasOpen) cancelAnims();
+          var oCard = !wasOpen ? cardOf(src) : null, oRect = rectOf(oCard);
+          if (wasOpen) origin = null; /* switched tool inside the open sheet: no single card to return to */
 
           lock(true);
           if (window.XField) window.XField.pause();
@@ -3703,8 +3774,9 @@
           if (window.XSound) window.XSound[wasOpen ? "select" : "open"]();
           if (!wasOpen) {
 
-            enterAnim();
-            modal.hidden = false;
+            origin = oRect ? { el: oCard, i: t.i } : null;
+            modal.hidden = false; /* shown first so the sheet can be measured; no paint happens before the animation starts */
+            enterAnim(oRect, oCard);
 
             if (!histPushed && history.pushState) { try { history.pushState({ xTool: 1 }, ""); histPushed = true; } catch (x) {} }
           }
@@ -3736,6 +3808,14 @@
 
           stage.inert = false; hdr.inert = false;
 
+          var oc = origin && !o.drag && !reduce ? origin.el : null, ofr = rectOf(oc), mfc = null, iconPair = null;
+          origin = null;
+          if (ofr) {
+            /* measure the resting rect (animations are cancelled and the transform cleared above) */
+            mfc = morphFrames(oc, ofr);
+            var ci = oc.querySelector(".x-fav"), si = $("m-ico"), sf = si && si.querySelector(".x-fav");
+            if (mfc && ci && sf) iconPair = { ci: ci, si: si, sf: sf };
+          }
           var phone = phoneMq.matches, dur = D_OUT, ease = "ease-in";
           var toT = phone ? "translate3d(0,100%,0)" : "scale(.96)", toO = phone ? fromO : 0; /* 100% of its own height: no layout read */
           if (phone && window.DOMMatrix) { try { fromT = "translate3d(0," + new DOMMatrix(fromT).m42.toFixed(1) + "px,0)"; } catch (x) {} }
@@ -3746,7 +3826,20 @@
           }
           if (reduce) { dur = 200; toT = fromT; toO = 0; ease = "linear"; }
           willChange(true, phone ? "transform" : "transform, opacity");
-          var ca = run(sheet, [{ transform: fromT, opacity: fromO }, { transform: toT, opacity: toO }], { duration: dur, easing: ease, fill: "both" });
+          var ca;
+          if (mfc) {
+            dur = D_CLOSE;
+            sheet.style.transformOrigin = "0 0";
+            if (iconPair) flyIcon(iconPair.sf, iconPair.ci, [iconPair.si, iconPair.ci], dur * .95, EASE_CLOSE);
+            fadeKids(1, 0, dur * .3, 0);
+            ca = run(sheet, [
+              { transform: "translate3d(0,0,0) scale(1,1)", borderRadius: mfc.fullR, opacity: 1 },
+              { opacity: 1, offset: .7 },
+              { transform: mfc.small, borderRadius: mfc.smallR, opacity: 0 }
+            ], { duration: dur, easing: EASE_CLOSE, fill: "both" });
+          } else {
+            ca = run(sheet, [{ transform: fromT, opacity: fromO }, { transform: toT, opacity: toO }], { duration: dur, easing: ease, fill: "both" });
+          }
           run(mBg, [{ opacity: bgO }, { opacity: 0 }], { duration: dur, easing: "linear", fill: "both" });
 
           var ended = false;
@@ -3755,7 +3848,7 @@
             ended = true; clearTimeout(closing);
             modal.hidden = true; modal.classList.remove("is-closing");
             cancelAnims();
-            willChange(false);
+            willChange(false); sheet.style.transformOrigin = "";
             stage.inert = false; hdr.inert = false;
             if (!root.classList.contains("is-menu")) lock(false);
 
