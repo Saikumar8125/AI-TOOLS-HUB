@@ -125,7 +125,7 @@ h2.group{margin-top:28px}
 .foot{border-top:1px solid var(--line2);padding:40px 0 48px;font-size:.9rem;margin-top:48px;background:linear-gradient(180deg,transparent,rgba(255,255,255,.02))}
 .foot__grid{display:grid;gap:28px}
 @media(min-width:760px){.foot__grid{grid-template-columns:1.4fr 1fr 1fr}}
-.foot h4{font-size:.78rem;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);margin:0 0 12px;font-family:Inter,sans-serif;font-weight:600}
+.foot h4,.foot .foot__h{font-size:.78rem;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);margin:0 0 12px;font-family:Inter,sans-serif;font-weight:600}
 .foot ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}
 .foot a{color:var(--text);text-decoration:none}.foot a:hover{color:var(--gold)}
 .foot__base{margin-top:28px;padding-top:20px;border-top:1px solid var(--line2);color:var(--muted)}
@@ -178,3 +178,4 @@ h2.group{margin-top:28px}
 .sbtn,.toplinks a{border-radius:8px}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
 .foot__base a{text-decoration:underline;text-underline-offset:3px}
+.foot .foot__h{letter-spacing:.14em}
