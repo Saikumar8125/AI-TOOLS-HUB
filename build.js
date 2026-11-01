@@ -12,7 +12,7 @@ const OUT = path.join(__dirname, "public");
 const TODAY = new Date().toISOString().slice(0, 10);
 const YEAR = TODAY.slice(0, 4);
 const GUIDES_PUBLISHED = "2026-10-27"; // change only when guides are really re-checked
-const SKIP = new Set(["public", "node_modules", "build.js", "guides.js", "vercel.json", "package.json", ".git", ".github", ".vercel", "CHANGELOG.md", "README.md", "LICENSE", "package-lock.json", "tests", "test-results", "playwright-report"]);
+const SKIP = new Set(["public", "node_modules", "build.js", "guides.js", "vercel.json", "package.json", ".git", ".github", ".vercel", "CHANGELOG.md", "README.md", "LICENSE", "package-lock.json", "tests", "css", "js", "test-results", "playwright-report"]);
 
 // data
 global.window = {};
@@ -301,6 +301,16 @@ for (const f of fs.readdirSync(__dirname)) {
   const src = path.join(__dirname, f);
   if (fs.statSync(src).isFile()) fs.copyFileSync(src, path.join(OUT, f));
 }
+// Homepage stylesheet: css/home/*.css are concatenated in filename order into
+// public/css/home.css (one cacheable request, same cascade order as the old inline blocks).
+const HOME_CSS = path.join(__dirname, "css", "home");
+if (fs.existsSync(HOME_CSS)) {
+  fs.mkdirSync(path.join(OUT, "css"), { recursive: true });
+  const parts = fs.readdirSync(HOME_CSS).filter((f) => f.endsWith(".css")).sort();
+  fs.writeFileSync(path.join(OUT, "css", "home.css"), parts.map((f) => `/* ${f} */\n` + fs.readFileSync(path.join(HOME_CSS, f), "utf8")).join("\n"));
+}
+// Homepage scripts: copied as-is, each loaded by its own <script> tag in index.html.
+if (fs.existsSync(path.join(__dirname, "js"))) fs.cpSync(path.join(__dirname, "js"), path.join(OUT, "js"), { recursive: true });
 TOOLS.forEach((t) => fs.writeFileSync(path.join(OUT, "tools", t.slug + ".html"), toolPage(t)));
 CATS.forEach((c) => fs.writeFileSync(path.join(OUT, "category", catSlug(c) + ".html"), catPage(c)));
 GUIDES.forEach((g) => fs.writeFileSync(path.join(OUT, "guides", g.s + ".html"), guidePage(g)));
