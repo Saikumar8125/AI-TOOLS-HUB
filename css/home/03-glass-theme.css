@@ -1,0 +1,126 @@
+/* Extracted verbatim from index.html inline <style id="glass-theme"> (Phase 1B). */
+:root[data-theme="dark"] {
+  --x-bg: #0a0a0b;
+  --x-blob-o: .3;
+  --g-fill: rgba(255,255,255,.07); --g-edge: rgba(255,255,255,.12);
+  --g-card: rgba(255,255,255,.05); --g-solid: rgba(23,23,26,.92);
+  --g-shadow: inset 0 1px 0 rgba(255,255,255,.22), inset 0 -1px 0 rgba(255,255,255,.04), 0 10px 30px rgba(0,0,0,.35);
+  --g-shadow-s: inset 0 1px 0 rgba(255,255,255,.2), inset 0 -1px 0 rgba(255,255,255,.04), 0 4px 14px rgba(0,0,0,.3);
+  --g-spec: linear-gradient(180deg, rgba(255,255,255,.6), rgba(255,255,255,.1) 35%, rgba(255,255,255,0) 60%);
+
+  --b1: #c8b27c; --b2: #9c8550; --b3: #0f2a24; --b4: #e6d3a3;
+  --x-glass: var(--g-fill); --x-glass-edge: var(--g-edge); --x-lg-fill: var(--g-fill); --x-lg-solid: var(--g-solid);
+  --x-glass-shadow: var(--g-shadow); --x-glass-shadow-s: var(--g-shadow-s);
+}
+:root[data-theme="light"] {
+  --x-bg: #f5f4f0;
+  --x-blob-o: .32;
+  --g-fill: rgba(255,255,255,.6); --g-edge: rgba(255,255,255,.85);
+  --g-card: rgba(255,255,255,.68); --g-solid: rgba(255,255,255,.94);
+  --g-shadow: inset 0 1px 0 rgba(255,255,255,.95), inset 0 -1px 0 rgba(255,255,255,.4), 0 10px 30px rgba(70,56,24,.12);
+  --g-shadow-s: inset 0 1px 0 rgba(255,255,255,.95), 0 4px 14px rgba(70,56,24,.10);
+  --g-spec: linear-gradient(180deg, rgba(255,255,255,1), rgba(255,255,255,.3) 35%, rgba(255,255,255,0) 60%);
+
+  --b1: #e6d3a3; --b2: #efe2c2; --b3: #e9dcc0; --b4: #f1e7cf; --b5: #e2cf9f;
+  --x-glass: var(--g-fill); --x-glass-edge: var(--g-edge); --x-lg-fill: var(--g-fill); --x-lg-solid: var(--g-solid);
+  --x-glass-shadow: var(--g-shadow); --x-glass-shadow-s: var(--g-shadow-s);
+}
+
+html, body { overflow-x: clip; }
+
+/* glass surfaces */
+.x-header, .x-header.is-scrolled, .x-hero__glass, .x-totd__card, .x-sheet, .x-drawer__sheet,
+.x-hsearch, .x-field, .x-hs__field, .x-chip, .x-seg, .x-btn:not(.x-btn--solid):not(.x-visit), .x-faq__item, .x-panel, .x-promo__in, .x-cbar {
+  background-color: var(--g-fill);
+  border: 1px solid var(--g-edge);
+  box-shadow: var(--g-shadow);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  backdrop-filter: blur(24px) saturate(180%);
+}
+.x-chip, .x-seg, .x-btn:not(.x-btn--solid):not(.x-visit) { box-shadow: var(--g-shadow-s); }
+.is-hs-open .x-hs__field { background-color: var(--g-solid); }
+
+.x-hs__list { -webkit-backdrop-filter: none; backdrop-filter: none; background: var(--x-spec-g), var(--g-solid); }
+.x-sheet, .x-drawer__sheet { border-bottom-width: 0; }
+@media (min-width: 720px) { .x-sheet { border-bottom-width: 1px; } }
+.x-faq__item.is-open { background-color: var(--g-fill); }
+
+.x-btn::before, .x-chip::before, .x-hsearch::before, .x-field::before, .x-seg::before, .x-card::before,
+.x-panel::before, .x-cbar::before, .x-hs__field::before, .x-faq__item::after, .x-hero__glass::before { background: var(--g-spec); }
+.x-btn--solid::before { opacity: .5; }
+
+/* floating pill header */
+.x-header { inset: 0 0 auto; margin: 10px; border-radius: 999px; isolation: isolate; }
+.x-header::before { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit; padding: 1px; pointer-events: none; background: var(--g-spec);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); mask-composite: exclude; }
+.x-header.is-hidden { transform: translateY(calc(-100% - 14px)); }
+.x-header .x-header__in { height: 56px; padding-inline: clamp(10px, 2.5vw, 24px); }
+
+/* tool grid cards: glass look, no blur */
+.x-card, .x-grid .x-card { background-color: var(--g-card); border: 1px solid var(--g-edge); box-shadow: var(--g-shadow-s); -webkit-backdrop-filter: none; backdrop-filter: none; }
+
+/* visit button keeps its solid gold fill */
+.x-visit, .x-visit:hover { background-color: var(--x-gold); color: var(--x-on-gold); border-color: var(--x-gold); }
+
+/* pressed */
+.x-card:active, .x-chip:active, .x-btn:active, .x-seg button:active, .x-faq__q:active, .x-tile:active, .x-opt:active { transform: scale(.97); }
+
+/* pricing badges */
+
+.x-badge--Free { color: #c8b27c; border-color: rgba(200,178,124,.7); background: transparent; }
+.x-badge--Freemium { color: #ededed; border-color: rgba(237,237,237,.42); background: transparent; }
+.x-badge--Paid { color: #e6d3a3; border-color: rgba(200,178,124,.45); background: #0a0a0b; }
+:root[data-theme="light"] .x-badge--Free { color: #6b5c34; border-color: #b39a5e; background: transparent; }
+:root[data-theme="light"] .x-badge--Freemium { color: #3a3a3e; border-color: rgba(14,14,14,.32); background: transparent; }
+:root[data-theme="light"] .x-badge--Paid { color: #e6d3a3; border-color: #141414; background: #141414; }
+
+:root[data-theme] .x-btn--solid, :root[data-theme] .x-btn--solid:hover, :root[data-theme] .x-visit, :root[data-theme] .x-visit:hover {
+  background-color: var(--x-pri-c); background-image: var(--x-sheen-g), var(--x-pri);
+  background-size: 250% 100%, 100% 100%; background-repeat: no-repeat;
+  color: var(--x-on-pri); border-color: var(--x-pri-edge); box-shadow: var(--x-pri-shadow);
+}
+:root[data-theme] .x-btn--solid:hover, :root[data-theme] .x-visit:hover { filter: brightness(1.05); }
+:root[data-theme="light"] .x-chip[aria-pressed="true"] { background: var(--x-pri); color: var(--x-on-pri); border-color: var(--x-pri-edge); }
+
+@media (max-width: 768px), (hover: none), (pointer: coarse) {
+  .x-hsearch, .x-field, .x-chip, .x-seg, .x-btn:not(.x-btn--solid):not(.x-visit), .x-faq__item, .x-panel, .x-promo__in, .x-cbar {
+    -webkit-backdrop-filter: none; backdrop-filter: none; background-color: color-mix(in srgb, var(--g-solid) 70%, transparent);
+  }
+}
+
+/* no backdrop-filter support: more opaque fills */
+@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+  .x-header, .x-header.is-scrolled, .x-hero__glass, .x-totd__card, .x-sheet, .x-drawer__sheet,
+  .x-hsearch, .x-field, .x-hs__field, .x-chip, .x-seg, .x-btn:not(.x-btn--solid):not(.x-visit), .x-faq__item, .x-panel, .x-promo__in, .x-cbar, .x-card {
+    background-color: var(--g-solid);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .x-card:active, .x-chip:active, .x-btn:active, .x-seg button:active, .x-faq__q:active, .x-tile:active, .x-opt:active { transform: none; }
+}
+
+@media (max-width: 380px) {
+  .x-header { --x-pad: 10px; }
+  .x-header__in { gap: 6px !important; }
+  .x-header__end { gap: 0 !important; }
+  .x-header .x-mark { flex: 0 0 auto; font-size: 15px; white-space: nowrap; overflow: visible; }
+  #saved-btn, #saved-btn.x-saved, #hs-btn, #hs-btn.x-hs__btn, #snd, #burger { width: 44px !important; height: 44px !important; min-width: 44px !important; min-height: 44px !important; }
+  #saved-btn.x-saved { margin-right: 0 !important; }
+}
+
+input[type=search] { -webkit-appearance: none; appearance: none; }
+input[type=search]::-webkit-search-cancel-button,
+input[type=search]::-webkit-search-decoration { -webkit-appearance: none; display: none; }
+
+@media (max-width: 719px) {
+  .x-modal .x-sheet { -webkit-backdrop-filter: none; backdrop-filter: none; background-color: var(--x-surface); filter: none; }
+}
+.x-modal .x-sheet { contain: layout paint; will-change: auto; }
+
+.x-grain { position: fixed; inset: 0; z-index: 120; pointer-events: none; opacity: var(--x-grain-o, .04);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 160px 160px; }
+:root[data-theme="dark"] { --x-grain-o: .03; }
+:root[data-theme="light"] { --x-grain-o: .03; }

@@ -1,0 +1,53 @@
+/* Extracted verbatim from index.html inline <style id="x-touchfix"> (Phase 1B). */
+.x-menu { pointer-events: none; }
+.is-menu .x-menu { pointer-events: auto; }
+.x-drawer { pointer-events: none; }
+.x-drawer.is-open { pointer-events: auto; }
+.x-modal.is-closing, .x-modal[hidden] { pointer-events: none; }
+.x-cbar { pointer-events: none; }
+.x-cbar.is-on { pointer-events: auto; }
+.x-hs__list { pointer-events: none; }
+.is-hs-open .x-hs.has-res .x-hs__list { pointer-events: auto; }
+.x-header.is-hs:not(.is-hs-open) .x-hs__field { pointer-events: none; }
+.x-bgfield, .x-scrim, .x-grain, .x-progress, .x-ptr { pointer-events: none; }
+
+@media (hover: none), (pointer: coarse) {
+  .x-cc__card:hover { transform: none; }
+  .x-card:hover::after { opacity: 0; }
+}
+
+html, body { overscroll-behavior-y: contain; }
+.x-ptr { position: fixed; top: 0; left: 50%; z-index: 70; display: flex; flex-direction: column; align-items: center; gap: 6px; visibility: hidden; opacity: 0; transform: translate3d(-50%, -40px, 0); }
+.x-ptr.is-on { visibility: visible; will-change: transform, opacity; }
+.x-ptr.is-back { transition: transform .3s cubic-bezier(.22,1,.36,1), opacity .3s cubic-bezier(.22,1,.36,1); }
+.x-ptr.is-settle { transition: transform .5s cubic-bezier(.34,1.56,.64,1), opacity .2s linear; }
+.x-ptr__orb { position: relative; box-sizing: border-box; width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: var(--x-surface); border: 1px solid var(--x-line-2); box-shadow: 0 1px 2px rgba(0,0,0,.08), 0 8px 20px -8px rgba(0,0,0,.38); color: var(--x-gold); }
+.x-ptr__ring { position: absolute; top: 3px; left: 3px; width: 32px; height: 32px; overflow: visible; transform: rotate(-90deg); }
+.x-ptr__track { fill: none; stroke: var(--x-line); stroke-width: 2; }
+.x-ptr__arc { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-dasharray: 100; stroke-dashoffset: 100; opacity: 0; }
+.x-ptr.is-loading .x-ptr__arc { transition: stroke-dashoffset .3s var(--x-ease); }
+.x-ptr.is-loading .x-ptr__ring { will-change: transform; animation: x-ptr-spin .75s linear infinite; }
+@keyframes x-ptr-spin { from { transform: rotate(-90deg); } to { transform: rotate(270deg); } }
+.x-ptr__ico { position: relative; display: block; width: 14px; height: 14px; will-change: transform; transition: transform .28s var(--x-ease), opacity .2s linear; }
+.x-ptr.is-ready .x-ptr__ico { transform: rotate(180deg); }
+.x-ptr.is-loading .x-ptr__ico { opacity: 0; transform: rotate(180deg) scale(.6); }
+.x-ptr__t { display: grid; font: 500 12px/1 var(--x-body); text-transform: uppercase; letter-spacing: .08em; padding: 6px 10px; border-radius: 999px; background: var(--x-surface); border: 1px solid var(--x-line); color: var(--x-text); white-space: nowrap; box-shadow: 0 4px 12px -6px rgba(0,0,0,.3); }
+.x-ptr__t > span { grid-area: 1 / 1; text-align: center; opacity: 0; transition: opacity .2s linear; }
+.x-ptr__t > .is-pull { opacity: 1; }
+.x-ptr.is-ready .x-ptr__t > .is-pull, .x-ptr.is-loading .x-ptr__t > .is-pull { opacity: 0; }
+.x-ptr.is-ready:not(.is-loading) .x-ptr__t > .is-rel, .x-ptr.is-loading .x-ptr__t > .is-load { opacity: 1; }
+
+.x-ptr-c { will-change: transform; }
+.x-ptr-c.is-spring { transition: transform .3s cubic-bezier(.22,1,.36,1); }
+.x-ptr-c.is-settle { transition: transform .5s cubic-bezier(.34,1.56,.64,1), opacity .25s linear; }
+@media (prefers-reduced-motion: reduce) {
+  .x-ptr.is-back, .x-ptr.is-settle { transition: opacity .2s linear; }
+  .x-ptr__ico { transition: opacity .2s linear; }
+  .x-ptr.is-ready .x-ptr__ico { transform: none; }
+  .x-ptr.is-loading .x-ptr__ico { transform: none; }
+  .x-ptr.is-loading .x-ptr__ring { animation: none; }
+  .x-ptr.is-loading .x-ptr__arc { transition: none; }
+  .x-ptr-c { will-change: auto; }
+  .x-ptr-c.is-spring { transition: none; }
+  .x-ptr-c.is-settle { transition: opacity .2s linear; }
+}

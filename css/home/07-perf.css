@@ -1,0 +1,16 @@
+/* Extracted verbatim from index.html inline <style id="x-perf"> (Phase 1B). */
+@media (max-width: 768px), (hover: none), (pointer: coarse) {
+  .x-header, .x-header.is-scrolled, .x-hs__field, .is-hs-open .x-hs__field, .x-sheet, .x-drawer__sheet, .x-cbar, .x-fab--top { -webkit-backdrop-filter: none; backdrop-filter: none; }
+  .x-header.is-scrolled { background-color: var(--g-solid); }
+  .x-modal .x-sheet, .x-drawer .x-drawer__sheet { background-color: var(--x-lg-solid); }
+}
+
+.x-js .x-hero.is-off .x-line:nth-child(2) > span, .x-hero.is-off .x-grad, .x-hero.is-off .x-upd i::after,
+.x-cc__vp.is-off .x-cc__track, .x-foot.is-off .x-credit__name { animation-play-state: paused !important; }
+
+#guides { contain-intrinsic-size: auto 1200px; }
+#browse { contain-intrinsic-size: auto 260px; }
+.x-totd { content-visibility: auto; contain-intrinsic-size: auto 500px; }
+.x-marquee { content-visibility: auto; contain-intrinsic-size: auto 90px; }
+@media (min-width: 720px) { #browse { contain-intrinsic-size: auto 290px; } }
+@media (min-width: 800px) { #guides { contain-intrinsic-size: auto 680px; } }

@@ -1,0 +1,40 @@
+/* Extracted verbatim from index.html inline <style id="x-micro"> (Phase 1B). */
+:root { --x-mi: cubic-bezier(.2,.8,.2,1); }
+
+.x-js .x-grid.is-out > * { opacity: 0; transition: opacity 120ms linear !important; }
+.x-js .x-grid.is-anim .x-card { animation: x-in8 260ms var(--x-mi) both; animation-delay: calc(min(var(--i), 11) * 20ms); }
+@keyframes x-in8 { from { opacity: 0; transform: translate3d(0, 8px, 0); } }
+
+.x-heart.is-pop svg { animation: x-pop 300ms var(--x-mi); }
+@keyframes x-pop { 0% { transform: scale(1); } 45% { transform: scale(1.25); } 100% { transform: scale(1); } }
+.x-heart svg { transition: fill 200ms var(--x-mi); }
+#saved-n { display: inline-block; }
+.x-bump { animation: x-cbump 260ms var(--x-mi); }
+@keyframes x-cbump { 0% { transform: scale(1); } 40% { transform: scale(1.22); } 100% { transform: scale(1); } }
+
+/* 6) toast: slide up + fade */
+.x-toast { transform: translate(-50%, 12px); transition: opacity 250ms var(--x-mi), transform 250ms var(--x-mi); }
+.x-toast.is-on { transform: translate(-50%, 0); }
+
+.x-pills.has-ind { position: relative; }
+.has-ind::after { content: ""; position: absolute; left: 0; top: 0; z-index: 0; width: var(--iw, 0); height: var(--ih, 0); transform: translate3d(var(--ix, 0), var(--iy, 0), 0) scaleX(var(--isx, 1)); transform-origin: 0 50%; pointer-events: none; transition: transform 260ms var(--x-mi); }
+.has-ind.is-snap::after { transition: none; }
+.has-ind:not(.is-ready)::after { opacity: 0; }
+.has-ind > button { position: relative; z-index: 1; }
+.x-seg.has-ind::after { border-radius: 9px; background: var(--x-surface-2); box-shadow: inset 0 0 0 1px var(--x-line); }
+:root .x-seg.has-ind.is-ready > button[aria-pressed="true"] { background: transparent; box-shadow: none; }
+.x-pills.has-ind::after { border-radius: 999px; background: var(--x-text); }
+:root[data-theme="light"] .x-pills.has-ind::after { background: var(--x-pri); }
+:root[data-theme="light"] .x-pills.has-ind.is-ready > .x-chip[aria-pressed="true"] { color: var(--x-on-pri); }
+:root .x-pills.has-ind.is-ready > .x-chip[aria-pressed="true"] { background-color: transparent; background-image: none; border-color: transparent; box-shadow: none; }
+
+/* 8) logos fade in on load */
+.x-imgfade .x-fav img { opacity: 0; transition: opacity 200ms var(--x-mi); }
+.x-imgfade .x-fav img.is-ld { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .x-js .x-grid.is-out > * { opacity: 1; transition: none !important; }
+  .x-js .x-grid.is-anim .x-card, .x-heart.is-pop svg, .x-bump { animation: none; }
+  .x-heart svg, .x-toast, .has-ind::after { transition: none; }
+  .x-imgfade .x-fav img { opacity: 1; transition: none; }
+}
