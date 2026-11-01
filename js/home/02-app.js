@@ -27,13 +27,7 @@
   function kick() { if (!rafId) rafId = requestAnimationFrame(loop); }
   window.XLoop = { add: function (fn) { tasks.push(fn); kick(); }, kick: kick };
 
-  window.XInitLenis = function () {
-    if (lenis || reduce || touch || !window.Lenis) return;
-    try { lenis = new window.Lenis({ lerp: 0.12 }); } catch (e) { lenis = null; return; }
-    window.XLoop.add(function (t) { lenis.raf(t); return true; });
-    if (root.classList.contains("x-lock")) lenis.stop();
-  };
-  if (window.Lenis) window.XInitLenis();
+  /* Lenis smooth scrolling was removed in Phase 4: native scrolling + CSS scroll-margin handle anchors. */
 
   var lockY = 0;
 
@@ -1276,13 +1270,6 @@
         b.setAttribute("aria-expanded", o); b.closest(".x-faq__item").classList.toggle("is-open", o);
       });
       return;
-    }
-    var a = e.target.closest('a[href^="#"]');
-    if (a && lenis) {
-      var id = a.getAttribute("href"), el = id === "#top" ? 0 : doc.getElementById(id.slice(1));
-
-      var hd = doc.getElementById("header"), hh = hd ? hd.offsetTop + hd.offsetHeight : 66;
-      if (el !== null) { e.preventDefault(); lenis.scrollTo(el, { offset: el ? -(hh + 16) : 0 }); }
     }
   });
   doc.addEventListener("keydown", function (e) {
