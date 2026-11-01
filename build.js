@@ -12,7 +12,7 @@ const OUT = path.join(__dirname, "public");
 const TODAY = new Date().toISOString().slice(0, 10);
 const YEAR = TODAY.slice(0, 4);
 const GUIDES_PUBLISHED = "2026-10-27"; // change only when guides are really re-checked
-const SKIP = new Set(["public", "node_modules", "build.js", "guides.js", "vercel.json", "package.json", ".git", ".github", ".vercel", "CHANGELOG.md", "README.md", "LICENSE"]);
+const SKIP = new Set(["public", "node_modules", "build.js", "guides.js", "vercel.json", "package.json", ".git", ".github", ".vercel", "CHANGELOG.md", "README.md", "LICENSE", "package-lock.json", "tests", "test-results", "playwright-report"]);
 
 // data
 global.window = {};

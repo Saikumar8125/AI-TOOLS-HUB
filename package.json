@@ -1,0 +1,13 @@
+{
+  "name": "ai-tools-hub",
+  "private": true,
+  "description": "Static AI tools directory. build.js generates public/ on Vercel.",
+  "scripts": {
+    "build": "node build.js",
+    "test": "node build.js && playwright test --config tests/playwright.config.js",
+    "test:data": "playwright test --config tests/playwright.config.js --project=data"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.64.1"
+  }
+}
