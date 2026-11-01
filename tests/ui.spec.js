@@ -101,6 +101,38 @@ test("favorites: save, list in drawer, remove", async ({ page }) => {
   await expect(page.locator("#drawer-list")).toContainText("No saved tools yet");
 });
 
+test("favorites persist across reload, and removal persists too", async ({ page }) => {
+  await home(page);
+  const wraps = page.locator("#grid .x-fw");
+  const names = [];
+  for (const k of [0, 2]) {
+    names.push((await wraps.nth(k).locator(".x-card__name").textContent()).trim());
+    await wraps.nth(k).locator("[data-fav]").click();
+  }
+  await expect(page.locator("#saved-n")).toHaveText("2");
+  await page.reload();
+  await expect(page.locator("#grid .x-card").first()).toBeVisible();
+  await expect(page.locator("#saved-n")).toHaveText("2");
+  await expect(wraps.nth(0).locator("[data-fav]")).toHaveAttribute("aria-pressed", "true");
+  await page.evaluate(() => scrollTo(0, 0));
+  await page.locator("#saved-btn").click();
+  for (const n of names) await expect(page.locator("#drawer-list")).toContainText(n);
+  await page.locator("#drawer-list [data-sv-rm]").first().click();
+  await expect(page.locator("#saved-n")).toHaveText("1");
+  await page.reload();
+  await expect(page.locator("#saved-n")).toHaveText("1");
+  expect(await page.evaluate(() => JSON.parse(localStorage.getItem("aith-saved")))).toEqual([names[1]]);
+});
+
+test("corrupt or unknown saved favorites are ignored safely", async ({ page }) => {
+  await page.addInitScript(() => { if (!sessionStorage.getItem("seeded")) { sessionStorage.setItem("seeded", "1"); localStorage.setItem("aith-saved", '["Not A Real Tool", 42, "ChatGPT", "ChatGPT"]'); } });
+  await home(page);
+  await expect(page.locator("#saved-n")).toHaveText("1");
+  await page.evaluate(() => localStorage.setItem("aith-saved", "{not json"));
+  await page.reload();
+  await expect(page.locator("#saved-n")).toHaveText("0");
+});
+
 test("compare: pick two tools and open the comparison", async ({ page }) => {
   await home(page);
   const wraps = page.locator("#grid .x-fw");

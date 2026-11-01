@@ -3309,8 +3309,20 @@
             '<span style="min-width:0;display:flex;flex-direction:column"><span class="x-card__name" style="display:block">' + esc(t.n) + '</span><span class="x-card__cat" style="display:block">' + esc(t.c) + "</span>" + vinBadge(t) + "</span></button>" + cmpBtn(t) + heart(t) + "</div>";
         }
 
-        /* favourites: in memory only */
-        var saved = [], drawer = $("drawer"), svBtn = $("saved-btn"), HEART = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.2-9.4C1.6 7.6 4 4.5 7.3 4.5c2 0 3.6 1.1 4.7 2.7 1.1-1.6 2.7-2.7 4.7-2.7 3.3 0 5.7 3.1 4.5 6.6-1.7 4.8-9.2 9.4-9.2 9.4z"/></svg>';
+        /* favourites: persisted in localStorage ("aith-saved", tool names so ids can change) */
+        var SAVED_KEY = "aith-saved";
+        function readSaved() {
+          try {
+            var names = JSON.parse(localStorage.getItem(SAVED_KEY) || "[]"), byName = {};
+            if (!Array.isArray(names)) return [];
+            TOOLS.forEach(function (t) { byName[t.n] = t.i; });
+            return names.map(function (n) { return byName[n]; }).filter(function (i, k, a) { return i !== undefined && a.indexOf(i) === k; });
+          } catch (e) { return []; }
+        }
+        function writeSaved() {
+          try { localStorage.setItem(SAVED_KEY, JSON.stringify(saved.map(function (i) { return TOOLS[i].n; }))); } catch (e) { /* storage blocked */ }
+        }
+        var saved = readSaved(), drawer = $("drawer"), svBtn = $("saved-btn"), HEART = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.2-9.4C1.6 7.6 4 4.5 7.3 4.5c2 0 3.6 1.1 4.7 2.7 1.1-1.6 2.7-2.7 4.7-2.7 3.3 0 5.7 3.1 4.5 6.6-1.7 4.8-9.2 9.4-9.2 9.4z"/></svg>';
         function heart(t) {
           var on = saved.indexOf(t.i) > -1;
           return '<button type="button" class="x-heart" data-fav="' + t.i + '" aria-pressed="' + on + '" aria-label="Save ' + esc(t.n) + '">' + HEART + "</button>";
@@ -3336,8 +3348,10 @@
             b.classList.remove("is-pop");
             if (pop && at < 0 && !reduce) { void b.offsetWidth; b.classList.add("is-pop"); }
           });
+          writeSaved();
           drawList();
         }
+        if (saved.length) { bumpN = -1; drawList(); }
         function setDrawer(open) {
           if (window.XSound && open !== drawer.classList.contains("is-open")) window.XSound[open ? "open" : "close"]();
           drawer.classList.toggle("is-open", open);
