@@ -1,5 +1,14 @@
 # Changelog
 
+## v2.0 (2026-11-01)
+- Saved tools (favourites) now persist across visits (localStorage `aith-saved`); bad stored data is ignored safely
+- Home page CSS and JS moved out of index.html (355 KB to 50 KB) into css/home and js/home
+- New flat design system: one palette, Inter only, no glass, glows or WebGL background
+- Removed Lenis (CDN) and Exo 2; all home scripts deferred
+- Accessibility: 0 axe WCAG A/AA issues on home, tool sheet, tool and guide pages in both themes; mobile tool sheet overlap fixed
+- 404 page is noindex and works at any depth
+- Playwright suite: 9 data/SEO tests and 21 UI tests on desktop, tablet and mobile
+
 ## v1.6 (2026-10-27)
 - 18 industry guides (/guides/name) from guides.js: CA firms, restaurants, kirana shops, clinics, coaching centres and more
 - /guides index page, Guides link in page headers and the home footer

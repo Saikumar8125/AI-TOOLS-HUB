@@ -19,11 +19,20 @@ Plain HTML, CSS and vanilla JavaScript. No framework. A small Node build
 (`node build.js`) generates the tool, category and guide pages, the sitemap,
 and `public/`, which Vercel serves.
 
+## Design system
+
+One token set in `css/home/15-system.css` (`--ds-*`: background, three surfaces,
+two hairlines, text, muted, faint, one gold accent) for dark and light themes.
+Inter 400/500/600 is the only font. No glass, glow or entrance animation;
+only state changes (hover, open, press) animate, and `prefers-reduced-motion`
+turns those off. `pages.css` uses the same palette for generated pages.
+
 ## Project structure
 
 ```
 index.html        Home page markup (styles and scripts live in css/home and js/home)
 css/home/         Home page styles, in cascade order; build.js joins them into public/css/home.css
+                  15-system.css is the design system (tokens, type, surfaces) and wins over older layers
 js/home/          Home page scripts, loaded in filename order
 data.js           All tools (name, link, category, pricing, description)
 build.js          Generates public/: tool, category and guide pages, sitemap
@@ -42,7 +51,8 @@ privacy.html, terms.html, 404.html
 git clone https://github.com/Saikumar8125/AI-TOOLS-HUB.git
 cd AI-TOOLS-HUB
 npm install
-npm test          # builds public/ and runs the Playwright suite
+npm test          # builds public/ and runs data, desktop, tablet and mobile suites
+                  # (PW_CHROMIUM_PATH=/path/to/chromium to use a system browser)
 node build.js && python3 -m http.server 8000 -d public
 ```
 
