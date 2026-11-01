@@ -1044,8 +1044,8 @@
       '<div class="x-blk"><p class="x-micro">Similar tools</p><div class="x-blk__chips x-simrow" id="m-sim"></div></div>' +
       '<a class="x-btn x-visit" id="m-visit" href="#" target="_blank" rel="noopener"></a>' +
       '<p class="x-domain" id="m-dom"></p>' +
-      '<p class="x-domain" style="margin-top:4px;font-size:12px">Link checked 27 Oct 2026 · <a id="m-page" href="#" style="color:inherit">Full details</a></p></div>';
-    MS = { page: $("m-page"), f: mBody.querySelector(".x-fav"), name: $("m-name"), cat: $("m-cat"), badge: $("m-badge"), heart: $("m-heart"), about: $("m-about"), best: $("m-best"), pr: $("m-pr"), prt: $("m-prt"), sim: $("m-sim"), visit: $("m-visit"), dom: $("m-dom"), vin: $("m-vin"), india: $("m-india"), indiaB: $("m-india-b") };
+      '<p class="x-domain" style="margin-top:4px;font-size:12px">Last site-wide link check 27 Oct 2026 · <a id="m-page" href="#" style="color:inherit">Full details</a> · <a id="m-report" href="#" target="_blank" rel="noopener" style="color:inherit">Report wrong link or price</a></p></div>';
+    MS = { page: $("m-page"), f: mBody.querySelector(".x-fav"), name: $("m-name"), cat: $("m-cat"), badge: $("m-badge"), heart: $("m-heart"), about: $("m-about"), best: $("m-best"), pr: $("m-pr"), prt: $("m-prt"), sim: $("m-sim"), visit: $("m-visit"), dom: $("m-dom"), vin: $("m-vin"), india: $("m-india"), indiaB: $("m-india-b"), report: $("m-report") };
   }
 
   function setIco(t) {
@@ -1098,6 +1098,7 @@
     MS.pr.textContent = (t.p || "See site") + "."; MS.prt.textContent = PRICE[t.p] || "Pricing not verified here; check the official site.";
     MS.visit.href = t.u; MS.visit.textContent = "Visit " + t.n + " →";
     MS.page.href = "/tools/" + slug(t.n);
+    MS.report.href = "https://github.com/Saikumar8125/AI-TOOLS-HUB/issues/new?title=" + encodeURIComponent("Problem report: " + t.n) + "&body=" + encodeURIComponent("Tool: " + t.n + "\nListed link: " + t.u + "\nListed pricing: " + (t.p || "") + "\nPage: https://aitoolshub-in.vercel.app/tools/" + slug(t.n) + "\n\nWhat is wrong (link / pricing / other):\nWhat it should be (with official source link):\n");
     MS.dom.textContent = domain(t.u);
     fillSim(t);
     sheet.scrollTop = 0;

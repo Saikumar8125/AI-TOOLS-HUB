@@ -1,5 +1,11 @@
 # Changelog
 
+## v2.1 (2026-11-01)
+- Home stats now match data.js (89 free, 379 freemium); build.js writes the counts into the static HTML so they can't drift
+- One link-check date everywhere (27 Oct 2026, the last real check); removed unsupported "re-checked monthly/regularly" claims
+- "Report a wrong link or price" on every tool sheet and tool page, plus "Suggest a tool" and "Report a problem" in footers (prefilled GitHub issues, no backend)
+- Guides: 21 in total = 18 business-type guides + 3 seller guides
+
 ## v2.0 (2026-11-01)
 - Saved tools (favourites) now persist across visits (localStorage `aith-saved`); bad stored data is ignored safely
 - Home page CSS and JS moved out of index.html (355 KB to 50 KB) into home.css and home.js

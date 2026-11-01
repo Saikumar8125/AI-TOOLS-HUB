@@ -125,7 +125,7 @@ ${o.body}
 <div><h2 class="foot__h">Guides</h2><ul>${GUIDES.slice(0, 6).map((g) => `<li><a href="/guides/${g.s}">${esc(titleCase(g.who))}</a></li>`).join("")}<li><a href="/guides">All ${GUIDES.length + 3} guides →</a></li></ul></div>
 <div><h2 class="foot__h">Browse</h2><ul><li><a href="/categories">All categories</a></li><li><a href="/all-tools">All tools A–Z</a></li><li><a href="/d2c.html">D2C tools for Indian sellers</a></li><li><a href="/category/chatbots">Chatbots</a></li><li><a href="/category/writing">Writing</a></li><li><a href="/category/video">Video</a></li><li><a href="/category/marketing">Marketing</a></li></ul></div>
 </div>
-<div class="wrap foot__base"><p>Built for Indian SMBs · © ${YEAR} AI Tools Hub · <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a></p><p>Designed &amp; developed by <span class="credit">J. Venkata Sai Kumar</span></p></div>
+<div class="wrap foot__base"><p>Built for Indian SMBs · © ${YEAR} AI Tools Hub · <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a> · <a href="https://github.com/Saikumar8125/AI-TOOLS-HUB/issues/new?title=Tool%20suggestion%3A%20&body=Tool%20name%3A%0AOfficial%20website%20(https)%3A%0ACategory%3A%0APricing%20(Free%20%2F%20Freemium%20%2F%20Paid)%3A%0AWhat%20it%20does%20(one%20line)%3A%0AWhy%20it%20suits%20Indian%20small%20businesses%3A%0A" target="_blank" rel="noopener">Suggest a tool</a> · <a href="https://github.com/Saikumar8125/AI-TOOLS-HUB/issues/new?title=Problem%20report%3A%20&body=Page%20or%20tool%3A%0AWhat%20is%20wrong%20(link%20%2F%20pricing%20%2F%20other)%3A%0AWhat%20it%20should%20be%20(with%20official%20source%20link)%3A%0A" target="_blank" rel="noopener">Report a problem</a></p><p>Designed &amp; developed by <span class="credit">J. Venkata Sai Kumar</span></p></div>
 </footer>
 <script src="/pages.js" defer></script>
 </body>
@@ -187,6 +187,7 @@ ${crumbHtml(crumbItems)}
 <p class="sub">${esc(about)}</p>
 <div class="meta">${badge(t.p)}<span>${esc(priceText[t.p])}</span>${host(t.u) ? `<span>${esc(host(t.u))}</span>` : ""}</div>
 <a class="btn" href="${esc(t.u)}" target="_blank" rel="noopener">Visit ${esc(t.n)} ↗</a>
+<p class="muted small"><a href="${esc(reportUrl(t))}" target="_blank" rel="noopener">Report a wrong link or price</a></p>
 </article>
 <div class="wrap grid2">
 <section class="panel"><h2>Highlights</h2>${(d.b && d.b.length) ? "<ul class=\"ticks\">" + d.b.map((x) => `<li>${esc(x)}</li>`).join("") + "</ul>" : `<p class="muted">See the official site for features.</p>`}</section>
@@ -278,6 +279,11 @@ ${faqHtml(g.faq)}
 </div>`;
   return page({ title, desc, path: p, body, pre: '<div class="progress" aria-hidden="true"><i></i></div>', ld: [art, crumbs(crumbItems), faqLd(g.faq)] });
 }
+const ISSUES = "https://github.com/Saikumar8125/AI-TOOLS-HUB/issues/new";
+function reportUrl(t) {
+  const body = `Tool: ${t.n}\nListed link: ${t.u}\nListed pricing: ${t.p || ""}\nPage: ${SITE}/tools/${t.slug}\n\nWhat is wrong (link / pricing / other):\nWhat it should be (with official source link):\n`;
+  return `${ISSUES}?title=${encodeURIComponent("Problem report: " + t.n)}&body=${encodeURIComponent(body)}`;
+}
 function guidesIndex() {
   const body = `<div class="wrap hero">${crumbHtml([["Home", "/"], ["Guides", "/guides"]])}
 <p class="kicker">${GUIDES.length + 3} guides · India</p>
@@ -301,6 +307,18 @@ for (const f of fs.readdirSync(__dirname)) {
   const src = path.join(__dirname, f);
   if (fs.statSync(src).isFile()) fs.copyFileSync(src, path.join(OUT, f));
 }
+// Home page counts come from data.js, so the static HTML (what crawlers and no-JS visitors see) never drifts.
+{
+  const n = { total: TOOLS.length, cats: CATS.length, Free: 0, Freemium: 0 };
+  TOOLS.forEach((t) => { if (t.p in n) n[t.p]++; });
+  const f = path.join(OUT, "index.html");
+  let h = fs.readFileSync(f, "utf8");
+  h = h.replace(/(data-count="(total|cats|Free|Freemium)">)\d+</g, (m, a, k) => a + n[k] + "<")
+    .replace(/(data-n="(total|cats)">)\d+</g, (m, a, k) => a + n[k] + "<")
+    .replace(/(data-l="total">)\d+/, "$1" + n.total).replace(/(data-l="cats">)\d+/, "$1" + n.cats).replace(/(data-l="free">)\d+/, "$1" + n.Free)
+    .replace(/See all \d+ guides/g, `See all ${GUIDES.length + 3} guides`);
+  fs.writeFileSync(f, h);
+}
 TOOLS.forEach((t) => fs.writeFileSync(path.join(OUT, "tools", t.slug + ".html"), toolPage(t)));
 CATS.forEach((c) => fs.writeFileSync(path.join(OUT, "category", catSlug(c) + ".html"), catPage(c)));
 GUIDES.forEach((g) => fs.writeFileSync(path.join(OUT, "guides", g.s + ".html"), guidePage(g)));
@@ -321,4 +339,4 @@ const fixed = (fs.readFileSync(path.join(__dirname, "sitemap.xml"), "utf8").matc
 const urls = fixed.concat([SITE + "/guides", SITE + "/categories", SITE + "/all-tools"], GUIDES.map((g) => SITE + "/guides/" + g.s), CATS.map((c) => SITE + "/category/" + catSlug(c)), TOOLS.map((t) => SITE + "/tools/" + t.slug));
 fs.writeFileSync(path.join(OUT, "sitemap.xml"), '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + [...new Set(urls)].map((u) => `  <url><loc>${esc(u)}</loc><lastmod>${TODAY}</lastmod></url>`).join("\n") + "\n</urlset>\n");
 
-console.log(`Built ${TOOLS.length} tool pages, ${CATS.length} category pages, ${GUIDES.length} guides, ${urls.length} sitemap URLs.`);
+console.log(`Built ${TOOLS.length} tool pages, ${CATS.length} category pages, ${GUIDES.length + 3} guides (${GUIDES.length} business + 3 seller), ${urls.length} sitemap URLs.`);
