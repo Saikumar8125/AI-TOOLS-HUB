@@ -10,19 +10,24 @@ A curated directory of **585 AI tools in 26 categories**, built for Indian small
 - Tool details popup with pricing (Free / Freemium / Paid) and highlights
 - India badges for tools verified as made in or built for India
 - D2C seller section and guides (Amazon, Shopify, WhatsApp)
-- Save and compare tools (stored locally in the browser)
+- Save tools (kept in this browser via localStorage) and compare them side by side
 - Dark / light theme, works offline-friendly on mobile
 
 ## Tech stack
 
-Plain HTML, CSS and vanilla JavaScript. No framework, no build step.
-Hosted on Vercel and GitHub Pages.
+Plain HTML, CSS and vanilla JavaScript. No framework. A small Node build
+(`node build.js`) generates the tool, category and guide pages, the sitemap,
+and `public/`, which Vercel serves.
 
 ## Project structure
 
 ```
-index.html        Home page and tool directory
+index.html        Home page markup (styles and scripts live in css/home and js/home)
+css/home/         Home page styles, in cascade order; build.js joins them into public/css/home.css
+js/home/          Home page scripts, loaded in filename order
 data.js           All tools (name, link, category, pricing, description)
+build.js          Generates public/: tool, category and guide pages, sitemap
+tests/            Playwright regression suite and screenshot harness
 d2c.html          Tools for Indian D2C sellers
 guide-*.html/css  Guides
 styles.css        Base styles and design tokens
@@ -36,7 +41,9 @@ privacy.html, terms.html, 404.html
 ```bash
 git clone https://github.com/Saikumar8125/AI-TOOLS-HUB.git
 cd AI-TOOLS-HUB
-python3 -m http.server 8000
+npm install
+npm test          # builds public/ and runs the Playwright suite
+node build.js && python3 -m http.server 8000 -d public
 ```
 
 Then open http://localhost:8000
