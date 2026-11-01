@@ -12,6 +12,7 @@ module.exports = defineConfig({
   projects: [
     { name: "data", testMatch: /data\.spec\.js/ },
     { name: "desktop", testMatch: /ui\.spec\.js/, use: { viewport: { width: 1440, height: 900 } } },
+    { name: "tablet", testMatch: /ui\.spec\.js/, use: { viewport: { width: 820, height: 1180 }, hasTouch: true } },
     { name: "mobile", testMatch: /ui\.spec\.js/, use: { viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true } }
   ]
 });

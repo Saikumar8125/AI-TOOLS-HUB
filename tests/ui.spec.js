@@ -176,3 +176,60 @@ for (const [url, h1] of [["/tools/chatgpt", /ChatGPT/], ["/category/chatbots", /
     await expect(page.locator("h1").first()).toHaveText(h1);
   });
 }
+
+// ---- Accessibility, navigation and layout (Phase 6/7) --------------------
+test("tool modal: dialog semantics, focus moves in and returns, Visit link matches data.js", async ({ page }) => {
+  await home(page);
+  const card = page.locator("#grid .x-card").first();
+  const name = (await card.locator(".x-card__name").textContent()).trim();
+  const tool = TOOLS.find((t) => t.n === name);
+  await card.focus();
+  await page.keyboard.press("Enter");
+  const sheet = page.locator("#modal [role=dialog]");
+  await expect(sheet).toBeVisible();
+  await expect(sheet).toHaveAttribute("aria-modal", "true");
+  await expect.poll(() => page.evaluate(() => !!document.activeElement.closest("#modal"))).toBe(true);
+  const visit = page.locator("#m-visit");
+  expect(new URL(await visit.getAttribute("href")).hostname).toBe(new URL(tool.u).hostname);
+  await expect(visit).toHaveAttribute("target", "_blank");
+  await expect(visit).toHaveAttribute("rel", /noopener/);
+  for (let i = 0; i < 25; i++) await page.keyboard.press("Tab");
+  expect(await page.evaluate(() => !!document.activeElement.closest("#modal"))).toBe(true);
+  await page.keyboard.press("Escape");
+  await expect(page.locator("#modal")).toBeHidden();
+  await expect.poll(() => page.evaluate(() => !!(document.activeElement && document.activeElement.closest("#grid")))).toBe(true);
+});
+
+test("keyboard focus is visible on header controls", async ({ page }) => {
+  await home(page);
+  await toTop(page);
+  for (let i = 0; i < 3; i++) await page.keyboard.press("Tab");
+  const o = await page.evaluate(() => { const s = getComputedStyle(document.activeElement); return { tag: document.activeElement.tagName, style: s.outlineStyle, w: parseFloat(s.outlineWidth) }; });
+  expect(o.tag).not.toBe("BODY");
+  expect(o.style).not.toBe("none");
+  expect(o.w).toBeGreaterThan(0);
+});
+
+test("no horizontal overflow at this viewport", async ({ page }) => {
+  await home(page);
+  const over = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
+  expect(over).toBeLessThanOrEqual(0);
+});
+
+test("mobile menu opens from the burger and closes with Escape", async ({ page }) => {
+  await home(page);
+  await toTop(page);
+  const burger = page.locator("#burger");
+  test.skip(!(await burger.isVisible()), "burger only shows on narrow screens");
+  await burger.click();
+  await expect(burger).toHaveAttribute("aria-expanded", "true");
+  await expect(page.locator("#menu a").first()).toBeVisible();
+  await page.keyboard.press("Escape");
+  await expect(burger).toHaveAttribute("aria-expanded", "false");
+});
+
+test("images below the fold load lazily", async ({ page }) => {
+  await home(page);
+  const eager = await page.evaluate(() => [...document.querySelectorAll("#grid img, .x-tl img, .x-cats img")].filter((i) => i.loading !== "lazy").length);
+  expect(eager).toBe(0);
+});

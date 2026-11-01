@@ -114,14 +114,14 @@ ${ld}
 <a class="skip" href="#main">Skip to content</a>
 ${o.pre || ""}
 <header class="topbar"><div class="wrap">
-<a class="brand" href="/"><img src="/icon.svg" width="28" height="28" alt=""><b>AI TOOLS <span>HUB</span></b></a>
+<a class="brand" href="/" aria-label="AI Tools Hub home"><img src="/icon.svg" width="28" height="28" alt=""><b>AI TOOLS <span>HUB</span></b></a>
 <nav class="toplinks" aria-label="Main"><a href="/guides">Guides</a><a href="/categories">Categories</a><a href="/all-tools">All tools</a><button class="sbtn" type="button" data-search aria-label="Search tools, guides and categories">${SEARCH_ICON}<span>Search</span><kbd>/</kbd></button></nav>
 </div></header>
 <main id="main">
 ${o.body}
 </main>
 <footer class="foot"><div class="wrap foot__grid">
-<div><a class="brand" href="/"><img src="/icon.svg" width="28" height="28" alt=""><b>AI TOOLS <span>HUB</span></b></a><p class="muted">${TOOLS.length} hand-picked AI tools in ${CATS.length} categories, curated for Indian small businesses. Every link goes to the official site.</p></div>
+<div><a class="brand" href="/" aria-label="AI Tools Hub home"><img src="/icon.svg" width="28" height="28" alt=""><b>AI TOOLS <span>HUB</span></b></a><p class="muted">${TOOLS.length} hand-picked AI tools in ${CATS.length} categories, curated for Indian small businesses. Every link goes to the official site.</p></div>
 <div><h4>Guides</h4><ul>${GUIDES.slice(0, 6).map((g) => `<li><a href="/guides/${g.s}">${esc(titleCase(g.who))}</a></li>`).join("")}<li><a href="/guides">All ${GUIDES.length + 3} guides →</a></li></ul></div>
 <div><h4>Browse</h4><ul><li><a href="/categories">All categories</a></li><li><a href="/all-tools">All tools A–Z</a></li><li><a href="/d2c.html">D2C tools for Indian sellers</a></li><li><a href="/category/chatbots">Chatbots</a></li><li><a href="/category/writing">Writing</a></li><li><a href="/category/video">Video</a></li><li><a href="/category/marketing">Marketing</a></li></ul></div>
 </div>

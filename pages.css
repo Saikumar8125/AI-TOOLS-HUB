@@ -177,3 +177,4 @@ h2.group{margin-top:28px}
 .credit{background:none;-webkit-text-fill-color:currentColor;color:var(--gold);animation:none}
 .sbtn,.toplinks a{border-radius:8px}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+.foot__base a{text-decoration:underline;text-underline-offset:3px}

@@ -181,7 +181,8 @@
   TOOLS.forEach(function (t) { counts[t.c] = (counts[t.c] || 0) + 1; });
   var cats = Object.keys(counts).sort(function (a, b) { return counts[b] - counts[a] || a.localeCompare(b); });
 
-  [].forEach.call(doc.querySelectorAll("[data-n]"), function (el) { el.textContent = el.getAttribute("data-n") === "cats" ? cats.length : TOOLS.length; });
+  /* only touch the text when it differs: rewriting identical text repaints the hero and pushes LCP late */
+  [].forEach.call(doc.querySelectorAll("[data-n]"), function (el) { var v = String(el.getAttribute("data-n") === "cats" ? cats.length : TOOLS.length); if (el.textContent !== v) el.textContent = v; });
   $("mark").setAttribute("aria-label", "AI Tools Hub, " + TOOLS.length + " tools");
   $("count-n").textContent = TOOLS.length; if ($("hs-q")) $("hs-q").placeholder = "Search " + TOOLS.length + " tools";
 

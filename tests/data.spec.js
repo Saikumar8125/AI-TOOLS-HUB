@@ -44,3 +44,47 @@ test("build output: tool, category and guide pages plus sitemap", () => {
   expect(urls).toBe(639);
   ["index.html", "guides.html", "categories.html", "all-tools.html", "d2c.html", "search-index.json"].forEach((f) => expect(fs.existsSync(path.join(pub, f)), f).toBe(true));
 });
+
+// ---- SEO and link safety (Phase 6) -------------------------------------
+const PUB = path.join(ROOT, "public"), SITE = "https://aitoolshub-in.vercel.app";
+function htmlFiles(dir, out = []) {
+  for (const f of fs.readdirSync(dir)) {
+    const p = path.join(dir, f);
+    if (fs.statSync(p).isDirectory()) htmlFiles(p, out);
+    else if (f.endsWith(".html") && !/^google[0-9a-f]+\.html$/.test(f)) out.push(p);
+  }
+  return out;
+}
+test("every sitemap URL maps to a built page, and robots.txt points at the sitemap", () => {
+  const sm = fs.readFileSync(path.join(PUB, "sitemap.xml"), "utf8");
+  const urls = [...sm.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+  expect(urls.length).toBe(639);
+  const missing = urls.filter((u) => {
+    let p = u.replace(SITE, "") || "/";
+    if (p.endsWith("/")) p += "index.html";
+    const f = path.join(PUB, p);
+    return !(fs.existsSync(f) || fs.existsSync(f + ".html"));
+  });
+  expect(missing).toEqual([]);
+  expect(fs.readFileSync(path.join(PUB, "robots.txt"), "utf8")).toContain("Sitemap: " + SITE + "/sitemap.xml");
+});
+test("every indexable page has one absolute canonical on the live domain, a title and a description", () => {
+  const bad = [];
+  for (const f of htmlFiles(PUB)) {
+    const s = fs.readFileSync(f, "utf8"), rel = path.relative(PUB, f);
+    if (/<meta[^>]+name="robots"[^>]+noindex/i.test(s)) continue;
+    const can = [...s.matchAll(/<link[^>]+rel="canonical"[^>]*>/gi)];
+    const okCan = can.length === 1 && new RegExp('href="' + SITE.replace(/\./g, "\\.") + "/").test(can[0][0]);
+    if (!okCan || !/<title>[^<]{5,}<\/title>/.test(s) || !/<meta[^>]+name="description"[^>]+content="[^"]{20,}/i.test(s)) bad.push(rel);
+  }
+  expect(bad).toEqual([]);
+});
+test("every link that opens a new tab carries rel=noopener", () => {
+  const bad = [];
+  const files = htmlFiles(PUB).concat([path.join(ROOT, "js/home/02-app.js"), path.join(ROOT, "main.js"), path.join(ROOT, "pages.js")]);
+  for (const f of files) {
+    const s = fs.readFileSync(f, "utf8");
+    for (const m of s.matchAll(/<a\b[^>]*target=\\?"_blank\\?"[^>]*>/g)) if (!/rel=\\?"[^"\\]*noopener/.test(m[0])) bad.push(path.relative(ROOT, f) + ": " + m[0].slice(0, 90));
+  }
+  expect(bad).toEqual([]);
+});

@@ -18,7 +18,7 @@
 :root:root[data-theme="dark"] {
   --ds-bg: #0b0b0c; --ds-s1: #131315; --ds-s2: #1a1a1d; --ds-s3: #222226;
   --ds-line: rgba(255,255,255,.08); --ds-line-2: rgba(255,255,255,.15);
-  --ds-text: #ededef; --ds-muted: #a1a1aa; --ds-faint: #71717a;
+  --ds-text: #ededef; --ds-muted: #a1a1aa; --ds-faint: #8b8b94;
   --ds-accent: #d6c08a; --ds-accent-soft: rgba(214,192,138,.12); --ds-on-accent: #141210;
   --ds-shadow: 0 1px 2px rgba(0,0,0,.5);
   --ds-shadow-l: 0 16px 40px -12px rgba(0,0,0,.7), 0 0 0 1px rgba(255,255,255,.06);
@@ -140,3 +140,4 @@ body { font-family: var(--ds-font); -webkit-font-smoothing: antialiased; -moz-os
 .x-sheet__head .x-heart { flex: none; align-self: flex-start; }
 .x-sheet__meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
 .x-ico3d__shine { display: none !important; }
+.x-fav, :root[data-theme="light"] .x-fav, .x-ico3d .x-fav--lg, :root[data-theme="light"] .x-ico3d .x-fav--lg { box-shadow: inset 0 0 0 1px var(--ds-line) !important; }
