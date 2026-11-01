@@ -1,0 +1,78 @@
+/* Extracted verbatim from index.html inline <style id="x-softlight"> (Phase 1B). */
+:root[data-theme="dark"] {
+  --lgx-glow:
+    radial-gradient(44% 68% at 50% 0%,
+      rgba(246,228,186,.105) 0%, rgba(246,228,186,.092) 12%, rgba(246,228,186,.074) 24%, rgba(246,228,186,.055) 36%,
+      rgba(246,228,186,.037) 48%, rgba(246,228,186,.022) 60%, rgba(246,228,186,.011) 72%, rgba(246,228,186,.004) 84%,
+      rgba(246,228,186,0) 94%);
+  --lgx-glow-s:
+    radial-gradient(42% 60% at 50% 0%,
+      rgba(246,228,186,.08) 0%, rgba(246,228,186,.06) 20%, rgba(246,228,186,.038) 40%, rgba(246,228,186,.018) 60%,
+      rgba(246,228,186,.006) 78%, rgba(246,228,186,0) 92%);
+}
+:root[data-theme="light"] {
+  --lgx-glow:
+    radial-gradient(44% 68% at 50% 0%,
+      rgba(240,224,184,.34) 0%, rgba(240,224,184,.3) 12%, rgba(240,224,184,.24) 24%, rgba(240,224,184,.18) 36%,
+      rgba(240,224,184,.12) 48%, rgba(240,224,184,.07) 60%, rgba(240,224,184,.035) 72%, rgba(240,224,184,.012) 84%,
+      rgba(240,224,184,0) 94%);
+  --lgx-glow-s:
+    radial-gradient(42% 60% at 50% 0%,
+      rgba(240,224,184,.28) 0%, rgba(240,224,184,.2) 20%, rgba(240,224,184,.12) 40%, rgba(240,224,184,.055) 60%,
+      rgba(240,224,184,.018) 78%, rgba(240,224,184,0) 92%);
+}
+
+html:root[data-theme] .x-hero__glass, html:root[data-theme] .x-totd__card, html:root[data-theme] .x-panel.x-subm,
+html:root[data-theme] .x-spot__in, html:root[data-theme] .x-promo__in {
+  background-image: var(--lgx-glow);
+  background-size: 100% 100%; background-position: 0 0; background-repeat: no-repeat;
+}
+html:root[data-theme] .x-totd__card:hover { background-position: 0 0; }
+/* the header pill: the same light, smaller */
+html:root[data-theme] .x-header, html:root[data-theme] .x-header.is-scrolled { background-image: var(--lgx-glow-s); }
+
+.x-totd__card::before {
+  background: radial-gradient(closest-side,
+    var(--x-gold-soft) 0%, color-mix(in srgb, var(--x-gold-soft) 70%, transparent) 25%,
+    color-mix(in srgb, var(--x-gold-soft) 38%, transparent) 50%, color-mix(in srgb, var(--x-gold-soft) 12%, transparent) 72%,
+    transparent 88%);
+}
+
+.x-hero__glass::after, .x-totd__card::after, .x-spot__in::before, .x-panel::after, .x-promo__in::after, .x-header::after,
+.x-sheet::before, .x-drawer__sheet::before, .x-how__step::after, .x-cbar::after {
+  background:
+    linear-gradient(90deg,
+      transparent 15%,
+      color-mix(in srgb, var(--lgx-lit) 8%, transparent) 26%,
+      color-mix(in srgb, var(--lgx-lit) 22%, transparent) 38%,
+      color-mix(in srgb, var(--lgx-lit) 40%, transparent) 50%,
+      color-mix(in srgb, var(--lgx-lit) 22%, transparent) 62%,
+      color-mix(in srgb, var(--lgx-lit) 8%, transparent) 74%,
+      transparent 85%) 50% 0 / 100% 1px no-repeat,
+    radial-gradient(40% 100% at 50% 0%,
+      color-mix(in srgb, var(--lgx-bloom) 70%, transparent) 0%,
+      color-mix(in srgb, var(--lgx-bloom) 42%, transparent) 25%,
+      color-mix(in srgb, var(--lgx-bloom) 20%, transparent) 50%,
+      color-mix(in srgb, var(--lgx-bloom) 6%, transparent) 70%,
+      transparent 86%);
+}
+:root[data-theme="light"] .x-cc__card::before {
+  background: linear-gradient(90deg, transparent 15%, rgba(140,122,75,.12) 30%, rgba(140,122,75,.3) 50%, rgba(140,122,75,.12) 70%, transparent 85%) 50% 0 / 100% 1px no-repeat;
+}
+
+:root { --x-sheen-g: linear-gradient(110deg, transparent 30%, color-mix(in srgb, var(--x-sheen) 35%, transparent) 42%, var(--x-sheen) 50%, color-mix(in srgb, var(--x-sheen) 35%, transparent) 58%, transparent 70%); }
+@media (hover: none), (pointer: coarse) {
+  :root { --x-sheen-g: linear-gradient(transparent, transparent); }
+}
+
+.x-hero::after {
+  will-change: auto;
+  -webkit-mask-image: radial-gradient(50% 50% at 50% 0%, #000 0%, #000 55%, rgba(0,0,0,.5) 75%, transparent 96%);
+  mask-image: radial-gradient(50% 50% at 50% 0%, #000 0%, #000 55%, rgba(0,0,0,.5) 75%, transparent 96%);
+}
+
+html .x-panel.x-subm, html.x-js .x-panel.x-subm.x-rv { transition-property: opacity, transform, border-color; }
+html:root[data-theme="dark"] .x-panel.x-subm { background-color: var(--lgx-panel); color: var(--x-text); }
+html:root[data-theme="light"] .x-panel.x-subm { background-color: rgba(255,255,255,.94); color: var(--x-text); }
+
+.x-scrim { inset: 0 0 auto 0; width: 100%; height: 100vh; height: 100lvh; will-change: auto; }

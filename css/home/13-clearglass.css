@@ -1,0 +1,106 @@
+/* Extracted verbatim from index.html inline <style id="x-clearglass"> (Phase 1B). */
+:root[data-theme="dark"] {
+  --cg-fill: rgba(255,255,255,.05);
+  --cg-grad: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+  --cg-edge: rgba(255,255,255,.12);
+  --cg-hi: inset 0 1px 0 rgba(255,255,255,.14);
+  --cg-shadow: inset 0 1px 0 rgba(255,255,255,.14), 0 8px 30px rgba(0,0,0,.25);
+  --cg-chip: rgba(255,255,255,.06);
+  --cg-ts: 0 1px 2px rgba(0,0,0,.55);
+  --cg-solid: rgba(20,18,16,.72);
+  --lgx-ring: linear-gradient(180deg, rgba(255,255,255,.2), rgba(255,255,255,.04));
+}
+:root[data-theme="light"] {
+  --cg-fill: rgba(255,255,255,.35);
+  --cg-grad: linear-gradient(180deg, rgba(255,255,255,.3), rgba(255,255,255,.06));
+  --cg-edge: rgba(255,255,255,.6);
+  --cg-hi: inset 0 1px 0 rgba(255,255,255,.75);
+  --cg-shadow: inset 0 1px 0 rgba(255,255,255,.75), 0 8px 30px rgba(60,45,10,.1);
+  --cg-chip: rgba(255,255,255,.4);
+  --cg-ts: 0 1px 1px rgba(255,255,255,.6);
+  --cg-solid: rgba(255,255,255,.85);
+  --lgx-ring: linear-gradient(180deg, rgba(255,255,255,.85), rgba(255,255,255,.2));
+}
+
+:root:root[data-theme="dark"] .x-scrim { background: radial-gradient(130% 90% at 50% 0%, rgba(10,10,11,0) 0%, rgba(10,10,11,.12) 55%, rgba(10,10,11,.4) 100%); }
+:root:root[data-theme="light"] .x-scrim { background: radial-gradient(130% 90% at 50% 0%, rgba(245,244,240,0) 0%, rgba(245,244,240,.1) 55%, rgba(245,244,240,.35) 100%); }
+
+/* --- cards and panels: real glass --- */
+:root:root:root[data-theme] .x-card, :root:root:root[data-theme] .x-pick, :root:root:root[data-theme] .x-hero__glass,
+:root:root:root[data-theme] .x-totd__card, :root:root:root[data-theme] .x-panel, :root:root:root[data-theme] .x-panel.x-subm,
+:root:root:root[data-theme] .x-promo__in, :root:root:root[data-theme] .x-spot__in, :root:root:root[data-theme] .x-faq__item,
+:root:root:root[data-theme] .x-how__step, :root:root:root[data-theme] .x-trend__row, :root:root:root[data-theme] .x-tile,
+:root:root:root[data-theme] .x-header, :root:root:root[data-theme] .x-header.is-scrolled, :root:root:root[data-theme] .x-fab--top,
+:root:root:root[data-theme] .x-sheet, :root:root:root[data-theme] .x-drawer__sheet,
+:root:root:root[data-theme] .x-modal .x-sheet, :root:root:root[data-theme] .x-drawer .x-drawer__sheet {
+  background-color: var(--cg-fill);
+  background-image: var(--cg-grad);
+  border: 1px solid var(--cg-edge);
+  box-shadow: var(--cg-shadow);
+  -webkit-backdrop-filter: blur(14px) saturate(160%) !important; backdrop-filter: blur(14px) saturate(160%) !important;
+}
+
+:root:root:root[data-theme] .x-hero__glass, :root:root:root[data-theme] .x-totd__card, :root:root:root[data-theme] .x-panel.x-subm,
+:root:root:root[data-theme] .x-spot__in, :root:root:root[data-theme] .x-promo__in {
+  background-image: var(--lgx-glow), var(--cg-grad); background-size: 100% 100%; background-repeat: no-repeat;
+}
+:root:root:root[data-theme] .x-header, :root:root:root[data-theme] .x-header.is-scrolled { background-image: var(--lgx-glow-s), var(--cg-grad); }
+:root:root:root[data-theme] .x-card:hover { border-color: color-mix(in srgb, var(--x-gold) 60%, transparent); }
+:root:root:root[data-theme] .x-faq__item.is-open { background-image: linear-gradient(var(--x-gold-soft), var(--x-gold-soft)), var(--cg-grad); }
+:root:root:root[data-theme] .x-spot__card { background: var(--cg-edge); }
+:root:root:root[data-theme="light"] .x-tile { box-shadow: var(--cg-shadow); }
+
+:root:root:root[data-theme] .x-card, :root:root:root[data-theme] .x-pick, :root:root:root[data-theme] .x-totd__card,
+:root:root:root[data-theme] .x-panel, :root:root:root[data-theme] .x-faq__item, :root:root:root[data-theme] .x-how__step,
+:root:root:root[data-theme] .x-trend__row, :root:root:root[data-theme] .x-tile, :root:root:root[data-theme] .x-fab--top,
+:root:root:root[data-theme] .x-sheet, :root:root:root[data-theme] .x-drawer__sheet, :root:root:root[data-theme] .x-header,
+:root:root:root[data-theme] .x-card:hover, :root:root:root[data-theme] .x-card:active, :root:root:root[data-theme] .x-tile:hover,
+:root:root:root[data-theme] .x-tile:active, :root:root:root[data-theme] .x-trend__row:hover, :root:root:root[data-theme] .x-trend__row:active,
+:root:root:root[data-theme] .x-totd__card:hover, :root:root:root[data-theme] .x-fab--top:hover, :root:root:root[data-theme] .x-fab--top:active,
+:root:root:root[data-theme] .x-fab--dice, :root:root:root[data-theme] .x-fab--dice:hover, :root:root:root[data-theme] .x-fab--dice:active {
+  background-size: 100% 100%; background-position: 0 0; background-repeat: no-repeat;
+}
+
+:root:root:root[data-theme] .x-chip:not([aria-pressed="true"]), :root:root:root[data-theme] .x-btn:not(.x-btn--solid):not(.x-visit),
+:root:root:root[data-theme] .x-seg, :root:root:root[data-theme] .x-close, :root:root:root[data-theme] .x-field,
+:root:root:root[data-theme] .x-hsearch, :root:root:root[data-theme] .x-hs__orb, :root:root:root[data-theme] #saved-btn .x-saved__orb,
+:root:root:root[data-theme] .x-panel .x-btn:not(.x-btn--solid), :root:root:root[data-theme] .x-cbar {
+  background-color: var(--cg-chip); background-image: none; border-color: var(--cg-edge); box-shadow: var(--cg-hi);
+  -webkit-backdrop-filter: none !important; backdrop-filter: none !important;
+}
+:root:root:root[data-theme] .x-hsearch:focus-within, :root:root:root[data-theme] .x-field:focus-within { border-color: var(--x-gold); box-shadow: 0 0 0 4px var(--x-gold-soft), var(--cg-hi); }
+
+:root:root:root[data-theme] .x-fab--dice {
+  background-color: color-mix(in srgb, var(--x-gold) 26%, transparent); background-image: var(--cg-grad);
+  border: 1px solid color-mix(in srgb, var(--x-gold) 55%, transparent); color: var(--x-text); box-shadow: var(--cg-shadow), 0 0 0 4px var(--x-gold-soft);
+  -webkit-backdrop-filter: blur(14px) saturate(160%) !important; backdrop-filter: blur(14px) saturate(160%) !important;
+}
+
+/* --- readable text over the dust --- */
+:root[data-theme] .x-card, :root[data-theme] .x-hero__glass, :root[data-theme] .x-totd__card, :root[data-theme] .x-panel,
+:root[data-theme] .x-promo__in, :root[data-theme] .x-spot__in, :root[data-theme] .x-faq__item, :root[data-theme] .x-how__step,
+:root[data-theme] .x-trend__row, :root[data-theme] .x-sheet, :root[data-theme] .x-drawer__sheet, :root[data-theme] .x-header { text-shadow: var(--cg-ts); }
+:root[data-theme] .x-btn--solid, :root[data-theme] .x-visit, :root[data-theme] .x-chip[aria-pressed="true"], :root[data-theme] .x-badge,
+:root[data-theme] input, :root[data-theme] textarea { text-shadow: none; }
+
+@media (hover: none), (pointer: coarse) {
+  :root:root:root[data-theme] .x-card, :root:root:root[data-theme] .x-pick, :root:root:root[data-theme] .x-hero__glass,
+  :root:root:root[data-theme] .x-totd__card, :root:root:root[data-theme] .x-panel, :root:root:root[data-theme] .x-panel.x-subm,
+  :root:root:root[data-theme] .x-promo__in, :root:root:root[data-theme] .x-spot__in, :root:root:root[data-theme] .x-faq__item,
+  :root:root:root[data-theme] .x-how__step, :root:root:root[data-theme] .x-trend__row, :root:root:root[data-theme] .x-tile,
+  :root:root:root[data-theme] .x-header, :root:root:root[data-theme] .x-header.is-scrolled, :root:root:root[data-theme] .x-fab--top,
+  :root:root:root[data-theme] .x-fab--dice, :root:root:root[data-theme] .x-sheet, :root:root:root[data-theme] .x-drawer__sheet,
+  :root:root:root[data-theme] .x-modal .x-sheet, :root:root:root[data-theme] .x-drawer .x-drawer__sheet {
+    -webkit-backdrop-filter: blur(8px) saturate(160%) !important; backdrop-filter: blur(8px) saturate(160%) !important;
+  }
+}
+
+@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+  :root:root:root[data-theme] .x-card, :root:root:root[data-theme] .x-pick, :root:root:root[data-theme] .x-hero__glass,
+  :root:root:root[data-theme] .x-totd__card, :root:root:root[data-theme] .x-panel, :root:root:root[data-theme] .x-panel.x-subm,
+  :root:root:root[data-theme] .x-promo__in, :root:root:root[data-theme] .x-spot__in, :root:root:root[data-theme] .x-faq__item,
+  :root:root:root[data-theme] .x-how__step, :root:root:root[data-theme] .x-trend__row, :root:root:root[data-theme] .x-tile,
+  :root:root:root[data-theme] .x-header, :root:root:root[data-theme] .x-header.is-scrolled, :root:root:root[data-theme] .x-fab--top,
+  :root:root:root[data-theme] .x-sheet, :root:root:root[data-theme] .x-drawer__sheet,
+  :root:root:root[data-theme] .x-modal .x-sheet, :root:root:root[data-theme] .x-drawer .x-drawer__sheet { background-color: var(--cg-solid); }
+}

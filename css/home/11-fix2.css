@@ -1,0 +1,118 @@
+/* Extracted verbatim from index.html inline <style id="x-fix2"> (Phase 1B). */
+.x-bgfield { z-index: -2; height: 100vh; height: 100lvh; }
+.x-scrim, .x-mlab { z-index: -1; }
+
+:root[data-theme="dark"] { --lgx-panel: rgba(17,16,14,.74); --lgx-card: rgba(18,17,15,.8); --lgx-pill: rgba(24,22,19,.8); }
+
+@media (max-width: 768px), (hover: none), (pointer: coarse) {
+  :root[data-theme="dark"] {
+    --lgx-panel: rgba(17,16,14,.88); --lgx-card: rgba(18,17,15,.9); --lgx-card-m: rgba(18,17,15,.93);
+    --lgx-pill: rgba(24,22,19,.9); --lgx-pill-m: rgba(24,22,19,.92); --x-m-fill: rgba(20,19,17,.9);
+    --g-fill: rgba(24,22,19,.88); --g-card: rgba(18,17,15,.9); --x-glass: rgba(24,22,19,.88);
+  }
+  :root[data-theme] .x-hero__glass, :root[data-theme] .x-totd__card { background-color: var(--lgx-panel); }
+  :root[data-theme] .x-tile, :root[data-theme] .x-hsearch { background-color: var(--lgx-card); }
+  :root[data-theme] .x-chip, :root[data-theme] .x-field, :root[data-theme] .x-btn:not(.x-btn--solid):not(.x-visit) { background-color: var(--lgx-pill-m); }
+  .x-tl { background: color-mix(in srgb, var(--x-surface) 92%, transparent); }
+  .x-upd { background: color-mix(in srgb, var(--x-surface) 92%, transparent); }
+}
+
+@media (max-width: 559px) { .x-hero__glass { padding-top: 104px; } }
+
+.x-head[data-num]::before { position: static; left: auto; right: auto; top: auto; z-index: auto; transform: none;
+  display: block; margin: 0 0 -6px; font-size: clamp(56px, 6vw, 88px); line-height: .8; opacity: .55; }
+@media (max-width: 767px) { .x-head[data-num]::before { display: none; } }
+
+.x-head::after { inset: -56px -8%;
+  background: radial-gradient(ellipse 50% 50% at 50% 50%, color-mix(in srgb, var(--x-bg) 48%, transparent) 0%, color-mix(in srgb, var(--x-bg) 26%, transparent) 55%, transparent 100%); }
+
+.x-section { padding: clamp(56px, 8vw, 88px) 0; }
+.x-spot { padding-bottom: clamp(40px, 6vw, 64px); }
+.x-cc { padding: clamp(40px, 6vw, 64px) 0 clamp(32px, 4vw, 48px); }
+
+:root[data-theme="light"] {
+  --x-bg: #f5f4f0; --x-surface: #ffffff; --x-surface-2: #f1eee6;
+  --x-line: rgba(60,45,10,.12); --x-line-2: rgba(60,45,10,.22);
+  --x-text: #0e0e0e; --x-muted: #5c5c60; --x-gold: #6b5c34; --x-gold-soft: rgba(140,122,75,.14); --x-on-gold: #ffffff;
+  --x-shadow: 0 24px 48px -12px rgba(60,45,10,.08);
+  --x-lg-muted: #5c5c60; --x-lg-solid: rgba(255,255,255,.96); --x-lg-fill: rgba(255,255,255,.8);
+  --x-lg-drop: 0 30px 60px -20px rgba(60,45,10,.08), 0 2px 6px rgba(60,45,10,.04);
+  --x-lg-tshadow: none; --x-scrim: rgba(40,32,14,.22); --x-m-fill: rgba(255,255,255,.9);
+  --x-pri: linear-gradient(120deg, #8c7a4b, #b39a5e); --x-pri-c: #a08b57; --x-on-pri: #0e0e0e;
+  --x-pri-edge: rgba(107,92,52,.5); --x-pri-shadow: inset 0 1px 0 rgba(255,255,255,.45), 0 10px 22px -12px rgba(107,92,52,.45);
+  --x-hair: rgba(140,122,75,.5); --x-top-hi: rgba(255,255,255,.95); --x-num-stroke: rgba(140,122,75,.45);
+  --g-fill: rgba(255,255,255,.8); --g-edge: rgba(140,122,75,.16); --g-card: rgba(255,255,255,.82); --g-solid: rgba(255,255,255,.96);
+  --g-shadow: inset 0 1px 0 #fff, 0 24px 48px -16px rgba(60,45,10,.08), 0 1px 3px rgba(60,45,10,.04);
+  --g-shadow-s: inset 0 1px 0 #fff, 0 10px 24px -10px rgba(60,45,10,.08), 0 1px 2px rgba(60,45,10,.04);
+  --x-glass: rgba(255,255,255,.8); --x-glass-edge: rgba(140,122,75,.16);
+  --x-glass-shadow: var(--g-shadow); --x-glass-shadow-s: var(--g-shadow-s);
+  --lgx-panel: rgba(255,255,255,.76); --lgx-card: rgba(255,255,255,.82); --lgx-card-m: rgba(255,255,255,.94);
+  --lgx-pill: rgba(255,255,255,.84); --lgx-pill-m: rgba(255,255,255,.94);
+  --lgx-bar: rgba(255,255,255,.74); --lgx-bar-m: rgba(255,255,255,.9); --lgx-sheet: rgba(255,255,255,.88); --lgx-sheet-m: rgba(255,255,255,.97);
+  --lgx-et: rgba(179,154,94,.5); --lgx-es: rgba(140,122,75,.16); --lgx-eb: rgba(140,122,75,.1);
+  --lgx-lit: rgba(140,122,75,.85); --lgx-bloom: rgba(230,211,163,.26);
+  --lgx-ring: radial-gradient(55% 140% at 50% 0%, rgba(140,122,75,.75), rgba(179,154,94,.18) 45%, transparent 75%), linear-gradient(180deg, rgba(255,255,255,.9), rgba(140,122,75,.08));
+  --lgx-inner: radial-gradient(130% 90% at 50% -20%, rgba(255,255,255,.9), transparent 60%);
+  --lgx-depth: inset 0 -10px 20px -18px rgba(60,45,10,.08), 0 30px 60px -24px rgba(60,45,10,.08), 0 2px 6px rgba(60,45,10,.04);
+  --lgx-depth-s: 0 10px 24px -12px rgba(60,45,10,.08), 0 1px 2px rgba(60,45,10,.05);
+  --lgx-sheen: rgba(255,255,255,.55);
+  --lgx-spot: radial-gradient(42% 50% at 50% 0%, rgba(230,211,163,.34), rgba(230,211,163,.1) 55%, transparent 82%), radial-gradient(14% 24% at 50% 0%, rgba(255,250,236,.75), transparent 100%);
+  --lgx-neon: #6b5c34; --lgx-neon-f: none;
+  --lgx-gi: linear-gradient(180deg, #fff, #fbf8f1); --lgx-gi-sh: inset 0 1px 0 #fff, inset 0 0 0 1px rgba(140,122,75,.24), 0 10px 22px -12px rgba(60,45,10,.14);
+  --lgx-gi-glow: rgba(230,211,163,.4);
+  --lgx-lens: linear-gradient(120deg, #8c7a4b, #b39a5e); --lgx-lens-ink: #0e0e0e;
+  --lgx-lens-sh: inset 0 1px 0 rgba(255,255,255,.45), inset 0 0 0 1px rgba(107,92,52,.4), 0 6px 14px -8px rgba(107,92,52,.45);
+  --x-ico-bg: #ffffff; --x-ico-rim: rgba(255,255,255,.95); --x-ico-sheen: rgba(255,255,255,.4); --x-ico-sh: 0 4px 12px rgba(60,45,10,.08); --x-ico-ink: #2a2a2e;
+}
+:root[data-theme="light"] .x-scrim { background: radial-gradient(130% 90% at 50% 0%, rgba(245,244,240,0) 0%, rgba(245,244,240,.4) 55%, rgba(245,244,240,.82) 100%); }
+:root[data-theme="light"] .x-neon { filter: none; }
+/* icon tiles: white with a subtle border */
+:root[data-theme="light"] .x-tile { background-color: #fff; background-image: none; border-color: rgba(140,122,75,.18); box-shadow: 0 8px 18px -12px rgba(60,45,10,.14); }
+:root[data-theme="light"] .x-fav { box-shadow: inset 0 0 0 1px rgba(60,45,10,.08), var(--x-ico-sh); }
+:root[data-theme="light"] .x-ico3d .x-fav--lg { box-shadow: inset 0 0 0 1px rgba(60,45,10,.08), 0 10px 24px rgba(60,45,10,.1); }
+:root[data-theme="light"] .x-tl { background: #fff; border-color: rgba(140,122,75,.16); }
+:root[data-theme="light"] .x-tl__ico { background: #fff; box-shadow: inset 0 0 0 1px rgba(60,45,10,.08); }
+:root[data-theme="light"] .x-tl__n { opacity: .8; }
+:root[data-theme="light"] .x-upd { background: #fff; border-color: rgba(140,122,75,.24); }
+/* chips: white glass, gold active pill */
+:root[data-theme="light"] .x-chip { background-color: rgba(255,255,255,.9); }
+:root[data-theme="light"] .x-chip[aria-pressed="true"], :root[data-theme="light"] .x-seg button[aria-pressed="true"] { background: var(--lgx-lens); color: #0e0e0e; }
+:root[data-theme="light"] .x-pills.has-ind::after, :root[data-theme="light"] .x-seg.has-ind::after { background: var(--lgx-lens); box-shadow: var(--lgx-lens-sh); }
+:root[data-theme="light"] .x-pills.has-ind.is-ready > .x-chip[aria-pressed="true"], :root[data-theme="light"] .x-seg.has-ind.is-ready > button[aria-pressed="true"],
+:root[data-theme="light"] .x-chip[aria-pressed="true"] small { color: #0e0e0e; }
+/* pricing badges: no black pills in light */
+:root[data-theme="light"] .x-badge--Free { color: #6b5c34; border-color: #8c7a4b; background: #fff; }
+:root[data-theme="light"] .x-badge--Freemium { color: #3a3a3e; border-color: rgba(14,14,14,.28); background: #fff; }
+:root[data-theme="light"] .x-badge--Paid { color: #4f4222; border-color: #8c7a4b; background: #f3ecda; }
+
+:root[data-theme="light"] .x-cc__card { color: #0e0e0e; background: linear-gradient(135deg, #ffffff, #f3ecda);
+  box-shadow: inset 0 1px 0 #fff, inset 0 0 0 1px rgba(140,122,75,.26), 0 14px 28px -16px rgba(60,45,10,.2); }
+:root[data-theme="light"] .x-cc__card::before { background: linear-gradient(90deg, transparent 8%, rgba(140,122,75,.7) 50%, transparent 92%) 50% 0 / 100% 1px no-repeat; height: 100%; }
+:root[data-theme="light"] .x-cc__card::after { background: rgba(140,122,75,.07); }
+:root[data-theme="light"] .x-cc__name, :root[data-theme="light"] .x-cc__arr { text-shadow: none; }
+:root[data-theme="light"] .x-cc__arr { color: #6b5c34; }
+:root[data-theme="light"] .x-cc__ico { background: #fff; box-shadow: inset 0 0 0 1px rgba(140,122,75,.3), 0 4px 10px -6px rgba(60,45,10,.2); }
+:root[data-theme="light"] .x-cc__ico svg { stroke: #6b5c34; filter: none; }
+
+:root[data-theme="light"] .x-spot__in { background-color: #fff; background-image: radial-gradient(120% 90% at 50% -20%, rgba(230,211,163,.3), transparent 60%); }
+:root[data-theme="light"] .x-spot__card { background: rgba(140,122,75,.4); }
+:root[data-theme="light"] .x-promo__in { background-color: rgba(255,255,255,.9); background-image: linear-gradient(120deg, rgba(243,236,218,.7), transparent 60%); }
+:root[data-theme="light"] .x-promo__label { color: #6b5c34; }
+:root[data-theme="light"] .x-new { background: var(--lgx-lens); color: #0e0e0e; }
+:root[data-theme="light"] .x-modal .x-sheet { background-color: var(--lgx-sheet-m); }
+@media (max-width: 899px) { :root[data-theme="light"] .x-menu { background: var(--lgx-inner), rgba(245,244,240,.94); } }
+/* soft warm shadows instead of black ones */
+:root[data-theme="light"] .x-fab--dice { box-shadow: 0 12px 26px -12px rgba(60,45,10,.4), 0 0 0 4px var(--x-gold-soft); }
+:root[data-theme="light"] .x-trend__row:hover { box-shadow: 2px 2px 0 var(--x-gold-soft), 4px 4px 0 var(--x-gold-soft), 16px 20px 32px -14px rgba(60,45,10,.16); }
+:root[data-theme="light"] .x-fav.has-plate img { box-shadow: 0 1px 2px rgba(60,45,10,.14); }
+:root[data-theme="light"] .x-ptr__orb { box-shadow: 0 1px 2px rgba(60,45,10,.06), 0 8px 20px -8px rgba(60,45,10,.22); }
+:root[data-theme="light"] .x-ptr__t { box-shadow: 0 4px 12px -6px rgba(60,45,10,.2); }
+@media (max-width: 768px), (hover: none), (pointer: coarse) {
+  :root[data-theme="light"] {
+    --lgx-panel: rgba(255,255,255,.88); --lgx-card: rgba(255,255,255,.92); --lgx-card-m: rgba(255,255,255,.95);
+    --lgx-pill: rgba(255,255,255,.92); --lgx-pill-m: rgba(255,255,255,.94); --x-m-fill: rgba(255,255,255,.9);
+    --g-fill: rgba(255,255,255,.9); --g-card: rgba(255,255,255,.92); --x-glass: rgba(255,255,255,.9);
+  }
+  :root[data-theme="light"] .x-grid .x-fav { box-shadow: inset 0 0 0 1px rgba(60,45,10,.1); }
+  :root[data-theme="light"] .x-ico3d .x-fav--lg { box-shadow: 0 6px 14px rgba(60,45,10,.12); }
+}
