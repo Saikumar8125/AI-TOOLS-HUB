@@ -2144,9 +2144,11 @@ html:root[data-theme="light"] .x-panel.x-subm { background-color: rgba(255,255,2
 
 /* ---- 3. No glass, no glow, no grain ------------------------------------ */
 *, *::before, *::after { -webkit-backdrop-filter: none !important; backdrop-filter: none !important; text-shadow: none !important; }
-.x-bgfield, .x-scrim, .x-mlab, .x-grain, .x-intro, .x-blob, .x-spot__ring, .x-spark,
+.x-bgfield, .x-scrim, .x-mlab, .x-grain, .x-intro, .x-blob, .x-spot__ring,
 .x-head[data-num]::before, .x-head::after { display: none !important; }
 .x-neon, .x-neon * { filter: none !important; }
+/* logo star stays visible, without motion */
+.x-spark, .x-js .x-header .x-spark, .x-js .x-header:hover .x-spark { display: inline !important; animation: none !important; transform: none !important; }
 .x-hl { color: var(--ds-accent); -webkit-text-fill-color: currentColor; background: none !important; }
 html, body { background: var(--ds-bg) !important; }
 body { font-family: var(--ds-font); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-feature-settings: "cv11", "ss01"; }
