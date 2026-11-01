@@ -1,0 +1,8 @@
+{
+  "name": "ai-tools-hub",
+  "private": true,
+  "description": "Static AI tools directory. build.js generates public/ on Vercel.",
+  "scripts": {
+    "build": "node build.js"
+  }
+}

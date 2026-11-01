@@ -2,14 +2,14 @@
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--text);font:16px/1.65 Inter,system-ui,-apple-system,sans-serif}
-h1,h2,h3{font-family:"Exo 2",Inter,sans-serif;line-height:1.15;margin:0 0 .6em;font-weight:700}
+h1,h2,h3{font-family:Inter,system-ui,sans-serif;line-height:1.15;margin:0 0 .6em;font-weight:700}
 a{color:var(--gold)}
 a:hover{color:var(--gold2)}
 a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
 .topbar{border-bottom:1px solid var(--line)}
 .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
-.brand{font-family:"Exo 2",sans-serif;font-weight:700;text-decoration:none;color:var(--text);letter-spacing:.02em}
+.brand{font-family:Inter,system-ui,sans-serif;font-weight:700;text-decoration:none;color:var(--text);letter-spacing:.02em}
 .brand span{color:var(--gold)}
 .topbar nav a{font-size:.85rem;color:var(--muted);text-decoration:none;margin-left:16px}
 .topbar nav a:hover{color:var(--gold)}
@@ -21,7 +21,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
 .btn{display:inline-block;background:var(--gold);color:#0a0a0b;font-weight:600;text-decoration:none;padding:13px 22px;border-radius:4px}
 .btn:hover{background:var(--gold2);color:#0a0a0b}
 section{padding:56px 0;border-bottom:1px solid var(--line)}
-.num{font-family:"Exo 2",sans-serif;color:var(--gold);font-size:.85rem;letter-spacing:.15em;display:block;margin-bottom:8px}
+.num{font-family:Inter,system-ui,sans-serif;color:var(--gold);font-size:.85rem;letter-spacing:.15em;display:block;margin-bottom:8px}
 h2{font-size:clamp(1.6rem,4.5vw,2.4rem)}
 .lede{color:var(--muted);max-width:65ch;margin:0 0 28px}
 .cards{display:grid;gap:16px;grid-template-columns:1fr}
@@ -36,7 +36,7 @@ h2{font-size:clamp(1.6rem,4.5vw,2.4rem)}
 .tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:4px}
 table{border-collapse:collapse;width:100%;min-width:900px;font-size:.9rem}
 th,td{text-align:left;vertical-align:top;padding:14px;border-bottom:1px solid var(--line)}
-th{font-family:"Exo 2",sans-serif;color:var(--gold);font-weight:600;background:var(--bg2);white-space:nowrap}
+th{font-family:Inter,system-ui,sans-serif;color:var(--gold);font-weight:600;background:var(--bg2);white-space:nowrap}
 tbody tr:last-child td{border-bottom:0}
 td:first-child{font-weight:600;color:var(--text);white-space:nowrap}
 td{color:var(--muted)}
@@ -55,11 +55,11 @@ td{color:var(--muted)}
 .picks{display:grid;gap:14px}
 @media(min-width:800px){.picks{grid-template-columns:repeat(3,1fr)}}
 .pick{border-left:2px solid var(--gold);padding:6px 0 6px 18px}
-.pick b{display:block;font-family:"Exo 2",sans-serif;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.pick b{display:block;font-family:Inter,system-ui,sans-serif;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
 .pick p{margin:0;font-size:1.05rem}
 details{border-bottom:1px solid var(--line)}
 details:first-of-type{border-top:1px solid var(--line)}
-summary{cursor:pointer;list-style:none;padding:18px 36px 18px 0;font-family:"Exo 2",sans-serif;font-weight:600;font-size:1.08rem;position:relative}
+summary{cursor:pointer;list-style:none;padding:18px 36px 18px 0;font-family:Inter,system-ui,sans-serif;font-weight:600;font-size:1.08rem;position:relative}
 summary::-webkit-details-marker{display:none}
 summary::after{content:"+";position:absolute;right:4px;top:14px;color:var(--gold);font-size:1.4rem}
 details[open] summary::after{content:"–"}
