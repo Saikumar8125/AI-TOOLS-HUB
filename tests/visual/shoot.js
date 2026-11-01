@@ -15,6 +15,9 @@ const VIEWS = { desktop: { width: 1440, height: 900 }, mobile: { width: 390, hei
   fs.mkdirSync(out, { recursive: true });
   const srv = spawn("node", [path.join(__dirname, "..", "server.js")], { stdio: "ignore" });
   await new Promise((r) => setTimeout(r, 700));
+  // Guard: make sure the server on the port is serving THIS checkout's public/ (not a stale one).
+  const served = await (await fetch(BASE + "/")).text();
+  if (served !== fs.readFileSync(path.join(__dirname, "..", "..", "public", "index.html"), "utf8")) { srv.kill(); throw new Error("port 4173 serves a different public/; stop the other server"); }
   const browser = await chromium.launch(process.env.PW_CHROMIUM_PATH ? { executablePath: process.env.PW_CHROMIUM_PATH, args: ["--no-sandbox"] } : {});
   try {
     for (const [vn, vp] of Object.entries(VIEWS)) {

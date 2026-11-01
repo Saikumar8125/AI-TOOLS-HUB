@@ -8,7 +8,7 @@ module.exports = defineConfig({
   retries: 0,
   reporter: [["list"]],
   use: { baseURL: "http://127.0.0.1:4173", launchOptions },
-  webServer: { command: "node tests/server.js", url: "http://127.0.0.1:4173/", reuseExistingServer: true, cwd: require("path").join(__dirname, "..") },
+  webServer: { command: "node tests/server.js", url: "http://127.0.0.1:4173/", reuseExistingServer: false, cwd: require("path").join(__dirname, "..") },
   projects: [
     { name: "data", testMatch: /data\.spec\.js/ },
     { name: "desktop", testMatch: /ui\.spec\.js/, use: { viewport: { width: 1440, height: 900 } } },

@@ -14,6 +14,12 @@ test.beforeEach(async ({ page }) => {
 });
 test.afterEach(() => { expect(errors, "uncaught page errors").toEqual([]); });
 
+// Header controls: scroll to top and let smooth scroll + header show/hide settle before clicking.
+async function toTop(page) {
+  await page.evaluate(() => scrollTo(0, 0));
+  await page.waitForFunction(() => window.scrollY === 0);
+  await page.waitForTimeout(400);
+}
 async function home(page) {
   await page.goto("/");
   await expect(page.locator("#grid .x-card").first()).toBeVisible();
@@ -93,7 +99,7 @@ test("favorites: save, list in drawer, remove", async ({ page }) => {
   await heart.click();
   await expect(heart).toHaveAttribute("aria-pressed", "true");
   await expect(page.locator("#saved-n")).toHaveText("1");
-  await page.evaluate(() => scrollTo(0, 0));
+  await toTop(page);
   await page.locator("#saved-btn").click();
   await expect(page.locator("#drawer-list")).toContainText(name);
   await page.locator("#drawer-list [data-sv-rm]").first().click();
@@ -114,7 +120,7 @@ test("favorites persist across reload, and removal persists too", async ({ page 
   await expect(page.locator("#grid .x-card").first()).toBeVisible();
   await expect(page.locator("#saved-n")).toHaveText("2");
   await expect(wraps.nth(0).locator("[data-fav]")).toHaveAttribute("aria-pressed", "true");
-  await page.evaluate(() => scrollTo(0, 0));
+  await toTop(page);
   await page.locator("#saved-btn").click();
   for (const n of names) await expect(page.locator("#drawer-list")).toContainText(n);
   await page.locator("#drawer-list [data-sv-rm]").first().click();
@@ -151,7 +157,7 @@ test("compare: pick two tools and open the comparison", async ({ page }) => {
 
 test("theme toggle switches and persists after reload", async ({ page }) => {
   await home(page);
-  await page.evaluate(() => scrollTo(0, 0));
+  await toTop(page);
   const html = page.locator("html");
   const before = await html.getAttribute("data-theme");
   const toggle = page.locator("#theme");
