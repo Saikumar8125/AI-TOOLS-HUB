@@ -1,0 +1,142 @@
+/* =====================================================================
+   15 — Design system v2 (Phase 5)
+   The last layer in home.css, so its tokens win over every earlier one.
+   Direction: flat, quiet surfaces, one accent, Inter only, no glass,
+   no glows, no decorative motion. Earlier layers keep the layout; this
+   layer re-points their tokens at one palette and removes the effects.
+   ===================================================================== */
+
+/* ---- 1. Core tokens -------------------------------------------------- */
+:root {
+  --ds-font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --ds-r-s: 8px; --ds-r: 12px; --ds-r-l: 16px;
+  --ds-ease: cubic-bezier(.2,.8,.2,1); --ds-fast: .15s;
+  --ds-none: 0 0 #0000;
+  --x-display: var(--ds-font); --x-body: var(--ds-font);
+  --x-r: var(--ds-r-l); --x-r-s: var(--ds-r);
+}
+:root:root[data-theme="dark"] {
+  --ds-bg: #0b0b0c; --ds-s1: #131315; --ds-s2: #1a1a1d; --ds-s3: #222226;
+  --ds-line: rgba(255,255,255,.08); --ds-line-2: rgba(255,255,255,.15);
+  --ds-text: #ededef; --ds-muted: #a1a1aa; --ds-faint: #71717a;
+  --ds-accent: #d6c08a; --ds-accent-soft: rgba(214,192,138,.12); --ds-on-accent: #141210;
+  --ds-shadow: 0 1px 2px rgba(0,0,0,.5);
+  --ds-shadow-l: 0 16px 40px -12px rgba(0,0,0,.7), 0 0 0 1px rgba(255,255,255,.06);
+  --ds-header: rgba(11,11,12,.94);
+}
+:root:root[data-theme="light"] {
+  --ds-bg: #fafaf9; --ds-s1: #ffffff; --ds-s2: #f4f4f2; --ds-s3: #ebebe8;
+  --ds-line: rgba(0,0,0,.09); --ds-line-2: rgba(0,0,0,.17);
+  --ds-text: #17171a; --ds-muted: #55555d; --ds-faint: #6e6e76;
+  --ds-accent: #7a5d1f; --ds-accent-soft: rgba(122,93,31,.09); --ds-on-accent: #ffffff;
+  --ds-shadow: 0 1px 2px rgba(16,16,20,.06), 0 1px 1px rgba(16,16,20,.04);
+  --ds-shadow-l: 0 16px 40px -16px rgba(16,16,20,.22), 0 0 0 1px rgba(0,0,0,.06);
+  --ds-header: rgba(250,250,249,.95);
+}
+
+/* ---- 2. Legacy tokens re-pointed at the system ------------------------ */
+:root:root[data-theme] {
+  /* base generation */
+  --x-bg: var(--ds-bg); --x-surface: var(--ds-s1); --x-surface-2: var(--ds-s2);
+  --x-line: var(--ds-line); --x-line-2: var(--ds-line-2);
+  --x-text: var(--ds-text); --x-muted: var(--ds-muted);
+  --x-gold: var(--ds-accent); --x-gold-soft: var(--ds-accent-soft); --x-on-gold: var(--ds-on-accent);
+  --x-grid: transparent; --x-shadow: var(--ds-shadow-l);
+  /* glass generation */
+  --x-blob-o: 0; --x-grain-o: 0;
+  --g-fill: var(--ds-s1); --g-edge: var(--ds-line); --g-card: var(--ds-s1); --g-solid: var(--ds-s1);
+  --g-shadow: var(--ds-shadow); --g-shadow-s: var(--ds-shadow); --g-spec: linear-gradient(transparent, transparent);
+  --x-glass: var(--ds-s1); --x-glass-edge: var(--ds-line); --x-lg-fill: var(--ds-s1); --x-lg-solid: var(--ds-s1);
+  --x-glass-shadow: var(--ds-shadow); --x-glass-shadow-s: var(--ds-shadow);
+  --x-glass-tint: transparent; --x-glass-hi: transparent; --x-glass-thick: 0px;
+  --x-lg-glow: transparent; --x-lg-rim-hi: transparent; --x-lg-rim-lo: transparent;
+  --x-lg-tshadow: var(--ds-none); --x-lg-drop: var(--ds-none); --x-lg-muted: var(--ds-muted); --x-lg-blur: 0px;
+  --x-sheen: transparent; --x-sheen-g: linear-gradient(transparent, transparent);
+  --x-spec-g: linear-gradient(transparent, transparent);
+  /* premium generation */
+  --x-pri: var(--ds-accent); --x-pri-c: var(--ds-accent); --x-on-pri: var(--ds-on-accent);
+  --x-pri-edge: transparent; --x-pri-shadow: var(--ds-none);
+  --x-hair: var(--ds-line-2); --x-top-hi: transparent;
+  --x-hl: linear-gradient(var(--ds-accent), var(--ds-accent)); --x-num-stroke: var(--ds-line-2);
+  --x-ring-hi: var(--ds-accent);
+  /* liquid-glass generation */
+  --lgx-panel: var(--ds-s1); --lgx-card: var(--ds-s1); --lgx-card-m: var(--ds-s1);
+  --lgx-pill: var(--ds-s2); --lgx-pill-m: var(--ds-s2);
+  --lgx-bar: var(--ds-header); --lgx-bar-m: var(--ds-header);
+  --lgx-sheet: var(--ds-s1); --lgx-sheet-m: var(--ds-s1);
+  --lgx-et: var(--ds-line); --lgx-es: var(--ds-line); --lgx-eb: transparent;
+  --lgx-lit: var(--ds-text); --lgx-bloom: transparent;
+  --lgx-ring: linear-gradient(var(--ds-line), var(--ds-line));
+  --lgx-inner: linear-gradient(transparent, transparent);
+  --lgx-depth: var(--ds-shadow); --lgx-depth-s: var(--ds-shadow);
+  --lgx-sheen: transparent; --lgx-spot: linear-gradient(transparent, transparent);
+  --lgx-neon: var(--ds-text); --lgx-neon-f: none;
+  --lgx-gi: var(--ds-s2); --lgx-gi-sh: inset 0 0 0 1px var(--ds-line); --lgx-gi-glow: transparent;
+  --lgx-lens: var(--ds-s3); --lgx-lens-sh: inset 0 0 0 1px var(--ds-line-2); --lgx-lens-ink: var(--ds-text);
+  --lgx-glow: linear-gradient(transparent, transparent); --lgx-glow-s: linear-gradient(transparent, transparent);
+  /* clear-glass generation */
+  --cg-fill: var(--ds-s1); --cg-grad: linear-gradient(transparent, transparent); --cg-edge: var(--ds-line);
+  --cg-hi: var(--ds-none); --cg-shadow: var(--ds-shadow); --cg-chip: var(--ds-s2); --cg-ts: var(--ds-none); --cg-solid: var(--ds-s1);
+}
+
+/* ---- 3. No glass, no glow, no grain ------------------------------------ */
+*, *::before, *::after { -webkit-backdrop-filter: none !important; backdrop-filter: none !important; text-shadow: none !important; }
+.x-bgfield, .x-scrim, .x-mlab, .x-grain, .x-intro, .x-blob, .x-spot__ring, .x-spark,
+.x-head[data-num]::before, .x-head::after { display: none !important; }
+.x-neon, .x-neon * { filter: none !important; }
+.x-hl { color: var(--ds-accent); -webkit-text-fill-color: currentColor; background: none !important; }
+html, body { background: var(--ds-bg) !important; }
+body { font-family: var(--ds-font); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-feature-settings: "cv11", "ss01"; }
+
+/* ---- 4. Type scale ------------------------------------------------------ */
+.x-h1 { font-weight: 600 !important; font-size: clamp(40px, 6.4vw, 76px) !important; line-height: 1.04 !important; letter-spacing: -.04em !important; }
+.x-h2 { font-weight: 600 !important; font-size: clamp(30px, 4.2vw, 48px) !important; line-height: 1.08 !important; letter-spacing: -.035em !important; }
+.x-sub { color: var(--ds-muted); }
+.x-micro { letter-spacing: .08em; font-weight: 500; font-size: 12px; color: var(--ds-faint); }
+.x-stat__fig { font-weight: 600 !important; letter-spacing: -.03em !important; }
+.x-cat__name, .x-how h3, .x-subm__title { font-weight: 600 !important; letter-spacing: -.02em !important; }
+.x-totd__name, .x-spot__name { font-weight: 600 !important; letter-spacing: -.03em !important; }
+.x-trend__n, .x-pick__n, .x-how__n, .x-steps b { font-weight: 500 !important; }
+.x-sheet__head h3, .x-drawer__head h3 { font-weight: 600 !important; }
+.x-menu a:not(.x-btn) { font-weight: 500 !important; font-size: 28px !important; }
+.x-foot__mark { font-weight: 600 !important; }
+
+/* ---- 5. Surfaces ---------------------------------------------------------- */
+.x-header, .x-header.is-scrolled { background: var(--ds-header) !important; box-shadow: none !important; border-color: var(--ds-line) !important; }
+.x-card, .x-cat, .x-gi, .x-how__step, .x-totd__card, .x-spot__card, .x-panel, .x-faq__item, .x-promo, .x-tl, .x-stat {
+  box-shadow: none !important; background-image: none !important;
+}
+.x-card, .x-cat, .x-gi, .x-how__step, .x-totd__card, .x-spot__card, .x-promo {
+  background-color: var(--ds-s1) !important; border: 1px solid var(--ds-line) !important; border-radius: var(--ds-r) !important;
+  transition: border-color var(--ds-fast) var(--ds-ease), background-color var(--ds-fast) var(--ds-ease) !important;
+}
+.x-card:hover, .x-cat:hover, .x-gi:hover, .x-how__step:hover, .x-promo:hover { border-color: var(--ds-line-2) !important; background-color: var(--ds-s2) !important; transform: none !important; }
+.x-card::before, .x-card::after, .x-cat::before, .x-cat::after, .x-gi::before, .x-gi::after,
+.x-totd__card::before, .x-totd__card::after, .x-spot__card::before, .x-spot__card::after, .x-promo::before, .x-promo::after,
+.x-how__step::before, .x-how__step::after { background-image: none !important; box-shadow: none !important; opacity: 0 !important; }
+.x-sheet, .x-drawer__sheet { background: var(--ds-s1) !important; border: 1px solid var(--ds-line) !important; box-shadow: var(--ds-shadow-l) !important; }
+.x-modal__bg { background: rgba(0,0,0,.55) !important; }
+
+/* ---- 6. Controls ------------------------------------------------------------ */
+.x-btn { border-radius: var(--ds-r-s) !important; min-height: 40px; font-weight: 500; box-shadow: none !important; background-image: none !important; }
+.x-btn--solid, .x-btn.is-pri, .x-btn--pri { background: var(--ds-accent) !important; border-color: var(--ds-accent) !important; color: var(--ds-on-accent) !important; }
+.x-btn--solid:hover, .x-btn.is-pri:hover, .x-btn--pri:hover { filter: brightness(1.06); }
+.x-chip, .x-pill, .x-seg button, .x-pills button { box-shadow: none !important; background-image: none !important; }
+.x-chip.is-on, .x-pill.is-on, .x-pills .is-on, .x-pills [aria-pressed="true"], .x-pills [aria-selected="true"] { background: var(--ds-text) !important; color: var(--ds-bg) !important; border-color: var(--ds-text) !important; }
+:focus-visible { outline: 2px solid var(--ds-accent) !important; outline-offset: 2px !important; }
+
+/* ---- 7. Motion: content appears immediately; only state changes animate -- */
+.x-js .x-hin { animation: none !important; }
+.x-js .x-rv, .x-js .x-how__step.x-rv { opacity: 1 !important; transform: none !important; transition: none !important; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+
+/* ---- 8. Fixes found in review ------------------------------------------- */
+.x-h1 *, .x-h2 * { font-weight: inherit !important; letter-spacing: inherit; }
+.x-cat__name { overflow-wrap: normal !important; word-break: normal; hyphens: manual; }
+@media (max-width: 767px) { .x-cat__name { font-size: 18px !important; } }
+.x-sheet__head > div { flex: 1 1 auto; }
+.x-sheet__head .x-heart { flex: none; align-self: flex-start; }
+.x-sheet__meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.x-ico3d__shine { display: none !important; }

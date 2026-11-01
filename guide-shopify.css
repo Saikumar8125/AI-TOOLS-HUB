@@ -2,7 +2,7 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font:16px/1.65 Inter,system-ui,-apple-system,Segoe UI,sans-serif;-webkit-font-smoothing:antialiased}
-h1,h2,h3{font-family:"Exo 2",Inter,sans-serif;line-height:1.15;letter-spacing:-.01em}
+h1,h2,h3{font-family:Inter,system-ui,sans-serif;line-height:1.15;letter-spacing:-.01em}
 a{color:var(--gold)}
 a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
@@ -11,7 +11,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
 .top nav a{justify-content:center}
 header.top{border-bottom:1px solid var(--line)}
 header.top .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
-.brand{font-family:"Exo 2",sans-serif;font-weight:700;color:var(--text);text-decoration:none;letter-spacing:.02em}
+.brand{font-family:Inter,system-ui,sans-serif;font-weight:700;color:var(--text);text-decoration:none;letter-spacing:.02em}
 .brand span{color:var(--gold)}
 .top nav a{color:var(--muted);text-decoration:none;font-size:.9rem}
 .hero{padding:64px 0 48px;border-bottom:1px solid var(--line);background:radial-gradient(800px 320px at 15% 0%,rgba(200,178,124,.12),transparent 70%)}
@@ -26,7 +26,7 @@ header.top .wrap{display:flex;justify-content:space-between;align-items:center;h
 .toc a:hover{border-color:var(--gold);color:var(--gold)}
 section.flow{padding:56px 0;border-bottom:1px solid var(--line)}
 .sec-head{display:flex;gap:16px;align-items:baseline;margin-bottom:24px}
-.num{font-family:"Exo 2",sans-serif;color:var(--gold);font-size:.95rem;font-weight:600;min-width:2.2em}
+.num{font-family:Inter,system-ui,sans-serif;color:var(--gold);font-size:.95rem;font-weight:600;min-width:2.2em}
 .sec-head h2{font-size:clamp(1.5rem,4vw,2.1rem);font-weight:700}
 .sec-head p{color:var(--muted);margin-top:6px;font-size:.95rem}
 .grid{display:grid;gap:16px}
