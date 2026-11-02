@@ -1,5 +1,8 @@
 # Changelog
 
+## v3.2.2 · 2 Nov 2026
+- Contact & Grievances page (`contact.html`) removed at the owner's request, with its footer, related-page and sitemap links. Privacy and Terms keep their own Contact sections with placeholders; a working contact channel is still needed before public launch.
+
 ## v3.2.1 · 2 Nov 2026
 - Sound files moved flat to the repo root (`click.mp3`, `open.mp3`, `add.mp3`, `success.mp3`) so they upload from a phone without folders. `sfx.js` loads `/<name>.mp3`; `build.js` fails if one is missing. `assets/` folder removed.
 

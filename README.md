@@ -45,7 +45,7 @@ click.mp3 open.mp3 add.mp3 success.mp3   sound files, flat in the root (Kenney I
 pages.css/.js     Generated pages, seller guides, legal pages, 404 (search palette, theme, Save, progress bar, Clear-data button)
 d2c.html          Tools for Indian D2C sellers (own 130-tool list with verified labels)
 guide-*.html/css  Seller guides (Amazon, Shopify, WhatsApp)
-privacy.html, terms.html, cookies.html, copyright.html, disclaimer.html, contact.html   Legal pages (static; build.js copies them,
+privacy.html, terms.html, cookies.html, copyright.html, disclaimer.html   Legal pages (static; build.js copies them,
                   links them in every generated footer, lists them in the sitemap and stops the build if one is missing)
 404.html, robots.txt, sitemap.xml, vercel.json (build settings + security headers), manifest.webmanifest, icons and images
 ```
