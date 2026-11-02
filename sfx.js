@@ -1,6 +1,6 @@
 /* AI Tools Hub · sfx.js v3.2 — optional UI sounds, off by default.
    The header Sound button ([data-sound-toggle]) turns them on/off and stores "1"/"0" in localStorage "aith-sound".
-   Files come from /assets/sfx/ on this site and are fetched only once sound is on. Pages call window.AITHSfx.play(name).
+   Files are /click.mp3, /open.mp3, /add.mp3, /success.mp3 at the site root and are fetched only once sound is on. Pages call window.AITHSfx.play(name).
    Delegated here: the "click" sound for primary action buttons (button.btn--primary, not the search submit). */
 (function () {
   "use strict";
@@ -10,7 +10,7 @@
   function load() {
     if (cache) return;
     cache = {};
-    NAMES.forEach(function (n) { var a = new Audio("/assets/sfx/" + n + ".mp3"); a.preload = "auto"; a.volume = 0.08; cache[n] = a; });
+    NAMES.forEach(function (n) { var a = new Audio("/" + n + ".mp3"); a.preload = "auto"; a.volume = 0.08; cache[n] = a; });
   }
   function play(name) {
     if (!on || d.hidden || typeof Audio === "undefined") return;

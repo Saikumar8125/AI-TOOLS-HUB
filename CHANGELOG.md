@@ -1,5 +1,7 @@
 # Changelog
 
+## v3.2.1 · 2 Nov 2026
+- Sound files moved flat to the repo root (`click.mp3`, `open.mp3`, `add.mp3`, `success.mp3`) so they upload from a phone without folders. `sfx.js` loads `/<name>.mp3`; `build.js` fails if one is missing. `assets/` folder removed.
 
 ## v3.2 · 2 Nov 2026
 Optional interface sounds. Off by default; nothing loads until you turn them on.

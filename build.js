@@ -332,8 +332,8 @@ for (const f of fs.readdirSync(__dirname)) {
   const src = path.join(__dirname, f);
   if (fs.statSync(src).isFile()) fs.copyFileSync(src, path.join(OUT, f));
 }
-// v3.2: sound effects (assets/sfx/*.mp3, see SFX-LICENSES.md); the loop above copies files only
-fs.cpSync(path.join(__dirname, "assets"), path.join(OUT, "assets"), { recursive: true });
+// v3.2.1: sound files (click/open/add/success.mp3) sit flat in the repo root, so the loop above copies them.
+for (const f of ["click.mp3", "open.mp3", "add.mp3", "success.mp3"]) if (!fs.existsSync(path.join(OUT, f))) { console.error("Missing sound file: " + f); process.exit(1); }
 // Home page counts come from data.js, so the static HTML (what crawlers and no-JS visitors see) never drifts.
 {
   const n = { total: TOOLS.length, cats: CATS.length, Free: 0, Freemium: 0 };

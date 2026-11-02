@@ -41,7 +41,7 @@ data.js           All tools (name, link, category, pricing, description, highlig
 guides.js         18 business guides (build.js turns them into /guides/<slug>)
 build.js          Generates public/: tool, category and guide pages, sitemap, search index, home stats and category tiles
 sfx.js            Optional UI sounds: Sound toggle (localStorage aith-sound, off by default), AITHSfx.play(name), volume 0.08
-assets/sfx/       click.mp3, open.mp3, add.mp3, success.mp3 (Kenney Interface Sounds, CC0; see SFX-LICENSES.md). build.js copies assets/ to public/
+click.mp3 open.mp3 add.mp3 success.mp3   sound files, flat in the root (Kenney Interface Sounds, CC0; see SFX-LICENSES.md)
 pages.css/.js     Generated pages, seller guides, legal pages, 404 (search palette, theme, Save, progress bar, Clear-data button)
 d2c.html          Tools for Indian D2C sellers (own 130-tool list with verified labels)
 guide-*.html/css  Seller guides (Amazon, Shopify, WhatsApp)
