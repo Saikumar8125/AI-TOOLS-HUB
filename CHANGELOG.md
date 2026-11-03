@@ -1,5 +1,11 @@
 # Changelog
 
+## v3.13 · 3 Nov 2026
+- FAQ ("Questions, answered" and guide FAQs): answers open and close smoothly (height eases, text fades in) instead of snapping, with the plus turning to an x. `sfx.js` handles every `<details>`.
+- Mobile menu: grows open from the header so the page slides down with it, links stagger in, and the menu icon spins to x; closing reverses. A tap mid-animation reverses from where it is.
+- Sounds (when turned on): "open" when a FAQ answer or the menu opens, "click" when they close, and "click" on every button, chip and tab. A page's own sound (add, open, success) still wins.
+- Reduced motion: menu and FAQ snap open with no animation.
+
 ## v3.12 · 3 Nov 2026
 - New logo: magnifier over a tool grid, in the site's teal, paper and marigold. New app icons and share image (og-image.png).
 - India facts checked on official pages for 35 more popular tools; 35 tools are now Verified for India (was 10). Each tool shows its own check date.

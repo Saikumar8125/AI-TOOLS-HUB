@@ -194,15 +194,32 @@
   /* ---------- header, mobile menu, back to top ---------- */
   var hdr = $("hdr"), burger = $("burger"), menu = $("menu"), toTop = $("to-top");
   function setMenu(open) {
-    /* v3.7: close fades out for 160ms before hiding; open animates in CSS */
-    clearTimeout(menu._t); menu.classList.remove("is-closing");
-    if (open || reduce || menu.hidden) menu.hidden = !open;
-    else { menu.classList.add("is-closing"); menu._t = setTimeout(function () { menu.hidden = true; menu.classList.remove("is-closing"); }, 160); }
+    /* v3.13: menu grows from 0 height (page content slides down with it), links stagger in, icon spins between menu and x */
+    var was = !menu.hidden && !menu.classList.contains("is-closing");
+    if (open === was) return;
+    clearTimeout(menu._t);
+    var from = menu.hidden ? 0 : menu.getBoundingClientRect().height; // before cancel: a reversed tap starts where it is
+    if (menu._a) { menu._a.cancel(); menu._a = null; }
+    menu.classList.toggle("is-closing", !open);
+    menu.hidden = false;
     burger.setAttribute("aria-expanded", String(open));
     burger.setAttribute("aria-label", open ? "Close menu" : "Open menu");
-    burger.querySelector("use").setAttribute("href", "/icons.svg#i-" + (open ? "x" : "menu"));
+    var use = burger.querySelector("use"), ic = use.parentNode;
+    use.setAttribute("href", "/icons.svg#i-" + (open ? "x" : "menu"));
+    sfx(open ? "open" : "click");
+    if (reduce || !menu.animate) { menu.hidden = !open; menu.classList.remove("is-closing"); return; }
+    ic.animate([{ transform: "rotate(" + (open ? -90 : 90) + "deg) scale(.6)", opacity: 0 }, { transform: "none", opacity: 1 }], { duration: 260, easing: "cubic-bezier(.23, 1, .32, 1)" });
+    var to = open ? menu.scrollHeight : 0;
+    menu.style.overflow = "hidden";
+    var a = menu.animate([{ height: from + "px", opacity: open ? 0.4 : 1 }, { height: to + "px", opacity: open ? 1 : 0 }],
+      { duration: open ? 340 : 220, easing: open ? "cubic-bezier(.23, 1, .32, 1)" : "cubic-bezier(.4, 0, 1, 1)" });
+    if (open) [].forEach.call(menu.querySelectorAll("a"), function (l, i) {
+      l.animate([{ opacity: 0, transform: "translateY(-6px)" }, { opacity: 1, transform: "none" }], { duration: 260, delay: 40 + i * 28, easing: "cubic-bezier(.23, 1, .32, 1)", fill: "backwards" });
+    });
+    menu._a = a;
+    a.onfinish = function () { menu._a = null; menu.style.overflow = ""; if (!open) { menu.hidden = true; menu.classList.remove("is-closing"); } };
   }
-  burger.addEventListener("click", function () { setMenu(menu.hidden || menu.classList.contains("is-closing")); if (!menu.hidden) { var a = menu.querySelector("a"); if (a) a.focus(); } });
+  burger.addEventListener("click", function () { var o = menu.hidden || menu.classList.contains("is-closing"); setMenu(o); if (o) { var a = menu.querySelector("a"); if (a) a.focus(); } });
   menu.addEventListener("click", function (e) { if (e.target.closest("a")) setMenu(false); });
   doc.addEventListener("keydown", function (e) { if (e.key === "Escape" && !menu.hidden && !menu.classList.contains("is-closing") && !top()) { setMenu(false); burger.focus(); } });
   var ticking = false;

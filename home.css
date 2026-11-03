@@ -420,10 +420,4 @@ html:not(.js) .tc--sk { display: none; }
 .hdr__nav a[aria-current="page"] { color: var(--text); background: var(--surface-2); }
 .tabs [role="tab"] { transition: background-color var(--d-fast) var(--ease), color var(--d-fast) var(--ease), box-shadow var(--d-fast) var(--ease); }
 
-/* v3.7 mobile menu: slides down on open, fades up on close (JS adds .is-closing) */
-@media (prefers-reduced-motion: no-preference) {
-  .menu:not([hidden]) { animation: menuIn 200ms var(--ease) both; }
-  .menu.is-closing { animation: menuOut 160ms ease-out both; }
-}
-@keyframes menuIn { from { opacity: 0; transform: translateY(-6px); } }
-@keyframes menuOut { to { opacity: 0; transform: translateY(-6px); } }
+/* v3.13 mobile menu: height, link stagger and icon spin are driven from home.js (Web Animations), reduced motion snaps */
