@@ -25,7 +25,7 @@ const guidesByTool = {};
 GUIDES.forEach((g) => g.sec.forEach((x) => x.tools.forEach((n) => { (guidesByTool[n] = guidesByTool[n] || new Set()).add(g); })));
 const titleCase = (x) => x.replace(/^./, (c) => c.toUpperCase());
 const icon = (n, cls) => `<svg class="i${cls ? " " + cls : ""}" aria-hidden="true"><use href="/icons.svg#i-${n}"/></svg>`;
-const LINK_CHECK = "27 Oct 2026"; // last full link check (see README); change only after a real full re-check
+const LINK_CHECK = "3 Nov 2026"; // last full link check (see README); change only after a real full re-check
 const INDIA_CHECK = "11 Oct 2026"; // India facts in index.html #india-data were verified on official pages on this date
 const THEME_INIT = '<script>(function(r){var t=null;try{t=localStorage.getItem("aith-theme")}catch(e){}if(t!=="light"&&t!=="dark")t=window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";r.setAttribute("data-theme",t)})(document.documentElement)</script>';
 const ISSUE_SUGGEST = "https://github.com/Saikumar8125/AI-TOOLS-HUB/issues/new?title=Tool%20suggestion%3A%20&body=Tool%20name%3A%0AOfficial%20website%20(https)%3A%0ACategory%3A%0APricing%20(Free%20%2F%20Freemium%20%2F%20Paid)%3A%0AWhat%20it%20does%20(one%20line)%3A%0AWhy%20it%20suits%20Indian%20small%20businesses%3A%0A";
@@ -99,7 +99,7 @@ ${THEME_INIT}
 <title>${esc(o.title)}</title>
 <meta name="description" content="${esc(o.desc)}">
 <link rel="canonical" href="${SITE}${o.path}">
-<meta name="theme-color" content="#fafaf9">
+<meta name="theme-color" content="#FAF9F6">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="AI Tools Hub">
 <meta property="og:title" content="${esc(o.title)}">
@@ -114,9 +114,7 @@ ${THEME_INIT}
 <meta name="twitter:image" content="${SITE}/og-image.png">
 <link rel="icon" href="/icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&display=swap">
+<link rel="preload" href="/geist.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/ds.css">
 <link rel="stylesheet" href="/pages.css">
 ${ld}
@@ -146,7 +144,7 @@ function topbar(cur) {
 function footer() {
   return `<footer class="foot"><div class="wrap">
 <div class="foot__grid">
-<div><a class="brand" href="/" aria-label="AI Tools Hub home"><img src="/icon.svg" width="28" height="28" alt="" loading="lazy"><b>AI Tools Hub</b></a><p>${TOOLS.length} hand-picked AI tools in ${CATS.length} categories, curated for Indian small businesses. Every link goes to the official site.</p></div>
+<div><a class="brand" href="/" aria-label="AI Tools Hub home"><img src="/icon.svg" width="28" height="28" alt="" loading="lazy"><b>AI Tools Hub</b></a><p>${TOOLS.length} AI tools in ${CATS.length} categories for Indian small businesses. Every link goes to the official site.</p></div>
 <nav aria-label="Guides"><h2 class="foot__h">Guides</h2><ul>${GUIDES.slice(0, 6).map((g) => `<li><a href="/guides/${g.s}">${esc(titleCase(g.who))}</a></li>`).join("")}<li><a href="/guides">All ${GUIDES.length + 3} guides</a></li></ul></nav>
 <nav aria-label="Browse"><h2 class="foot__h">Browse</h2><ul><li><a href="/#tools">Directory</a></li><li><a href="/#finder">Tool Finder</a></li><li><a href="/categories">All categories</a></li><li><a href="/all-tools">All tools A–Z</a></li><li><a href="/d2c.html">D2C tools for Indian sellers</a></li><li><a href="/category/chatbots">Chatbots</a></li><li><a href="/category/writing">Writing</a></li><li><a href="/category/video">Video</a></li><li><a href="/category/marketing">Marketing</a></li></ul></nav>
 ${LEGAL_NAV}
@@ -188,7 +186,7 @@ function toolPage(t) {
   // Three India statuses: Verified for India / India availability not verified / Not available in India (only with a confirmed source in india.x.src)
   const inOk = inl.length > 0 || !!india.m;
   const naSrc = !inOk && india.x && india.x.src ? india.x.src : "";
-  const inBadge = inOk ? `<span class="badge badge--ok">${icon("badge-check")}Verified for India</span>` : naSrc ? `<span class="badge badge--no">${icon("x")}Not available in India</span>` : `<span class="badge badge--line badge--muted">India availability not verified</span>`;
+  const inBadge = inOk ? `<span class="badge badge--in">${icon("badge-check")}Verified for India</span>` : naSrc ? `<span class="badge badge--no">${icon("x")}Not available in India</span>` : `<span class="badge badge--line badge--muted">India availability not verified</span>`;
   const alts = byCat[t.c].filter((x) => x !== t);
   const same = alts.filter((x) => x.p === t.p);
   const pick = same.concat(alts.filter((x) => x.p !== t.p)).slice(0, 8);
@@ -207,7 +205,7 @@ function toolPage(t) {
   if (t.p === "Free") app.offers = { "@type": "Offer", price: "0", priceCurrency: "INR" };
   const gl = [...(guidesByTool[t.n] || [])];
   const feat = gl.length ? `<section class="wrap"><h2>Where ${esc(t.n)} fits</h2><p class="lead">Picked in these guides for Indian businesses.</p><ul class="chips">${gl.slice(0, 8).map((g) => `<li><a href="/guides/${g.s}">${esc(titleCase(g.who))}</a></li>`).join("")}${gl.length > 8 ? `<li><a href="/guides">+${gl.length - 8} more guides</a></li>` : ""}</ul></section>` : "";
-  const indiaRows = (india.m ? `<div><dt>Origin</dt><dd>Made in India <span class="badge badge--ok">${icon("badge-check")}verified</span></dd></div>` : "") + inl.map((k) => `<div><dt>${esc(IN_LABELS[k])}</dt><dd>Verified <a href="${esc(india.l[k])}" target="_blank" rel="noopener">source</a></dd></div>`).join("");
+  const indiaRows = (india.m ? `<div><dt>Origin</dt><dd>Made in India <span class="badge badge--in">${icon("badge-check")}verified</span></dd></div>` : "") + inl.map((k) => `<div><dt>${esc(IN_LABELS[k])}</dt><dd>Verified <a href="${esc(india.l[k])}" target="_blank" rel="noopener">source</a></dd></div>`).join("");
   const body = `<article class="wrap hero">
 ${crumbHtml(crumbItems)}
 <div class="th">${favicon(t)}<h1>${esc(t.n)}</h1></div>
@@ -219,7 +217,7 @@ ${crumbHtml(crumbItems)}
 <section class="panel"><h2>Key features</h2>${(d.b && d.b.length) ? "<ul class=\"ticks\">" + d.b.map((x) => `<li>${esc(x)}</li>`).join("") + "</ul>" : `<p class="muted">See the official site for features.</p>`}</section>
 <section class="panel"><h2>Quick facts <span class="badge badge--line">directory data · links checked ${LINK_CHECK}</span></h2><dl class="facts"><div><dt>Category</dt><dd><a href="${cpath}">${esc(t.c)}</a></dd></div><div><dt>Pricing</dt><dd>${esc(priceText[t.p])}</dd></div><div><dt>Free plan</dt><dd>${esc(freeLine(t))}</dd></div>${host(t.u) ? `<div><dt>Official site</dt><dd><a href="${esc(t.u)}" target="_blank" rel="noopener">${esc(host(t.u))}</a></dd></div>` : ""}<div><dt>Platforms</dt><dd class="unv">Not verified — check official site</dd></div></dl></section>
 </div>
-<div class="wrap"><section class="panel panel--sp"><h2>India availability ${inBadge}</h2>${indiaRows ? `<dl class="facts">${indiaRows}</dl><p class="muted small">Confirmed on official pages, ${INDIA_CHECK}.</p>` : naSrc ? `<p class="muted">Confirmed not available in India${india.x.d ? ` (${esc(india.x.d)})` : ""}. <a href="${esc(naSrc)}" target="_blank" rel="noopener">Source</a></p>` : `<p class="muted">India availability not verified — check official site. We haven't confirmed INR pricing, UPI payments, GST invoices or Indian-language support for ${esc(t.n)} on its official pages.</p>`}<p class="muted small report"><a href="${esc(reportUrl(t))}" target="_blank" rel="noopener">Report a wrong link or price</a></p></section></div>
+<div class="wrap"><section class="panel panel--sp"><h2>India availability ${inBadge}</h2>${indiaRows ? `<dl class="facts">${indiaRows}</dl><p class="muted small">Confirmed on official pages, ${india.c || INDIA_CHECK}.</p>` : naSrc ? `<p class="muted">Confirmed not available in India${india.x.d ? ` (${esc(india.x.d)})` : ""}. <a href="${esc(naSrc)}" target="_blank" rel="noopener">Source</a></p>` : `<p class="muted">India availability not verified — check official site. We haven't confirmed INR pricing, UPI payments, GST invoices or Indian-language support for ${esc(t.n)} on its official pages.</p>`}<p class="muted small report"><a href="${esc(reportUrl(t))}" target="_blank" rel="noopener">Report a wrong link or price</a></p></section></div>
 ${feat}
 ${pick.length ? `<section class="wrap"><h2>Alternatives to ${esc(t.n)}</h2><ul class="cards">${pick.map(card).join("")}</ul><p class="more"><a href="${cpath}">All ${byCat[t.c].length} ${esc(t.c)} AI tools</a></p></section>` : ""}
 <div class="wrap">${faqHtml(qs)}</div>
@@ -236,7 +234,7 @@ function catPage(c) {
   const p = "/category/" + catSlug(c);
   const title = `${list.length} Best AI ${c} Tools (${YEAR}): Free & Paid | AI Tools Hub`;
   const intro = INTRO[c] || `AI tools in the ${c} category.`;
-  const desc = `${intro} ${list.length} hand-picked tools: ${mix(n)}. Curated for Indian small businesses.`;
+  const desc = `${intro} ${list.length} tools: ${mix(n)}. Chosen for Indian small businesses.`;
   const freeList = sorted.filter((t) => t.p === "Free").slice(0, 5).map((t) => t.n);
   const qs = [
     [`What are the best free AI ${c} tools?`, freeList.length ? `Free picks include ${freeList.join(", ")}.` : `Most ${c} tools here are freemium: they have a free plan with paid upgrades.`],
@@ -283,7 +281,7 @@ TOOLS.forEach((t) => { byName[t.n] = t; });
 function guidePage(g) {
   const p = "/guides/" + g.s;
   const title = `${g.t} (${YEAR}) | AI Tools Hub`;
-  const desc = (g.i.split(". ")[0] + ". Hand-picked free and paid AI tools for " + g.who + ", with an Indian focus.").slice(0, 300);
+  const desc = (g.i.split(". ")[0] + ". Free and paid AI tools for " + g.who + ", with an Indian focus.").slice(0, 300);
   const crumbItems = [["Home", "/"], ["Guides", "/guides"], [g.t, p]];
   const secs = g.sec.map((x, i) => `<section class="gsec" id="s${i + 1}"><h2><span class="n">${String(i + 1).padStart(2, "0")}</span>${esc(x.h)}</h2><p class="lead">${esc(x.p)}</p><ul class="cards${x.tools.length === 4 || x.tools.length === 2 ? " cards--2" : ""}">${x.tools.map((n) => byName[n]).filter(Boolean).map((t) => guideCard(t, g)).join("")}</ul></section>`).join("");
   const toc = `<nav class="toc" aria-label="On this page">${g.sec.map((x, i) => `<a href="#s${i + 1}">${esc(x.h)}</a>`).join("")}</nav>`;

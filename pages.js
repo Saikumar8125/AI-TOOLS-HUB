@@ -14,14 +14,16 @@
   function paintTheme() {
     var dark = root.getAttribute("data-theme") === "dark";
     [].forEach.call(d.querySelectorAll("[data-theme-toggle]"), function (b) { b.setAttribute("aria-label", dark ? "Switch to light theme" : "Switch to dark theme"); });
-    var m = d.querySelector('meta[name="theme-color"]'); if (m) m.setAttribute("content", dark ? "#0d0d10" : "#fafaf9");
+    var m = d.querySelector('meta[name="theme-color"]'); if (m) m.setAttribute("content", dark ? "#000000" : "#FAF9F6");
   }
   d.addEventListener("click", function (e) {
     var b = e.target.closest && e.target.closest("[data-theme-toggle]"); if (!b) return;
     var next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
-    root.setAttribute("data-theme", next);
-    try { localStorage.setItem("aith-theme", next); } catch (err) { /* storage blocked */ }
-    paintTheme();
+    var apply = function () { root.setAttribute("data-theme", next); try { localStorage.setItem("aith-theme", next); } catch (err) { /* storage blocked */ } paintTheme(); };
+    /* v3.8: whole-page cross-fade via the View Transitions API; colour transitions as fallback (same as home.js swapTheme) */
+    if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) apply();
+    else if (d.startViewTransition) d.startViewTransition(apply);
+    else { root.classList.add("theme-anim"); void root.offsetWidth; apply(); clearTimeout(b._t); b._t = setTimeout(function () { root.classList.remove("theme-anim"); }, 460); }
   });
   paintTheme();
 
@@ -137,4 +139,22 @@
     else if (e.key === "Escape") close();
   });
   [].forEach.call(d.querySelectorAll("[data-search]"), function (b) { b.addEventListener("pointerenter", load, { once: true }); });
+
+  /* v3.6: Apple-style scroll reveal. Only elements that start below the fold get hidden (no flash, works without JS),
+     each fades up once as it enters, siblings in the same batch stagger. Skipped under reduced motion or without IntersectionObserver. */
+  (function reveal(sel) {
+    if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!("IntersectionObserver" in window)) return;
+    var vh = window.innerHeight, els = [].filter.call(document.querySelectorAll(sel), function (el) { return el.getBoundingClientRect().top > vh; });
+    var io = new IntersectionObserver(function (entries) {
+      var k = 0;
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        e.target.style.transitionDelay = Math.min(k++ * 60, 300) + "ms";
+        var t = e.target; t.classList.add("is-in"); io.unobserve(t);
+        setTimeout(function () { t.classList.remove("rv", "is-in"); t.style.transitionDelay = ""; }, 1100); /* hand hover transitions back to the component */
+      });
+    }, { rootMargin: "0px 0px -8% 0px" });
+    els.forEach(function (el) { el.classList.add("rv"); io.observe(el); });
+  })("main h2, main .lead, main .cards > li, main .panel, main .gsec .card, main .faq details, main .glance, main .grid2 > *, main table");
 })();

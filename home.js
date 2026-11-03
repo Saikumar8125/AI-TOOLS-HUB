@@ -6,9 +6,40 @@
   var doc = document, root = doc.documentElement;
   var $ = function (id) { return doc.getElementById(id); };
   var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  /* v3.5: restart a one-shot CSS animation class (no-op under reduced motion) */
+  function replay(el, cls) { if (!el || reduce) return; el.classList.remove(cls); void el.offsetWidth; el.classList.add(cls); }
   var ISSUES = "https://github.com/Saikumar8125/AI-TOOLS-HUB/issues/new";
   var SITE = "https://aitoolshub-in.vercel.app";
-  var LINK_CHECK = "27 Oct 2026", INDIA_CHECK = "11 Oct 2026";
+  /* v3.10: hero headline words blur in; stat numbers count up once when seen. Both skipped under reduced motion. */
+  (function () {
+    if (reduce) return;
+    var h = document.getElementById("hero-title");
+    if (h && !h.querySelector(".tw")) {
+      h.setAttribute("aria-label", h.textContent);
+      h.innerHTML = h.textContent.split(/(\s+)/).map(function (w, i) {
+        return /^\s+$/.test(w) ? w : '<span class="tw" aria-hidden="true" style="--i:' + (i / 2) + '">' + w.replace(/&/g, "&amp;").replace(/</g, "&lt;") + "</span>";
+      }).join("");
+      h.classList.add("js-words");
+    }
+    var nums = [].slice.call(document.querySelectorAll("#stats [data-count], #in-count"));
+    function run(el) {
+      var to = parseInt(el.textContent.replace(/\D/g, ""), 10);
+      if (!to) return;
+      var t0 = performance.now(), dur = 900 + Math.min(to, 600);
+      el.textContent = "0";
+      (function tick(now) {
+        var p = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.round(to * e);
+        if (p < 1) requestAnimationFrame(tick);
+      })(t0);
+    }
+    if (!("IntersectionObserver" in window)) return;
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (en) { if (en.isIntersecting) { io.unobserve(en.target); run(en.target); } });
+    }, { threshold: 0.6 });
+    nums.forEach(function (n) { io.observe(n); });
+  })();
+  var LINK_CHECK = "3 Nov 2026", INDIA_CHECK = "11 Oct 2026";
 
   /* ---------- data ---------- */
   var DESC = window.AITH_DESC || {};
@@ -51,7 +82,7 @@
     var labels = Object.keys(d.l || {}).filter(function (k) { return IN_LABELS[k]; }).map(function (k) { return { k: k, label: IN_LABELS[k], src: d.l[k] }; });
     var ok = labels.length > 0 || !!d.m;
     var na = !ok && d.x && d.x.src ? { src: d.x.src, date: d.x.d || "" } : null;
-    return { labels: labels, made: !!d.m, verified: ok, na: na, listed: true };
+    return { labels: labels, made: !!d.m, verified: ok, na: na, listed: true, date: d.c || INDIA_CHECK };
   }
   /* Three India statuses. "unavailable" only when #india-data has a confirmed source in d.x {src, d}. */
   var IN_STATUS = { verified: "Verified for India", unverified: "India availability not verified", unavailable: "Not available in India" };
@@ -59,7 +90,7 @@
   function verified(t) { return inStatus(t) === "verified"; }
   function inBadge(t, short) {
     var s = inStatus(t);
-    if (s === "verified") return '<span class="badge badge--ok" title="INR, UPI, GST, Indian-language or Made in India confirmed on official pages, ' + INDIA_CHECK + '">' + icon("badge-check") + IN_STATUS.verified + "</span>";
+    if (s === "verified") return '<span class="badge badge--in" title="INR, UPI, GST, Indian-language or Made in India confirmed on official pages, ' + india(t).date + '">' + icon("badge-check") + IN_STATUS.verified + "</span>";
     if (s === "unavailable") return '<span class="badge badge--no">' + icon("x") + IN_STATUS.unavailable + "</span>";
     return '<span class="badge badge--line badge--muted">' + (short ? "India: not verified" : IN_STATUS.unverified) + "</span>";
   }
@@ -141,27 +172,39 @@
   function paintTheme() {
     var dark = root.getAttribute("data-theme") === "dark";
     themeBtn.setAttribute("aria-label", dark ? "Switch to light theme" : "Switch to dark theme");
-    [].forEach.call(doc.querySelectorAll('meta[name="theme-color"]'), function (m) { m.setAttribute("content", dark ? "#0d0d10" : "#fafaf9"); m.removeAttribute("media"); });
+    [].forEach.call(doc.querySelectorAll('meta[name="theme-color"]'), function (m) { m.setAttribute("content", dark ? "#000000" : "#FAF9F6"); m.removeAttribute("media"); });
   }
   themeBtn.addEventListener("click", function () {
     var next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
-    root.setAttribute("data-theme", next);
-    try { localStorage.setItem("aith-theme", next); } catch (e) { /* storage blocked */ }
-    paintTheme();
+    swapTheme(function () {
+      root.setAttribute("data-theme", next);
+      try { localStorage.setItem("aith-theme", next); } catch (e) { /* storage blocked */ }
+      paintTheme();
+    });
   });
+  /* v3.8: whole-page cross-fade via the View Transitions API (Chrome/Edge/Android, Safari 18+); colour transitions as fallback */
+  function swapTheme(apply) {
+    if (reduce) return apply();
+    if (doc.startViewTransition) return doc.startViewTransition(apply);
+    root.classList.add("theme-anim"); void root.offsetWidth; apply();
+    clearTimeout(themeBtn._t); themeBtn._t = setTimeout(function () { root.classList.remove("theme-anim"); }, 460);
+  }
   paintTheme();
 
   /* ---------- header, mobile menu, back to top ---------- */
   var hdr = $("hdr"), burger = $("burger"), menu = $("menu"), toTop = $("to-top");
   function setMenu(open) {
-    menu.hidden = !open;
+    /* v3.7: close fades out for 160ms before hiding; open animates in CSS */
+    clearTimeout(menu._t); menu.classList.remove("is-closing");
+    if (open || reduce || menu.hidden) menu.hidden = !open;
+    else { menu.classList.add("is-closing"); menu._t = setTimeout(function () { menu.hidden = true; menu.classList.remove("is-closing"); }, 160); }
     burger.setAttribute("aria-expanded", String(open));
     burger.setAttribute("aria-label", open ? "Close menu" : "Open menu");
     burger.querySelector("use").setAttribute("href", "/icons.svg#i-" + (open ? "x" : "menu"));
   }
-  burger.addEventListener("click", function () { setMenu(menu.hidden); if (!menu.hidden) { var a = menu.querySelector("a"); if (a) a.focus(); } });
+  burger.addEventListener("click", function () { setMenu(menu.hidden || menu.classList.contains("is-closing")); if (!menu.hidden) { var a = menu.querySelector("a"); if (a) a.focus(); } });
   menu.addEventListener("click", function (e) { if (e.target.closest("a")) setMenu(false); });
-  doc.addEventListener("keydown", function (e) { if (e.key === "Escape" && !menu.hidden && !top()) { setMenu(false); burger.focus(); } });
+  doc.addEventListener("keydown", function (e) { if (e.key === "Escape" && !menu.hidden && !menu.classList.contains("is-closing") && !top()) { setMenu(false); burger.focus(); } });
   var ticking = false;
   window.addEventListener("scroll", function () {
     if (ticking) return; ticking = true;
@@ -233,6 +276,8 @@
     else cmp.push(t.n);
     store.set("aith-compare", cmp);
     paintCmp(); syncButtons();
+    replay($("cbar-n"), "is-bump");
+    if (k < 0) replay($("cbar-list").lastElementChild, "is-new");
     if (isOpen($("cmp"))) cmpTable();
     if (k < 0) { toast("Added " + t.n + " to compare (" + cmp.length + " of 4)", "git-compare-arrows"); sfx("add"); }
     return true;
@@ -270,7 +315,7 @@
       row("Pros (from our data)", function (t) { return ul(pros(t), true); }) +
       row("Limitations", function (t) { return t.p === "Paid" ? ul(["No free plan listed"], false) : '<span class="m-unv">Not listed</span>'; }) +
       row("Official site", function (t) { return '<a href="' + esc(t.u) + '" target="_blank" rel="noopener">' + esc(domain(t.u)) + "</a>"; }) +
-      "</tbody></table><p class=\"cmp__note\">Links last checked " + LINK_CHECK + ". India facts verified on official pages " + INDIA_CHECK + ". Platforms and current prices are not in our data: check each official site.</p>";
+      "</tbody></table><p class=\"cmp__note\">Links last checked " + LINK_CHECK + ". India facts verified on official pages, " + INDIA_CHECK + " to 3 Nov 2026. Platforms and current prices are not in our data: check each official site.</p>";
   }
   doc.addEventListener("click", function (e) {
     var b = e.target.closest("[data-cmp-rm]"); if (!b) return;
@@ -311,13 +356,13 @@
         '<div><dt>Platforms</dt><dd class="m-unv">Not verified — check official site</dd></div>' +
       "</dl></section>" +
       '<section class="m-blk" id="m-india"><h3>India availability ' + inBadge(t) + "</h3>" +
-        (x && x.verified ? '<dl class="m-facts">' + (x.made ? "<div><dt>Origin</dt><dd>Made in India</dd></div>" : "") + x.labels.map(function (l) { return "<div><dt>" + esc(l.label) + '</dt><dd>Verified <a class="src" href="' + esc(l.src) + '" target="_blank" rel="noopener">source' + "</a></dd></div>"; }).join("") + '</dl><p class="m-src">Confirmed on official pages, ' + INDIA_CHECK + ".</p>"
+        (x && x.verified ? '<dl class="m-facts">' + (x.made ? "<div><dt>Origin</dt><dd>Made in India</dd></div>" : "") + x.labels.map(function (l) { return "<div><dt>" + esc(l.label) + '</dt><dd>Verified <a class="src" href="' + esc(l.src) + '" target="_blank" rel="noopener">source' + "</a></dd></div>"; }).join("") + '</dl><p class="m-src">Confirmed on official pages, ' + x.date + ".</p>"
           : x && x.na ? '<p class="note">' + icon("info") + "<span>Confirmed not available in India" + (x.na.date ? " (" + esc(x.na.date) + ")" : "") + '. <a class="src" href="' + esc(x.na.src) + '" target="_blank" rel="noopener">Source</a></span></p>'
           : '<p class="note">' + icon("info") + "<span>India availability not verified — check official site. We haven't confirmed INR pricing, UPI, GST invoices or Indian-language support for " + esc(t.n) + "." + (x && x.listed ? " It is in our D2C seller picks." : "") + "</span></p>") +
       "</section>" +
       (alts.length ? '<section class="m-blk"><h3>Alternatives in ' + esc(t.c) + "</h3>" + miniGrid(alts) + "</section>" : "") +
       (sim.length ? '<section class="m-blk"><h3>Similar tools in other categories</h3>' + miniGrid(sim) + "</section>" : "") +
-      '<p class="m-legend"><span>' + icon("circle-check", "i--xs") + "Links checked " + LINK_CHECK + "</span><span>" + icon("badge-check", "i--xs") + "India facts verified " + INDIA_CHECK + '</span><a id="m-report" href="' + esc(reportUrl(t)) + '" target="_blank" rel="noopener">' + "Report a wrong link or price</a></p>";
+      '<p class="m-legend"><span>' + icon("circle-check", "i--xs") + "Links checked " + LINK_CHECK + "</span><span>" + icon("badge-check", "i--xs") + "India facts verified " + (x && x.verified ? x.date : INDIA_CHECK) + '</span><a id="m-report" href="' + esc(reportUrl(t)) + '" target="_blank" rel="noopener">' + "Report a wrong link or price</a></p>";
     var inC = cmp.indexOf(t.n) > -1;
     mFoot.innerHTML = '<a class="btn btn--primary" id="m-visit" href="' + esc(t.u) + '" target="_blank" rel="noopener"><span>Visit<span class="hide-sm"> official site</span></span>' + icon("arrow-up-right", "i--sm") + "</a>" +
       '<button type="button" class="btn btn--icon fav-btn iconbtn" data-fav="' + t.i + '" aria-pressed="' + isSaved(t) + '" aria-label="Save ' + esc(t.n) + '">' + icon("heart") + "</button>" +
@@ -436,6 +481,7 @@
     } else {
       grid.innerHTML = slice.map(function (r) { return card(r.tool, S.q ? r.reasons : null); }).join("");
     }
+    replay(grid, "is-swap");
     $("pg-info").textContent = "Page " + S.page + " of " + pages + " · " + n + (n === 1 ? " tool" : " tools");
     $("pg-prev").disabled = S.page <= 1;
     $("pg-next").disabled = S.page >= pages;
@@ -580,7 +626,7 @@
   var FEATURED = ["ChatGPT", "Claude", "Perplexity", "Cursor", "Gamma", "Midjourney", "ElevenLabs", "Notion AI"];
   var TRENDING = ["Cursor", "Lovable", "NotebookLM", "Kling AI", "Suno", "Bolt.new", "v0", "DeepSeek"];
   var TAB_NOTE = {
-    featured: "Hand-picked starting points in the most-used categories.",
+    featured: "Eight safe starting points, one for each common job.",
     trending: "Editor's picks of fast-moving tools. Chosen by hand; there is no traffic or popularity data behind this list.",
     free: "Tools listed as Free, one per category, in curated order.",
     latest: "The most recent tools appended to the directory. Dates aren't tracked, so none are shown."
@@ -653,8 +699,8 @@
   $("india-list").innerHTML = IN_TOOLS.map(function (t) {
     var x = india(t);
     return '<tr><td><span class="india__tool">' + fav(t, "sm") + "<span>" + esc(t.n) + '<span class="sr-only">, ' + esc(t.c) + '</span></span></span></td><td><span class="india__facts">' +
-      (x.made ? '<span class="badge badge--ok">' + icon("badge-check") + "Made in India</span>" : "") +
-      x.labels.map(function (l) { return '<a href="' + esc(l.src) + '" target="_blank" rel="noopener" aria-label="' + esc(l.label) + ' — source for ' + esc(t.n) + ' (opens in a new tab)"><span class="badge badge--ok">' + icon("badge-check") + esc(l.label) + "</span></a>"; }).join("") +
+      (x.made ? '<span class="badge badge--in">' + icon("badge-check") + "Made in India</span>" : "") +
+      x.labels.map(function (l) { return '<a href="' + esc(l.src) + '" target="_blank" rel="noopener" aria-label="' + esc(l.label) + ' — source for ' + esc(t.n) + ' (opens in a new tab)"><span class="badge badge--in">' + icon("badge-check") + esc(l.label) + "</span></a>"; }).join("") +
       '</span></td><td><button type="button" class="btn btn--sm" data-open="' + t.i + '">Details</button></td></tr>';
   }).join("");
   $("in-count").textContent = String(IN_TOOLS.length);
@@ -681,6 +727,7 @@
             '<div class="rec__acts"><a class="btn btn--sm btn--primary" href="' + esc(t.u) + '" target="_blank" rel="noopener">Visit' + icon("arrow-up-right", "i--xs") + '</a><button type="button" class="btn btn--sm" data-open="' + t.i + '">Details</button><button type="button" class="btn btn--sm btn--ghost" data-cmp="' + t.i + '" aria-pressed="' + (cmp.indexOf(t.n) > -1) + '">' + icon("git-compare-arrows", "i--sm") + "Compare</button></div></div></article>";
         }).join("");
     }
+    replay(fOut, "is-swap");
     var note = $("finder-note").querySelector("span");
     note.textContent = r.notes[0] || "Budget maps to pricing models only: the directory does not hold INR prices. Always confirm plans on the official site.";
     return r;
@@ -745,6 +792,24 @@
   if (tp && BY_SLUG[tp]) openTool(BY_SLUG[tp], qIn);
   if (location.search && /[?&](q|cat|price|india|job|sort|page)=/.test(location.search) && !location.hash) setTimeout(function () { scrollToEl($("tools")); }, 50);
   root.classList.add("is-ready");
+
+  /* v3.6: Apple-style scroll reveal. Only elements that start below the fold get hidden (no flash, works without JS),
+     each fades up once as it enters, siblings in the same batch stagger. Skipped under reduced motion or without IntersectionObserver. */
+  (function reveal(sel) {
+    if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!("IntersectionObserver" in window)) return;
+    var vh = window.innerHeight, els = [].filter.call(document.querySelectorAll(sel), function (el) { return el.getBoundingClientRect().top > vh; });
+    var io = new IntersectionObserver(function (entries) {
+      var k = 0;
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        e.target.style.transitionDelay = Math.min(k++ * 60, 300) + "ms";
+        var t = e.target; t.classList.add("is-in"); io.unobserve(t);
+        setTimeout(function () { t.classList.remove("rv", "is-in"); t.style.transitionDelay = ""; }, 1100); /* hand hover transitions back to the component */
+      });
+    }, { rootMargin: "0px 0px -8% 0px" });
+    els.forEach(function (el) { el.classList.add("rv"); io.observe(el); });
+  })("main .sec .sec__head, #discover-grid > *, .finder__form, .finder__out, #categories .cat, .india__grid > *, #guides .guide, #faq details, .suggest-sec .wrap > *:not(.sec__head)");
   window.AITH = { version: "3.0", state: S, results: results, recommend: function (p) { return F.recommend(IX, p); } };
   if (window.console && console.log) console.log("%cAI Tools Hub%c v3.0\nBuilt by J. Venkata Sai Kumar\nFound a bug? https://github.com/Saikumar8125/AI-TOOLS-HUB/issues", "font:600 15px sans-serif", "color:inherit");
 })();

@@ -1,6 +1,6 @@
 # AI Tools Hub
 
-A curated directory of **585 AI tools in 26 categories**, built for Indian small businesses: shop owners, restaurants, CA firms, creators and D2C brands.
+A curated directory of **583 AI tools in 26 categories**, built for Indian small businesses: shop owners, restaurants, CA firms, creators and D2C brands.
 
 **Live:** https://aitoolshub-in.vercel.app/
 

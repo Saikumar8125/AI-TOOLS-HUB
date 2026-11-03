@@ -2,10 +2,15 @@
    Shared by every page: tokens, base, and components (buttons, fields, chips, badges, cards, sheets, dialogs, toast, skeleton, empty state).
    Page-specific styles live in home.css (home) and pages.css (generated pages, guides, legal pages). */
 
+/* ---------- fonts (v3.4, self-hosted, Latin subset, variable weight, SIL OFL 1.1, from Fontsource) ---------- */
+@font-face { font-family: "Geist"; src: url("/geist.woff2") format("woff2"); font-weight: 100 900; font-style: normal; font-display: swap; }
+@font-face { font-family: "Geist Mono"; src: url("/geist-mono.woff2") format("woff2"); font-weight: 100 900; font-style: normal; font-display: swap; }
+
 /* ---------- tokens ---------- */
 :root {
-  --font: "Geist", "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Geist", ui-sans-serif, system-ui, sans-serif;
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Geist", ui-sans-serif, system-ui, "Segoe UI", Roboto, sans-serif;
+  --mono: ui-monospace, "SF Mono", SFMono-Regular, "Geist Mono", Menlo, monospace;
 
   --t-xs: .75rem; --t-sm: .8125rem; --t-md: .875rem; --t-base: 1rem; --t-lg: 1.125rem; --t-xl: 1.375rem; --t-2xl: 1.75rem;
   --t-3xl: clamp(1.75rem, 1.2rem + 2vw, 2.5rem);
@@ -17,29 +22,31 @@
   --max: 1200px; --gutter: clamp(16px, 4vw, 32px); --tap: 44px; --header-h: 60px;
 
   --ease: cubic-bezier(.23, 1, .32, 1); --ease-in-out: cubic-bezier(.77, 0, .175, 1);
-  --d-fast: 150ms; --d: 220ms; --d-slow: 320ms;
+  --d-fast: 180ms; --d: 240ms; --d-slow: 340ms; --d-press: 120ms;
 
   /* light */
-  --bg: #fafaf9; --bg-2: #f4f4f2; --surface: #ffffff; --surface-2: #f4f4f2; --surface-3: #ebebe8;
-  --line: #e6e6e3; --line-2: #d4d4cf;
-  --text: #111114; --text-2: #55555e; --text-3: #6b6b74;
-  --accent: #3a4de8; --accent-hover: #2c3dd0; --accent-soft: #eceefd; --accent-line: #c5cbf8; --on-accent: #ffffff;
+  --bg: #FAF9F6; --bg-2: #F3F1EC; --surface: #ffffff; --surface-2: #F3F1EC; --surface-3: #EAE7E0;
+  --line: #E6E2D9; --line-2: #D3CEC2;
+  --text: #101418; --text-2: #4F565C; --text-3: #5F666C;
+  --accent: #0E7C66; --accent-hover: #0A6352; --accent-soft: #E3F1EC; --accent-line: #B5D9CD; --on-accent: #ffffff;
   --ok: #0f7a45; --ok-soft: #e6f4ec; --warn: #9a5b00; --warn-soft: #fbf1e1; --danger: #b42318; --danger-soft: #fdecea;
-  --free: #0f7a45; --free-soft: #e6f4ec; --freemium: #3a4de8; --freemium-soft: #eceefd; --paid: #6b4a00; --paid-soft: #f7efdc;
-  --scrim: rgba(17, 17, 20, .42);
-  --sh-1: 0 1px 2px rgba(17, 17, 20, .06);
-  --sh-2: 0 4px 12px -2px rgba(17, 17, 20, .08), 0 1px 3px rgba(17, 17, 20, .06);
-  --sh-3: 0 18px 48px -12px rgba(17, 17, 20, .22), 0 4px 12px rgba(17, 17, 20, .06);
+  --free: #0f7a45; --free-soft: #e6f4ec; --freemium: #0E6A7C; --freemium-soft: #E2EFF2;
+  --in: #A64B08; --in-soft: #FBEEE3; --in-line: #EBC9AC; --paid: #6b4a00; --paid-soft: #f7efdc;
+  --scrim: rgba(16, 20, 24, .42);
+  --sh-1: 0 1px 2px rgba(16, 20, 24, .05);
+  --sh-2: 0 1px 2px rgba(16, 20, 24, .05), 0 4px 10px -4px rgba(16, 20, 24, .08);
+  --sh-3: 0 16px 40px -16px rgba(16, 20, 24, .22), 0 2px 6px rgba(16, 20, 24, .06);
   --focus: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent);
   color-scheme: light;
 }
-html[data-theme="dark"] {
-  --bg: #0d0d10; --bg-2: #111115; --surface: #141418; --surface-2: #1b1b20; --surface-3: #24242a;
-  --line: #26262c; --line-2: #34343b;
-  --text: #ededf0; --text-2: #a1a1aa; --text-3: #8c8c96;
-  --accent: #8e9bff; --accent-hover: #a9b3ff; --accent-soft: #1d2042; --accent-line: #3a4180; --on-accent: #0d0d10;
+html[data-theme="dark"] { /* v3.7 OLED: page, header, footer and sections are pure #000 via --bg/--bg-2; cards lift to --surface */
+  --bg: #000000; --bg-2: #000000; --surface: #101014; --surface-2: #17171C; --surface-3: #202027;
+  --line: #25252B; --line-2: #34343C;
+  --text: #EEEDEA; --text-2: #A3A9AD; --text-3: #8F969B;
+  --accent: #4FC1A4; --accent-hover: #6FD2B8; --accent-soft: #12302A; --accent-line: #1F5A4D; --on-accent: #000000;
   --ok: #4ade80; --ok-soft: #0f2a1b; --warn: #f5b454; --warn-soft: #2d2210; --danger: #ff8a80; --danger-soft: #2e1513;
-  --free: #4ade80; --free-soft: #0f2a1b; --freemium: #8e9bff; --freemium-soft: #1d2042; --paid: #f5c46b; --paid-soft: #2b2312;
+  --free: #4ade80; --free-soft: #0f2a1b; --freemium: #6CC3D4; --freemium-soft: #12292E;
+  --in: #F0A35E; --in-soft: #2E1E10; --in-line: #5A3A1E; --paid: #f5c46b; --paid-soft: #2b2312;
   --scrim: rgba(0, 0, 0, .6);
   --sh-1: 0 1px 2px rgba(0, 0, 0, .4);
   --sh-2: 0 6px 16px -4px rgba(0, 0, 0, .5), 0 1px 3px rgba(0, 0, 0, .4);
@@ -195,6 +202,7 @@ html[data-theme="dark"] .seg button[aria-pressed="true"] { background: var(--sur
 .badge--freemium { background: var(--freemium-soft); color: var(--freemium); }
 .badge--paid { background: var(--paid-soft); color: var(--paid); }
 .badge--ok { background: var(--ok-soft); color: var(--ok); }
+.badge--in { background: var(--in-soft); color: var(--in); box-shadow: inset 0 0 0 1px var(--in-line); }
 .badge--line { background: none; border: 1px solid var(--line); }
 .badge--muted { color: var(--text-2); font-weight: 500; }
 .badge--no { background: var(--danger-soft); color: var(--danger); }
@@ -329,3 +337,79 @@ body.is-locked { overflow: hidden; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
   .credit__name { animation: none; background-position: 0 0; }
 }
+
+/* ---------- v3.4 Peacock & Marigold: type roles ---------- */
+h1, h2, .sec__head h2, .display { font-family: var(--display); font-weight: 600; letter-spacing: -.025em; }
+h3, h4 { font-family: var(--font); font-weight: 600; letter-spacing: -.015em; }
+.brand b { font-family: var(--display); font-weight: 700; letter-spacing: -.02em; }
+.badge, .eyebrow, .count, .meta, time, kbd, code { font-family: var(--mono); }
+.badge { font-size: .6875rem; font-weight: 500; letter-spacing: .01em; }
+
+/* ---------- v3.4 Peacock & Marigold: components (overrides only; markup unchanged) ---------- */
+.hdr { background: color-mix(in srgb, var(--bg) 94%, transparent); border-bottom: 1px solid var(--line); }
+html[data-theme="dark"] .brand img { box-shadow: 0 0 0 1px var(--line-2); }
+.btn { border-radius: 10px; font-weight: 500; letter-spacing: -.005em; }
+.btn--primary { box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .12); }
+.chip { font-weight: 500; }
+.chip small, .btn .count, .hdr__badge { font-family: var(--mono); }
+.search { border-color: var(--line-2); }
+.search:focus-within { box-shadow: 0 0 0 3px var(--accent-soft); }
+.tc { border-color: var(--line); }
+.tc__name { font-family: var(--display); font-size: 1.0625rem; letter-spacing: -.02em; }
+@media (hover: hover) { .tc:hover { border-color: var(--accent-line); box-shadow: var(--sh-1); transform: translateY(-1px); } }
+.sec__head h2 { letter-spacing: -.03em; }
+.sec__head p, .hero__sub { color: var(--text-2); }
+:focus-visible { outline-color: var(--accent); }
+.chip--rm, .chip--rm:hover, .btn.is-on, .sg .tag { color: var(--accent-hover); }
+html[data-theme="dark"] .chip--rm, html[data-theme="dark"] .btn.is-on, html[data-theme="dark"] .sg .tag { color: var(--accent); }
+
+/* ---------- v3.5 motion ---------- */
+/* theme toggle: colours cross-fade for 300ms only while switching (class added by JS, skipped under reduced motion) */
+html.theme-anim, html.theme-anim *, html.theme-anim *::before, html.theme-anim *::after {
+  transition: background-color 420ms var(--ease), border-color 420ms var(--ease), color 420ms var(--ease), fill 420ms var(--ease) !important;
+}
+/* press feedback: same restrained scale on every pressable control */
+.chip:active, .btn:active, .seg button:active { transform: scale(.97); }
+.chip[aria-pressed="true"], .chip.is-on { transition-duration: var(--d); }
+/* v3.6 scroll reveal (classes added by JS only for below-the-fold elements; reduced motion skips it in JS) */
+html .rv { opacity: 0; transform: translateY(24px); transition: opacity 700ms cubic-bezier(.16, 1, .3, 1), transform 700ms cubic-bezier(.16, 1, .3, 1); }
+html .rv.is-in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce), print { html .rv { opacity: 1; transform: none; } }
+
+
+/* ---------- v3.8 theme cross-fade + button feel ---------- */
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: 420ms; animation-timing-function: cubic-bezier(.4, 0, .2, 1); }
+@media (prefers-reduced-motion: reduce) { ::view-transition-old(root), ::view-transition-new(root) { animation: none; } }
+
+/* every pressable control: colours ease, press is quick and settles back softly */
+.btn, .chip, .seg button, .tabs [role="tab"], .hdr__nav a, .toplinks > a, .menu a, .switch__track {
+  transition: background-color var(--d) var(--ease), border-color var(--d) var(--ease), color var(--d) var(--ease), box-shadow var(--d) var(--ease), transform var(--d) var(--ease);
+}
+.btn:active, .chip:active, .seg button:active, .tabs [role="tab"]:active, .menu a:active { transform: scale(.97); transition-duration: var(--d-press); }
+.btn .i, .chip .i { transition: transform var(--d) var(--ease); }
+@media (hover: hover) {
+  .btn--primary:hover { box-shadow: 0 4px 14px -6px color-mix(in srgb, var(--accent) 60%, transparent); }
+  .btn:hover .i[class*="arrow"], .btn:hover svg:last-child:not(:first-child) { transform: translate(1px, -1px); }
+}
+
+/* v3.10 text + number motion (no-preference only; JS adds the spans) */
+.tw { display: inline-block; white-space: pre; }
+@media (prefers-reduced-motion: no-preference) {
+  .js-words .tw { opacity: 0; filter: blur(8px); transform: translateY(.35em); animation: wordIn 720ms cubic-bezier(.2,.7,.2,1) forwards; animation-delay: calc(var(--i) * 55ms + 80ms); }
+}
+@keyframes wordIn { to { opacity: 1; filter: blur(0); transform: none; } }
+[data-count] { font-variant-numeric: tabular-nums; }
+
+/* v3.11 Apple-style motion: translucent header material, scroll-linked hero, sheets that materialize.
+   All motion is gated on no-preference; reduced transparency gets a solid header. */
+html .hdr { background: color-mix(in srgb, var(--bg) 78%, transparent); -webkit-backdrop-filter: saturate(180%) blur(20px); backdrop-filter: saturate(180%) blur(20px); }
+@media (prefers-reduced-transparency: reduce) { html .hdr { background: var(--bg); -webkit-backdrop-filter: none; backdrop-filter: none; } }
+.sheet { transition: transform 420ms cubic-bezier(.32,.72,0,1), opacity 260ms var(--ease); }
+.dialog { transform: translateY(10px) scale(.97); filter: blur(4px); transition: transform 380ms cubic-bezier(.32,.72,0,1), opacity 220ms var(--ease), filter 260ms var(--ease); }
+.ov.is-open .dialog { filter: none; }
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: scroll()) {
+    .hero__main { transform-origin: 50% 0; animation: heroAway linear both; animation-timeline: scroll(root); animation-range: 0 80vh; }
+  }
+}
+@keyframes heroAway { to { opacity: .4; transform: scale(.955) translateY(-16px); } }

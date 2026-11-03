@@ -5,15 +5,15 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <script>(function(r){var t=null;try{t=localStorage.getItem("aith-theme")}catch(e){}if(t!=="light"&&t!=="dark")t=window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";r.setAttribute("data-theme",t)})(document.documentElement)</script>
 <title>Privacy Policy · AI Tools Hub</title>
-<meta name="description" content="What AI Tools Hub does and does not collect: no accounts, no analytics, localStorage for saved tools, and the third parties your browser contacts (Vercel, Google Fonts, Google favicons, GitHub).">
+<meta name="description" content="What AI Tools Hub does and does not collect: no accounts, no analytics, localStorage for saved tools, and the third parties your browser contacts (Vercel, Google favicons, GitHub).">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://aitoolshub-in.vercel.app/privacy.html">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta name="theme-color" content="#fafaf9">
+<meta name="theme-color" content="#FAF9F6">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="AI Tools Hub">
 <meta property="og:title" content="Privacy Policy · AI Tools Hub">
-<meta property="og:description" content="What AI Tools Hub does and does not collect: no accounts, no analytics, localStorage for saved tools, and the third parties your browser contacts (Vercel, Google Fonts, Google favicons, GitHub).">
+<meta property="og:description" content="What AI Tools Hub does and does not collect: no accounts, no analytics, localStorage for saved tools, and the third parties your browser contacts (Vercel, Google favicons, GitHub).">
 <meta property="og:url" content="https://aitoolshub-in.vercel.app/privacy.html">
 <meta property="og:image" content="https://aitoolshub-in.vercel.app/og-image.png">
 <meta property="og:image:width" content="1200">
@@ -21,13 +21,11 @@
 <meta property="og:locale" content="en_IN">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Privacy Policy · AI Tools Hub">
-<meta name="twitter:description" content="What AI Tools Hub does and does not collect: no accounts, no analytics, localStorage for saved tools, and the third parties your browser contacts (Vercel, Google Fonts, Google favicons, GitHub).">
+<meta name="twitter:description" content="What AI Tools Hub does and does not collect: no accounts, no analytics, localStorage for saved tools, and the third parties your browser contacts (Vercel, Google favicons, GitHub).">
 <meta name="twitter:image" content="https://aitoolshub-in.vercel.app/og-image.png">
 <link rel="icon" href="/icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&display=swap">
+<link rel="preload" href="/geist.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/ds.css">
 <link rel="stylesheet" href="/pages.css">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Privacy Policy","url":"https://aitoolshub-in.vercel.app/privacy.html","dateModified":"2026-11-02","isPartOf":{"@type":"WebSite","name":"AI Tools Hub","url":"https://aitoolshub-in.vercel.app/"}}</script>
@@ -50,7 +48,7 @@
 <li>No accounts, no sign-up, no database and no forms that send anything to this site.</li>
 <li>No analytics, advertising or session-recording scripts are present in the site's code.</li>
 <li>Your theme, saved tools, compare picks and recently viewed tools stay in your own browser (localStorage).</li>
-<li>Your browser does contact a few other services to show the site: Vercel (our host), Google Fonts and Google's favicon service. They receive basic technical data such as your IP address.</li>
+<li>Your browser does contact a few other services to show the site: Vercel (our host) and Google's favicon service. They receive basic technical data such as your IP address.</li>
 <li>Suggestions and problem reports open GitHub, where you choose whether to post. Posts there are public.</li>
 </ul>
 </section>
@@ -95,7 +93,7 @@
 <p>Your browser contacts these services when you use the site. Each receives standard technical data that any web request carries: your IP address, the address requested, the time, and your browser's user-agent. Each handles that data under its own policy, which we do not control.</p>
 <ul>
 <li><strong>Vercel</strong> hosts and delivers the site, including the short interface sound files (<code>click.mp3</code>, <code>open.mp3</code>, <code>add.mp3</code>, <code>success.mp3</code>), which load from this site itself and only after you turn sound on. It may record request data in its logs, under its own retention rules. <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener">Vercel privacy policy</a>.</li>
-<li><strong>Google Fonts</strong> (<code>fonts.googleapis.com</code>, <code>fonts.gstatic.com</code>) supplies the Geist font. Google says the Fonts API does not set or log cookies and that the requests include your IP address, user-agent and the referring page. <a href="https://developers.google.com/fonts/faq/privacy" target="_blank" rel="noopener">Google Fonts privacy FAQ</a>.</li>
+<li><strong>Fonts</strong>: Apple devices use their built-in system font (San Francisco). Other devices use Geist and Geist Mono, served from this site itself, so no font request goes to a third party.</li>
 <li><strong>Google favicon service</strong> (<code>www.google.com/s2/favicons</code>) supplies the small tool logos. Each request names the tool's website domain, so Google can see which tool logos your browser loaded. Our pages ask the browser to send no referrer with these requests. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google privacy policy</a>.</li>
 <li><strong>GitHub</strong> is contacted only when you follow a GitHub link, such as Suggest a tool, Report a problem or Source on GitHub.</li>
 <li><strong>Tool websites</strong>: when you press Visit, you leave this site. Your browser may tell that site you came from <code>aitoolshub-in.vercel.app</code> (the site name only, under our <code>strict-origin-when-cross-origin</code> referrer setting). That site's own privacy policy then applies.</li>
@@ -113,7 +111,7 @@
 </ul>
 </section>
 <section id="security" aria-labelledby="security-h"><h2 id="security-h">Security</h2>
-<p>The site is served only over HTTPS, and the host sends a Strict-Transport-Security header. The site handles no passwords, payments or personal records. It loads no third-party scripts: the only files from other services are the Google Fonts stylesheet and font files and the tool logos, and the logos are requested without a referrer. No website can promise perfect security, but keeping no personal data is the main safeguard here.</p>
+<p>The site is served only over HTTPS, and the host sends a Strict-Transport-Security header. The site handles no passwords, payments or personal records. It loads no third-party scripts: the only files from other services are the tool logos, and the logos are requested without a referrer. No website can promise perfect security, but keeping no personal data is the main safeguard here.</p>
 </section>
 <section id="rights" aria-labelledby="rights-h"><h2 id="rights-h">Your choices and rights</h2>
 <p>You can use the whole site without giving any personal information. You can clear stored settings at any time, block third-party requests in your browser, and decide whether to post anything on GitHub.</p>
@@ -142,7 +140,7 @@
 </main>
 <footer class="foot"><div class="wrap">
 <div class="foot__grid">
-<div><a class="brand" href="/" aria-label="AI Tools Hub home"><img src="/icon.svg" width="28" height="28" alt="" loading="lazy"><b>AI Tools Hub</b></a><p>585 hand-picked AI tools in 26 categories, curated for Indian small businesses. Every link goes to the official site.</p></div>
+<div><a class="brand" href="/" aria-label="AI Tools Hub home"><img src="/icon.svg" width="28" height="28" alt="" loading="lazy"><b>AI Tools Hub</b></a><p>583 AI tools in 26 categories, curated for Indian small businesses. Every link goes to the official site.</p></div>
 <nav aria-label="Seller guides"><h2 class="foot__h">For Indian sellers</h2><ul><li><a href="/d2c.html">D2C tools for Indian sellers</a></li><li><a href="/guide-amazon.html">Amazon India sellers</a></li><li><a href="/guide-shopify.html">Shopify D2C brands</a></li><li><a href="/guide-whatsapp.html">WhatsApp tools compared</a></li></ul></nav>
 <nav aria-label="Browse"><h2 class="foot__h">Browse</h2><ul><li><a href="/#tools">Directory</a></li><li><a href="/#finder">Tool Finder</a></li><li><a href="/categories">All categories</a></li><li><a href="/all-tools">All tools A–Z</a></li><li><a href="/guides">All 21 guides</a></li></ul></nav>
 <nav class="foot__legal" aria-label="Legal"><h2 class="foot__h">Legal</h2><ul><li><a href="/privacy.html" aria-current="page">Privacy Policy</a></li><li><a href="/terms.html">Terms &amp; Conditions</a></li><li><a href="/cookies.html">Cookie Policy</a></li><li><a href="/copyright.html">Copyright &amp; Trademarks</a></li><li><a href="/disclaimer.html">Third-Party Disclaimer</a></li></ul></nav>

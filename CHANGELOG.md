@@ -1,5 +1,11 @@
 # Changelog
 
+## v3.12 · 3 Nov 2026
+- New logo: magnifier over a tool grid, in the site's teal, paper and marigold. New app icons and share image (og-image.png).
+- India facts checked on official pages for 35 more popular tools; 35 tools are now Verified for India (was 10). Each tool shows its own check date.
+- Removed 2 shut-down tools: Lovo (company liquidated May 2026) and Hashtagify (offline since 2024). Their old pages 301 to their category (vercel.json). Now 583 tools.
+- Fixed links: Paper Digest (paperdigest.org), Skybox AI (blockadelabs.com), Summarize.tech (www).
+
 ## v3.2.2 · 2 Nov 2026
 - Contact & Grievances page (`contact.html`) removed at the owner's request, with its footer, related-page and sitemap links. Privacy and Terms keep their own Contact sections with placeholders; a working contact channel is still needed before public launch.
 

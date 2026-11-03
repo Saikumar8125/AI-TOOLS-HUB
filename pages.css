@@ -266,3 +266,12 @@ html.pal-open { overflow: hidden; }
 .panel--sp { margin-top: 16px; }
 .report { margin-top: 12px; }
 .more { margin-top: 16px; }
+
+/* ---------- v3.4 Peacock & Marigold ---------- */
+.card:hover { border-color: var(--accent-line); box-shadow: none; }
+.crumbs { font-family: var(--mono); font-size: var(--t-xs); }
+/* v3.5 motion: nav active/hover state eases; card hover matches home tool cards */
+.toplinks > a { transition: color var(--d-fast) var(--ease), background-color var(--d-fast) var(--ease); }
+.toplinks > a[aria-current="page"] { background: var(--surface-2); }
+.card { transition: border-color var(--d-fast) var(--ease), box-shadow var(--d) var(--ease), transform var(--d) var(--ease); }
+@media (hover: hover) { .card:hover { transform: translateY(-1px); box-shadow: var(--sh-1); } }

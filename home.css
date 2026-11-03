@@ -375,3 +375,55 @@ body.has-cbar .totop { bottom: 84px; }
 html:not(.js) .tc--sk { display: none; }
 
 .m-src { margin-top: 8px; font-size: var(--t-xs); color: var(--text-2); }
+
+/* ---------- v3.4 Peacock & Marigold ---------- */
+.hero__title { font-family: var(--display); font-weight: 650; letter-spacing: -.04em; line-height: 1; }
+.hero__facts, .dir__count, .hero__try-l, .cat small, .cat__c { font-family: var(--mono); font-size: var(--t-xs); letter-spacing: .01em; }
+.hero__facts b, .dir__count b { font-family: var(--mono); font-weight: 600; }
+.totd { box-shadow: none; }
+.totd__name, .india__card-t { font-family: var(--display); }
+.cat:hover, .guide:hover { border-color: var(--accent-line); box-shadow: none; }
+.india__card { background: var(--text); }
+
+/* ---------- v3.5 motion (transform/opacity only; the global reduced-motion rule in ds.css still applies) ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  /* hero: one staggered fade-up on load, no observer needed (above the fold) */
+  .hero__main > :not(.hero__title), .totd { animation: heroIn 560ms var(--ease) both; }
+  .hero__main > :nth-child(2) { animation-delay: 60ms; }
+  .hero__main > :nth-child(3) { animation-delay: 120ms; }
+  .hero__main > :nth-child(4) { animation-delay: 170ms; }
+  .hero__main > :nth-child(n+5) { animation-delay: 220ms; }
+  .totd { animation-delay: 260ms; }
+}
+@keyframes heroIn { from { opacity: 0; transform: translateY(10px); } }
+
+/* directory results: quick cross-fade on filter/search change (opacity only, so typing never jumps) */
+#grid.is-swap > * { animation: gridIn 180ms var(--ease) both; }
+@keyframes gridIn { from { opacity: 0; } }
+
+/* finder: ranked results reveal top-down */
+#finder-results.is-swap > * { animation: fadeUp var(--d-slow) var(--ease) both; }
+#finder-results.is-swap > :nth-child(2) { animation-delay: 40ms; }
+#finder-results.is-swap > :nth-child(3) { animation-delay: 80ms; }
+#finder-results.is-swap > :nth-child(4) { animation-delay: 120ms; }
+#finder-results.is-swap > :nth-child(n+5) { animation-delay: 160ms; }
+
+/* compare bar: count bumps, newest logo pops in */
+#cbar-n { display: inline-block; }
+#cbar-n.is-bump { animation: bump var(--d-slow) var(--ease); }
+#cbar-list > .is-new { animation: pop var(--d) var(--ease); }
+
+/* search suggestions: hover/keyboard highlight eases instead of snapping */
+.suggest li[role="option"], .pal__list li[role="option"] { transition: background-color var(--d-fast) var(--ease); }
+
+/* header nav: active state eases in */
+.hdr__nav a[aria-current="page"] { color: var(--text); background: var(--surface-2); }
+.tabs [role="tab"] { transition: background-color var(--d-fast) var(--ease), color var(--d-fast) var(--ease), box-shadow var(--d-fast) var(--ease); }
+
+/* v3.7 mobile menu: slides down on open, fades up on close (JS adds .is-closing) */
+@media (prefers-reduced-motion: no-preference) {
+  .menu:not([hidden]) { animation: menuIn 200ms var(--ease) both; }
+  .menu.is-closing { animation: menuOut 160ms ease-out both; }
+}
+@keyframes menuIn { from { opacity: 0; transform: translateY(-6px); } }
+@keyframes menuOut { to { opacity: 0; transform: translateY(-6px); } }

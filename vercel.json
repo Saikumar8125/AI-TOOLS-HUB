@@ -26,5 +26,17 @@
         }
       ]
     }
+  ],
+  "redirects": [
+    {
+      "source": "/tools/lovo",
+      "destination": "/category/audio",
+      "permanent": true
+    },
+    {
+      "source": "/tools/hashtagify",
+      "destination": "/category/marketing",
+      "permanent": true
+    }
   ]
 }
