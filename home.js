@@ -194,7 +194,7 @@
   /* ---------- header, mobile menu, back to top ---------- */
   var hdr = $("hdr"), burger = $("burger"), menu = $("menu"), toTop = $("to-top");
   function setMenu(open) {
-    /* v3.13: menu grows from 0 height (page content slides down with it), links stagger in, icon spins between menu and x */
+    /* v3.13: menu grows from 0 height (page content slides down with it), links stagger in. v3.14: icon morph is CSS */
     var was = !menu.hidden && !menu.classList.contains("is-closing");
     if (open === was) return;
     clearTimeout(menu._t);
@@ -204,11 +204,8 @@
     menu.hidden = false;
     burger.setAttribute("aria-expanded", String(open));
     burger.setAttribute("aria-label", open ? "Close menu" : "Open menu");
-    var use = burger.querySelector("use"), ic = use.parentNode;
-    use.setAttribute("href", "/icons.svg#i-" + (open ? "x" : "menu"));
-    sfx(open ? "open" : "click");
+    sfx(open ? "menu-open" : "menu-close"); // the three-line icon morphs to x in CSS ([aria-expanded])
     if (reduce || !menu.animate) { menu.hidden = !open; menu.classList.remove("is-closing"); return; }
-    ic.animate([{ transform: "rotate(" + (open ? -90 : 90) + "deg) scale(.6)", opacity: 0 }, { transform: "none", opacity: 1 }], { duration: 260, easing: "cubic-bezier(.23, 1, .32, 1)" });
     var to = open ? menu.scrollHeight : 0;
     menu.style.overflow = "hidden";
     var a = menu.animate([{ height: from + "px", opacity: open ? 0.4 : 1 }, { height: to + "px", opacity: open ? 1 : 0 }],

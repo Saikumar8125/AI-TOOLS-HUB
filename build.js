@@ -331,7 +331,7 @@ for (const f of fs.readdirSync(__dirname)) {
   if (fs.statSync(src).isFile()) fs.copyFileSync(src, path.join(OUT, f));
 }
 // v3.2.1: sound files (click/open/add/success.mp3) sit flat in the repo root, so the loop above copies them.
-for (const f of ["click.mp3", "open.mp3", "add.mp3", "success.mp3"]) if (!fs.existsSync(path.join(OUT, f))) { console.error("Missing sound file: " + f); process.exit(1); }
+for (const f of ["click", "open", "add", "success", "tap", "select", "switch", "toggle", "menu-open", "menu-close", "expand", "collapse"].map((n) => n + ".mp3")) if (!fs.existsSync(path.join(OUT, f))) { console.error("Missing sound file: " + f); process.exit(1); }
 // Home page counts come from data.js, so the static HTML (what crawlers and no-JS visitors see) never drifts.
 {
   const n = { total: TOOLS.length, cats: CATS.length, Free: 0, Freemium: 0 };

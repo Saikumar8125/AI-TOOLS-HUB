@@ -420,4 +420,12 @@ html:not(.js) .tc--sk { display: none; }
 .hdr__nav a[aria-current="page"] { color: var(--text); background: var(--surface-2); }
 .tabs [role="tab"] { transition: background-color var(--d-fast) var(--ease), color var(--d-fast) var(--ease), box-shadow var(--d-fast) var(--ease); }
 
-/* v3.13 mobile menu: height, link stagger and icon spin are driven from home.js (Web Animations), reduced motion snaps */
+/* v3.13 mobile menu: height and link stagger are driven from home.js (Web Animations), reduced motion snaps */
+/* v3.14 menu button: three lines morph into an x (middle line shrinks away, outer lines meet and rotate) */
+.burger { position: relative; display: block; width: 18px; height: 14px; }
+.burger i { position: absolute; left: 0; width: 18px; height: 2px; border-radius: 2px; background: currentColor; transition: transform 320ms cubic-bezier(.23, 1, .32, 1), opacity 200ms cubic-bezier(.23, 1, .32, 1); }
+.burger i:nth-child(1) { top: 0; } .burger i:nth-child(2) { top: 6px; } .burger i:nth-child(3) { top: 12px; }
+.hdr__burger[aria-expanded="true"] .burger i:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.hdr__burger[aria-expanded="true"] .burger i:nth-child(2) { opacity: 0; transform: scaleX(.2); }
+.hdr__burger[aria-expanded="true"] .burger i:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+@media (prefers-reduced-motion: reduce) { .burger i { transition: none; } }

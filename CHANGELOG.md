@@ -1,5 +1,9 @@
 # Changelog
 
+## v3.14 · 3 Nov 2026
+- Different sounds for different controls (when sound is on): primary buttons click, other buttons tap, chips select, tabs switch, theme and sound buttons toggle, FAQ expand and collapse, menu open and close. Eight new Kenney CC0 sounds (see SFX-LICENSES.md); build.js checks all twelve.
+- Menu button: the three lines now morph into an x and back (CSS, follows aria-expanded), replacing the instant icon swap.
+
 ## v3.13 · 3 Nov 2026
 - FAQ ("Questions, answered" and guide FAQs): answers open and close smoothly (height eases, text fades in) instead of snapping, with the plus turning to an x. `sfx.js` handles every `<details>`.
 - Mobile menu: grows open from the header so the page slides down with it, links stagger in, and the menu icon spins to x; closing reverses. A tap mid-animation reverses from where it is.
