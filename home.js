@@ -8,7 +8,7 @@
   var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
   /* v3.5: restart a one-shot CSS animation class (no-op under reduced motion) */
   function replay(el, cls) { if (!el || reduce) return; el.classList.remove(cls); void el.offsetWidth; el.classList.add(cls); }
-  var ISSUES = "https://github.com/Saikumar8125/AI-TOOLS-HUB/issues/new";
+  var ISSUES = "mailto:aitoolshub.support@gmail.com";
   var SITE = "https://aitoolshub-in.vercel.app";
   /* v3.10: hero headline words blur in; stat numbers count up once when seen. Both skipped under reduced motion. */
   (function () {
@@ -97,7 +97,7 @@
   function vBadge(t) { return inBadge(t, true); }
   function reportUrl(t) {
     var body = "Tool: " + t.n + "\nListed link: " + t.u + "\nListed pricing: " + (t.p || "") + "\nPage: " + SITE + "/tools/" + SLUG[t.n] + "\n\nWhat is wrong (link / pricing / other):\nWhat it should be (with official source link):\n";
-    return ISSUES + "?title=" + encodeURIComponent("Problem report: " + t.n) + "&body=" + encodeURIComponent(body);
+    return ISSUES + "?subject=" + encodeURIComponent("Problem report: " + t.n) + "&body=" + encodeURIComponent(body);
   }
   var store = {
     get: function (k, fb) { try { var v = JSON.parse(localStorage.getItem(k) || "null"); return v == null ? fb : v; } catch (e) { return fb; } },
@@ -376,7 +376,7 @@
       "</section>" +
       (alts.length ? '<section class="m-blk"><h3>Alternatives in ' + esc(t.c) + "</h3>" + miniGrid(alts) + "</section>" : "") +
       (sim.length ? '<section class="m-blk"><h3>Similar tools in other categories</h3>' + miniGrid(sim) + "</section>" : "") +
-      '<p class="m-legend"><span>' + icon("circle-check", "i--xs") + "Links checked " + LINK_CHECK + "</span><span>" + icon("badge-check", "i--xs") + "India facts verified " + (x && x.verified ? x.date : INDIA_CHECK) + '</span><a id="m-report" href="' + esc(reportUrl(t)) + '" target="_blank" rel="noopener">' + "Report a wrong link or price</a></p>";
+      '<p class="m-legend"><span>' + icon("circle-check", "i--xs") + "Links checked " + LINK_CHECK + "</span><span>" + icon("badge-check", "i--xs") + "India facts verified " + (x && x.verified ? x.date : INDIA_CHECK) + '</span><a id="m-report" href="' + esc(reportUrl(t)) + '">' + "Report a wrong link or price</a></p>";
     var inC = cmp.indexOf(t.n) > -1;
     mFoot.innerHTML = '<a class="btn btn--primary" id="m-visit" href="' + esc(t.u) + '" target="_blank" rel="noopener"><span>Visit<span class="hide-sm"> official site</span></span>' + icon("arrow-up-right", "i--sm") + "</a>" +
       '<button type="button" class="btn btn--icon fav-btn iconbtn" data-fav="' + t.i + '" aria-pressed="' + isSaved(t) + '" aria-label="Save ' + esc(t.n) + '">' + icon("heart") + "</button>" +
@@ -577,7 +577,7 @@
     { t: "All categories", d: CATS.length + " categories", ico: "blocks", go: "#categories" },
     { t: "D2C tools for Indian sellers", d: "Shopify, Amazon, WhatsApp, COD and GST", ico: "store", href: "d2c.html" },
     { t: "Guides for Indian businesses", d: "21 guides", ico: "book-open", href: "/guides" },
-    { t: "Suggest a tool", d: "Opens a prefilled GitHub issue", ico: "plus", go: "#suggest" }
+    { t: "Suggest a tool", d: "Opens a prefilled email", ico: "plus", go: "#suggest" }
   ];
   function pRender() {
     var q = pq.value.trim(), html = "";
@@ -751,7 +751,7 @@
   [].forEach.call(doc.querySelectorAll("[data-eg]"), function (b) { b.addEventListener("click", function () { fTask.value = b.getAttribute("data-eg"); runFinder(); }); });
   fTask.addEventListener("keydown", function (e) { if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) { e.preventDefault(); ff.requestSubmit ? ff.requestSubmit() : runFinder(); } });
 
-  /* ---------- suggest a tool (validated, then a prefilled GitHub issue) ---------- */
+  /* ---------- suggest a tool (validated, then a prefilled email to aitoolshub.support@gmail.com) ---------- */
   var sf = $("submit-form"), sCat = $("s-cat");
   sCat.innerHTML = '<option value="">Choose a category</option>' + CATS.map(function (c) { return '<option value="' + esc(c) + '">' + esc(c) + "</option>"; }).join("") + '<option value="Other / new category">Other / new category</option>';
   var HOSTS = {}; TOOLS.forEach(function (t) { var d = domain(t.u); if (d) HOSTS[d + new URL(t.u).pathname.replace(/\/$/, "")] = t; });
@@ -773,7 +773,7 @@
     return { ok: ok, first: first };
   }
   function sBody(v) { return "Tool name: " + v.name + "\nOfficial website: " + v.url + "\nCategory: " + v.cat + "\nPricing: " + v.pricing + "\nWhat it does: " + v.what + "\nWhy it suits Indian businesses: " + (v.why || "Not given") + "\n\nSubmitted with the Suggest a tool form on " + SITE + "/\n"; }
-  function sUrl(v) { return ISSUES + "?title=" + encodeURIComponent("Tool suggestion: " + v.name) + "&body=" + encodeURIComponent(sBody(v)); }
+  function sUrl(v) { return ISSUES + "?subject=" + encodeURIComponent("Tool suggestion: " + v.name) + "&body=" + encodeURIComponent(sBody(v)); }
   function copyText(s) {
     if (navigator.clipboard && navigator.clipboard.writeText) return navigator.clipboard.writeText(s).then(function () { return true; }, function () { return legacyCopy(s); });
     return Promise.resolve(legacyCopy(s));
@@ -785,14 +785,14 @@
     if (!r.ok) { $(r.first).focus(); return; }
     var url = sUrl(v);
     sf.setAttribute("data-issue-url", url);
-    $("submit-out").innerHTML = '<div class="sform__ok"><b>' + icon("circle-check") + "Your GitHub issue is ready</b><span>A new tab opens with everything filled in. Review it and press Submit new issue on GitHub. If the tab didn't open, use the link below.</span>" +
-      '<span><a href="' + esc(url) + '" target="_blank" rel="noopener" id="s-issue-link">Open the prefilled issue on GitHub</a></span></div>';
-    window.open(url, "_blank", "noopener");
+    $("submit-out").innerHTML = '<div class="sform__ok"><b>' + icon("circle-check") + "Your email is ready</b><span>Your email app opens with everything filled in. Review it and press Send. If it didn't open, use the link below or copy the details and email aitoolshub.support@gmail.com.</span>" +
+      '<span><a href="' + esc(url) + '" id="s-issue-link">Open the prefilled email</a></span></div>';
+    window.location.href = url;
   });
   $("s-copy").addEventListener("click", function () {
     var v = sValues();
     if (!v.name && !v.url && !v.what) { toast("Fill in the form first", "info"); $("s-name").focus(); return; }
-    copyText("Tool suggestion: " + (v.name || "") + "\n\n" + sBody(v)).then(function (ok) { if (ok) sfx("success"); toast(ok ? "Details copied. Paste them into a new GitHub issue." : "Couldn't copy. Select the text and copy it manually.", ok ? "copy" : "info"); });
+    copyText("Tool suggestion: " + (v.name || "") + "\n\n" + sBody(v)).then(function (ok) { if (ok) sfx("success"); toast(ok ? "Details copied. Paste them into an email to aitoolshub.support@gmail.com." : "Couldn't copy. Select the text and copy it manually.", ok ? "copy" : "info"); });
   });
   // re-check a field as soon as it is fixed (input/change, not blur, so the layout never shifts under a click)
   ["s-name", "s-url", "s-cat", "s-what"].forEach(function (id) { $(id).addEventListener(id === "s-cat" ? "change" : "input", function () { if ($(id).getAttribute("aria-invalid") === "true") sValidate(sValues(), id); }); });
@@ -825,5 +825,5 @@
     els.forEach(function (el) { el.classList.add("rv"); io.observe(el); });
   })("main .sec .sec__head, #discover-grid > *, .finder__form, .finder__out, #categories .cat, .india__grid > *, #guides .guide, #faq details, .suggest-sec .wrap > *:not(.sec__head)");
   window.AITH = { version: "3.0", state: S, results: results, recommend: function (p) { return F.recommend(IX, p); } };
-  if (window.console && console.log) console.log("%cAI Tools Hub%c v3.0\nBuilt by J. Venkata Sai Kumar\nFound a bug? https://github.com/Saikumar8125/AI-TOOLS-HUB/issues", "font:600 15px sans-serif", "color:inherit");
+  if (window.console && console.log) console.log("%cAI Tools Hub%c v3.0\nBuilt by J. Venkata Sai Kumar\nFound a bug? aitoolshub.support@gmail.com", "font:600 15px sans-serif", "color:inherit");
 })();

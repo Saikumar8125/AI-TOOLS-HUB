@@ -1,5 +1,9 @@
 # Changelog
 
+## v3.16 · 4 Nov 2026
+- Contact is by email only: aitoolshub.support@gmail.com. Suggest a tool, Report a problem and Report a wrong link or price now open a prefilled email instead of a GitHub issue. Source code stays on GitHub.
+- Legal pages: postal address and grievance officer removed at the owner's request; copyright complaints answered every Sunday, 9 am to 5 pm IST. Privacy policy updated for email reports.
+
 ## v3.14 · 3 Nov 2026
 - Different sounds for different controls (when sound is on): primary buttons click, other buttons tap, chips select, tabs switch, theme and sound buttons toggle, FAQ expand and collapse, menu open and close. Eight new Kenney CC0 sounds (see SFX-LICENSES.md); build.js checks all twelve.
 - Menu button: the three lines now morph into an x and back (CSS, follows aria-expanded), replacing the instant icon swap.

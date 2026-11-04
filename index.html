@@ -54,7 +54,7 @@
         {"@type":"Question","name":"How does the Tool Finder choose tools?","acceptedAnswer":{"@type":"Answer","text":"It matches your task against each tool's name, category, highlights and description using a fixed synonym list and fixed weights, then applies your pricing, budget and feature choices. The same input always gives the same result, and every pick shows why it matched. Budget maps to pricing models only, because the directory does not hold INR prices."}},
         {"@type":"Question","name":"How are tools chosen and checked?","acceptedAnswer":{"@type":"Answer","text":"Every tool is added by hand after we check its official site. The last full link check was on 3 Nov 2026. New tools are added as they launch."}},
         {"@type":"Question","name":"Where do the links go?","acceptedAnswer":{"@type":"Answer","text":"Every Visit button opens the tool's official website in a new tab."}},
-        {"@type":"Question","name":"Is my data stored?","acceptedAnswer":{"@type":"Answer","text":"Saved tools, compare picks, recently viewed tools and your theme are kept only in this browser (localStorage). Nothing is sent to a server. Suggestions and reports open a public GitHub issue that you submit yourself."}}
+        {"@type":"Question","name":"Is my data stored?","acceptedAnswer":{"@type":"Answer","text":"Saved tools, compare picks, recently viewed tools and your theme are kept only in this browser (localStorage). Nothing is sent to a server. Suggestions and reports open a prefilled email to aitoolshub.support@gmail.com that you send yourself."}}
       ]}
     </script>
   </head>
@@ -370,9 +370,9 @@
             <details><summary>What do Free, Freemium and Paid mean?<svg class="i i--sm" aria-hidden="true"><use href="/icons.svg#i-plus"/></svg></summary><p>Free: completely free to use. Freemium: a free plan, with a paid plan for extra features. Paid: a paid tool, some with a free trial. Prices change often, so check the official site for current plans.</p></details>
             <details><summary>What do the India statuses mean?<svg class="i i--sm" aria-hidden="true"><use href="/icons.svg#i-plus"/></svg></summary><p>Every tool has one of three India statuses. Verified for India: INR pricing, UPI payments, GST invoices, Indian-language support or Made in India was confirmed on the tool's official pages (checked 11 Oct 2026). India availability not verified: we have not confirmed it yet, so check the official site. Not available in India: used only when an official source confirms it.</p></details>
             <details><summary>How does the Tool Finder choose tools?<svg class="i i--sm" aria-hidden="true"><use href="/icons.svg#i-plus"/></svg></summary><p>It matches your task against each tool's name, category, highlights and description using a fixed synonym list and fixed weights, then applies your pricing, budget and feature choices. The same input always gives the same result, and every pick shows why it matched. Budget maps to pricing models only, because the directory does not hold INR prices.</p></details>
-            <details><summary>How are tools chosen and checked?<svg class="i i--sm" aria-hidden="true"><use href="/icons.svg#i-plus"/></svg></summary><p>Every tool is added by hand after we check its official site. The last full link check was on 3 Nov 2026. New tools are added as they launch. Spot a wrong link or price? <a href="https://github.com/Saikumar8125/AI-TOOLS-HUB/issues/new?title=Problem%20report%3A%20&amp;body=Page%20or%20tool%3A%0AWhat%20is%20wrong%20(link%20%2F%20pricing%20%2F%20other)%3A%0AWhat%20it%20should%20be%20(with%20official%20source%20link)%3A%0A" target="_blank" rel="noopener">Report it on GitHub</a>.</p></details>
+            <details><summary>How are tools chosen and checked?<svg class="i i--sm" aria-hidden="true"><use href="/icons.svg#i-plus"/></svg></summary><p>Every tool is added by hand after we check its official site. The last full link check was on 3 Nov 2026. New tools are added as they launch. Spot a wrong link or price? <a href="mailto:aitoolshub.support@gmail.com?subject=Problem%20report%3A%20&amp;body=Page%20or%20tool%3A%0AWhat%20is%20wrong%20(link%20%2F%20pricing%20%2F%20other)%3A%0AWhat%20it%20should%20be%20(with%20official%20source%20link)%3A%0A">Email us</a>.</p></details>
             <details><summary>Where do the links go?<svg class="i i--sm" aria-hidden="true"><use href="/icons.svg#i-plus"/></svg></summary><p>Every Visit button opens the tool's official website in a new tab.</p></details>
-            <details><summary>Is my data stored?<svg class="i i--sm" aria-hidden="true"><use href="/icons.svg#i-plus"/></svg></summary><p>Saved tools, compare picks, recently viewed tools and your theme are kept only in this browser (localStorage). Nothing is sent to a server. Suggestions and reports open a public GitHub issue that you submit yourself.</p></details>
+            <details><summary>Is my data stored?<svg class="i i--sm" aria-hidden="true"><use href="/icons.svg#i-plus"/></svg></summary><p>Saved tools, compare picks, recently viewed tools and your theme are kept only in this browser (localStorage). Nothing is sent to a server. Suggestions and reports open a prefilled email to aitoolshub.support@gmail.com that you send yourself.</p></details>
           </div>
         </div>
       </section>
@@ -381,7 +381,7 @@
         <div class="wrap suggest-wrap">
           <div class="suggest-wrap__intro">
             <h2 id="suggest-title">Suggest a tool</h2>
-            <p>Know an AI tool that helps Indian businesses? Fill this in and we open a prefilled GitHub issue for you to submit. Nothing is stored on this site; you need a free GitHub account to post.</p>
+            <p>Know an AI tool that helps Indian businesses? Fill this in and we open a prefilled email to aitoolshub.support@gmail.com for you to send. Nothing is stored on this site.</p>
             <p class="note"><svg class="i" aria-hidden="true"><use href="/icons.svg#i-info"/></svg><span>Please link to the official site. India facts (INR, UPI, GST, languages) are listed only after we confirm them on official pages.</span></p>
           </div>
           <form class="sform" id="submit-form" novalidate>
@@ -422,7 +422,7 @@
               </div>
             </div>
             <div class="sform__acts">
-              <button class="btn btn--primary" type="submit"><svg class="i i--sm" aria-hidden="true"><use href="/icons.svg#i-github"/></svg>Open GitHub issue</button>
+              <button class="btn btn--primary" type="submit"><svg class="i i--sm" aria-hidden="true"><use href="/icons.svg#i-mail"/></svg>Send by email</button>
               <button class="btn" type="button" id="s-copy"><svg class="i i--sm" aria-hidden="true"><use href="/icons.svg#i-copy"/></svg>Copy details</button>
             </div>
             <div class="sform__out" id="submit-out" role="status" aria-live="polite"></div>
@@ -461,7 +461,7 @@
             <h2>Project</h2>
             <ul>
               <li><a href="#suggest">Suggest a tool</a></li>
-              <li><a href="https://github.com/Saikumar8125/AI-TOOLS-HUB/issues/new?title=Problem%20report%3A%20&amp;body=Page%20or%20tool%3A%0AWhat%20is%20wrong%20(link%20%2F%20pricing%20%2F%20other)%3A%0AWhat%20it%20should%20be%20(with%20official%20source%20link)%3A%0A" target="_blank" rel="noopener">Report a problem</a></li>
+              <li><a href="mailto:aitoolshub.support@gmail.com?subject=Problem%20report%3A%20&amp;body=Page%20or%20tool%3A%0AWhat%20is%20wrong%20(link%20%2F%20pricing%20%2F%20other)%3A%0AWhat%20it%20should%20be%20(with%20official%20source%20link)%3A%0A">Report a problem</a></li>
               <li><a href="https://github.com/Saikumar8125/AI-TOOLS-HUB" target="_blank" rel="noopener">Source on GitHub</a></li>
             </ul>
           </nav>
@@ -483,7 +483,7 @@
         <div class="foot__base">
           <p>Built for Indian SMBs · © 2026 AI Tools Hub · Links checked 3 Nov 2026</p>
           <p class="credit">Designed &amp; developed by <span class="credit__name">J. Venkata Sai Kumar</span></p>
-          <p class="foot__ver">v3.15 · Updated 4 Nov 2026 · <a href="https://github.com/Saikumar8125/AI-TOOLS-HUB" target="_blank" rel="noopener">Source on GitHub</a> · <a href="#suggest">Suggest a tool</a> · <a href="https://github.com/Saikumar8125/AI-TOOLS-HUB/issues/new?title=Problem%20report%3A%20&amp;body=Page%20or%20tool%3A%0AWhat%20is%20wrong%20(link%20%2F%20pricing%20%2F%20other)%3A%0AWhat%20it%20should%20be%20(with%20official%20source%20link)%3A%0A" target="_blank" rel="noopener">Report a problem</a></p>
+          <p class="foot__ver">v3.16 · Updated 4 Nov 2026 · <a href="https://github.com/Saikumar8125/AI-TOOLS-HUB" target="_blank" rel="noopener">Source on GitHub</a> · <a href="#suggest">Suggest a tool</a> · <a href="mailto:aitoolshub.support@gmail.com?subject=Problem%20report%3A%20&amp;body=Page%20or%20tool%3A%0AWhat%20is%20wrong%20(link%20%2F%20pricing%20%2F%20other)%3A%0AWhat%20it%20should%20be%20(with%20official%20source%20link)%3A%0A">Report a problem</a></p>
         </div>
       </div>
     </footer>

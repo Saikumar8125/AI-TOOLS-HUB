@@ -28,8 +28,8 @@ const icon = (n, cls) => `<svg class="i${cls ? " " + cls : ""}" aria-hidden="tru
 const LINK_CHECK = "3 Nov 2026"; // last full link check (see README); change only after a real full re-check
 const INDIA_CHECK = "11 Oct 2026"; // India facts in index.html #india-data were verified on official pages on this date
 const THEME_INIT = '<script>(function(r){var t=null;try{t=localStorage.getItem("aith-theme")}catch(e){}if(t!=="light"&&t!=="dark")t=window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";r.setAttribute("data-theme",t)})(document.documentElement)</script>';
-const ISSUE_SUGGEST = "https://github.com/Saikumar8125/AI-TOOLS-HUB/issues/new?title=Tool%20suggestion%3A%20&body=Tool%20name%3A%0AOfficial%20website%20(https)%3A%0ACategory%3A%0APricing%20(Free%20%2F%20Freemium%20%2F%20Paid)%3A%0AWhat%20it%20does%20(one%20line)%3A%0AWhy%20it%20suits%20Indian%20small%20businesses%3A%0A";
-const ISSUE_PROBLEM = "https://github.com/Saikumar8125/AI-TOOLS-HUB/issues/new?title=Problem%20report%3A%20&body=Page%20or%20tool%3A%0AWhat%20is%20wrong%20(link%20%2F%20pricing%20%2F%20other)%3A%0AWhat%20it%20should%20be%20(with%20official%20source%20link)%3A%0A";
+const ISSUE_SUGGEST = "mailto:aitoolshub.support@gmail.com?subject=Tool%20suggestion%3A%20&body=Tool%20name%3A%0AOfficial%20website%20(https)%3A%0ACategory%3A%0APricing%20(Free%20%2F%20Freemium%20%2F%20Paid)%3A%0AWhat%20it%20does%20(one%20line)%3A%0AWhy%20it%20suits%20Indian%20small%20businesses%3A%0A";
+const ISSUE_PROBLEM = "mailto:aitoolshub.support@gmail.com?subject=Problem%20report%3A%20&body=Page%20or%20tool%3A%0AWhat%20is%20wrong%20(link%20%2F%20pricing%20%2F%20other)%3A%0AWhat%20it%20should%20be%20(with%20official%20source%20link)%3A%0A";
 // Legal pages (v3.1): static files in the repo root, copied to public/ by the copy loop below, linked in every footer and listed in the sitemap.
 const LEGAL = [["privacy.html", "Privacy Policy"], ["terms.html", "Terms &amp; Conditions"], ["cookies.html", "Cookie Policy"], ["copyright.html", "Copyright &amp; Trademarks"], ["disclaimer.html", "Third-Party Disclaimer"]];
 const LEGAL_NAV = `<nav class="foot__legal" aria-label="Legal"><h2 class="foot__h">Legal</h2><ul>${LEGAL.map(([f, l]) => `<li><a href="/${f}">${l}</a></li>`).join("")}</ul></nav>`;
@@ -149,7 +149,7 @@ function footer() {
 <nav aria-label="Browse"><h2 class="foot__h">Browse</h2><ul><li><a href="/#tools">Directory</a></li><li><a href="/#finder">Tool Finder</a></li><li><a href="/categories">All categories</a></li><li><a href="/all-tools">All tools A–Z</a></li><li><a href="/d2c.html">D2C tools for Indian sellers</a></li><li><a href="/category/chatbots">Chatbots</a></li><li><a href="/category/writing">Writing</a></li><li><a href="/category/video">Video</a></li><li><a href="/category/marketing">Marketing</a></li></ul></nav>
 ${LEGAL_NAV}
 </div>
-<div class="foot__base"><p>Built for Indian SMBs · © ${YEAR} AI Tools Hub · Links checked ${LINK_CHECK} · <a href="${ISSUE_SUGGEST}" target="_blank" rel="noopener">Suggest a tool</a> · <a href="${ISSUE_PROBLEM}" target="_blank" rel="noopener">Report a problem</a> · <a href="https://github.com/Saikumar8125/AI-TOOLS-HUB" target="_blank" rel="noopener">Source on GitHub</a></p></div>
+<div class="foot__base"><p>Built for Indian SMBs · © ${YEAR} AI Tools Hub · Links checked ${LINK_CHECK} · <a href="${ISSUE_SUGGEST}">Suggest a tool</a> · <a href="${ISSUE_PROBLEM}">Report a problem</a> · <a href="https://github.com/Saikumar8125/AI-TOOLS-HUB" target="_blank" rel="noopener">Source on GitHub</a></p></div>
 </div></footer>`;
 }
 const favicon = (t, cls) => `<span class="fav${cls ? " " + cls : ""}" aria-hidden="true"><span class="fav__l">${esc(t.n.charAt(0).toUpperCase())}</span><img src="https://www.google.com/s2/favicons?domain=${encodeURIComponent(host(t.u))}&amp;sz=64" alt="" width="32" height="32" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.remove()"></span>`;
@@ -217,7 +217,7 @@ ${crumbHtml(crumbItems)}
 <section class="panel"><h2>Key features</h2>${(d.b && d.b.length) ? "<ul class=\"ticks\">" + d.b.map((x) => `<li>${esc(x)}</li>`).join("") + "</ul>" : `<p class="muted">See the official site for features.</p>`}</section>
 <section class="panel"><h2>Quick facts <span class="badge badge--line">directory data · links checked ${LINK_CHECK}</span></h2><dl class="facts"><div><dt>Category</dt><dd><a href="${cpath}">${esc(t.c)}</a></dd></div><div><dt>Pricing</dt><dd>${esc(priceText[t.p])}</dd></div><div><dt>Free plan</dt><dd>${esc(freeLine(t))}</dd></div>${host(t.u) ? `<div><dt>Official site</dt><dd><a href="${esc(t.u)}" target="_blank" rel="noopener">${esc(host(t.u))}</a></dd></div>` : ""}<div><dt>Platforms</dt><dd class="unv">Not verified — check official site</dd></div></dl></section>
 </div>
-<div class="wrap"><section class="panel panel--sp"><h2>India availability ${inBadge}</h2>${indiaRows ? `<dl class="facts">${indiaRows}</dl><p class="muted small">Confirmed on official pages, ${india.c || INDIA_CHECK}.</p>` : naSrc ? `<p class="muted">Confirmed not available in India${india.x.d ? ` (${esc(india.x.d)})` : ""}. <a href="${esc(naSrc)}" target="_blank" rel="noopener">Source</a></p>` : `<p class="muted">India availability not verified — check official site. We haven't confirmed INR pricing, UPI payments, GST invoices or Indian-language support for ${esc(t.n)} on its official pages.</p>`}<p class="muted small report"><a href="${esc(reportUrl(t))}" target="_blank" rel="noopener">Report a wrong link or price</a></p></section></div>
+<div class="wrap"><section class="panel panel--sp"><h2>India availability ${inBadge}</h2>${indiaRows ? `<dl class="facts">${indiaRows}</dl><p class="muted small">Confirmed on official pages, ${india.c || INDIA_CHECK}.</p>` : naSrc ? `<p class="muted">Confirmed not available in India${india.x.d ? ` (${esc(india.x.d)})` : ""}. <a href="${esc(naSrc)}" target="_blank" rel="noopener">Source</a></p>` : `<p class="muted">India availability not verified — check official site. We haven't confirmed INR pricing, UPI payments, GST invoices or Indian-language support for ${esc(t.n)} on its official pages.</p>`}<p class="muted small report"><a href="${esc(reportUrl(t))}">Report a wrong link or price</a></p></section></div>
 ${feat}
 ${pick.length ? `<section class="wrap"><h2>Alternatives to ${esc(t.n)}</h2><ul class="cards">${pick.map(card).join("")}</ul><p class="more"><a href="${cpath}">All ${byCat[t.c].length} ${esc(t.c)} AI tools</a></p></section>` : ""}
 <div class="wrap">${faqHtml(qs)}</div>
@@ -302,10 +302,10 @@ ${faqHtml(g.faq)}
 </div>`;
   return page({ title, desc, path: p, body, nav: "guides", pre: '<div class="progress" aria-hidden="true"><i></i></div>', ld: [art, crumbs(crumbItems), faqLd(g.faq)] });
 }
-const ISSUES = "https://github.com/Saikumar8125/AI-TOOLS-HUB/issues/new";
+const ISSUES = "mailto:aitoolshub.support@gmail.com";
 function reportUrl(t) {
   const body = `Tool: ${t.n}\nListed link: ${t.u}\nListed pricing: ${t.p || ""}\nPage: ${SITE}/tools/${t.slug}\n\nWhat is wrong (link / pricing / other):\nWhat it should be (with official source link):\n`;
-  return `${ISSUES}?title=${encodeURIComponent("Problem report: " + t.n)}&body=${encodeURIComponent(body)}`;
+  return `${ISSUES}?subject=${encodeURIComponent("Problem report: " + t.n)}&body=${encodeURIComponent(body)}`;
 }
 function guidesIndex() {
   const body = `<div class="wrap hero">${crumbHtml([["Home", "/"], ["Guides", "/guides"]])}
