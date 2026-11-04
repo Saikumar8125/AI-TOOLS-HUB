@@ -700,7 +700,7 @@
   var bento = $("bento");
   if (!bento.querySelector("li")) {
     bento.innerHTML = CATS.map(function (c, k) {
-      return '<li' + (k < 2 ? ' class="is-lg"' : k < 6 ? ' class="is-wide"' : "") + '><a class="cat" href="/category/' + slug(c) + '" data-cat="' + esc(c) + '">' + icon(CAT_ICON[c] || "blocks") + '<span class="cat__n">' + esc(c) + '</span><span class="cat__c">' + COUNT[c] + " tools</span></a></li>";
+      return '<li' + (k < 2 ? ' class="is-lg"' : k < 6 ? ' class="is-wide"' : "") + '><a class="cat" href="/category/' + slug(c) + '" data-cat="' + esc(c) + '"><span class="cat__ico">' + icon(CAT_ICON[c] || "blocks") + '</span><span class="cat__n">' + esc(c) + '</span><span class="cat__c">' + COUNT[c] + " tools</span></a></li>";
     }).join("");
   }
   bento.addEventListener("click", function (e) {

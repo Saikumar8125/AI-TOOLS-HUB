@@ -413,3 +413,12 @@ html .hdr { background: color-mix(in srgb, var(--bg) 78%, transparent); -webkit-
   }
 }
 @keyframes heroAway { to { opacity: .4; transform: scale(.955) translateY(-16px); } }
+
+/* ---------- v3.15 page transitions: subtle depth between pages (cross-document view transitions; no effect where unsupported) ---------- */
+@view-transition { navigation: auto; types: page; }
+.hdr { view-transition-name: hdr; }
+html:active-view-transition-type(page)::view-transition-old(root) { animation: vtOut 220ms cubic-bezier(.4, 0, 1, 1) both; }
+html:active-view-transition-type(page)::view-transition-new(root) { animation: vtIn 340ms cubic-bezier(.2, .7, .2, 1) both; }
+@keyframes vtOut { to { opacity: 0; transform: perspective(1200px) translateZ(-24px) scale(.985); } }
+@keyframes vtIn { from { opacity: 0; transform: perspective(1200px) rotateX(1.5deg) translateY(10px) scale(1.01); } }
+@media (prefers-reduced-motion: reduce) { @view-transition { navigation: none; } }
