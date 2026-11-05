@@ -53,7 +53,7 @@ privacy.html, terms.html, cookies.html, copyright.html, disclaimer.html   Legal 
 ## Run locally
 
 ```bash
-git clone https://github.com/Saikumar8125/AI-TOOLS-HUB.git
+git clone https://github.com/kinggend/AI-TOOLS-HUB.git
 cd AI-TOOLS-HUB
 node build.js     # builds public/ (Vercel runs this)
 python3 -m http.server 8000 -d public
@@ -91,7 +91,7 @@ AITHFinder.recommendAsync(index, prefs); // falls back to the deterministic reco
 
 ## Contributing
 
-Found a dead link or a wrong price? Open an issue: https://github.com/Saikumar8125/AI-TOOLS-HUB/issues
+Found a dead link or a wrong price? Open an issue: https://github.com/kinggend/AI-TOOLS-HUB/issues
 
 ## License
 

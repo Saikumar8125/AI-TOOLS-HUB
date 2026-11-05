@@ -150,7 +150,7 @@ function footer() {
 <nav aria-label="Browse"><h2 class="foot__h">Browse</h2><ul><li><a href="/#tools">Directory</a></li><li><a href="/#finder">Tool Finder</a></li><li><a href="/categories">All categories</a></li><li><a href="/all-tools">All tools A–Z</a></li><li><a href="/d2c.html">D2C tools for Indian sellers</a></li><li><a href="/category/chatbots">Chatbots</a></li><li><a href="/category/writing">Writing</a></li><li><a href="/category/video">Video</a></li><li><a href="/category/marketing">Marketing</a></li></ul></nav>
 ${LEGAL_NAV}
 </div>
-<div class="foot__base"><p>Built for Indian SMBs · © ${YEAR} AI Tools Hub · Links checked ${LINK_CHECK} · <a href="${ISSUE_SUGGEST}">Suggest a tool</a> · <a href="${ISSUE_PROBLEM}">Report a problem</a> · <a href="https://github.com/Saikumar8125/AI-TOOLS-HUB" target="_blank" rel="noopener">Source on GitHub</a></p></div>
+<div class="foot__base"><p>Built for Indian SMBs · © ${YEAR} AI Tools Hub · Links checked ${LINK_CHECK} · <a href="${ISSUE_SUGGEST}">Suggest a tool</a> · <a href="${ISSUE_PROBLEM}">Report a problem</a> · <a href="https://github.com/kinggend/AI-TOOLS-HUB" target="_blank" rel="noopener">Source on GitHub</a></p></div>
 </div></footer>`;
 }
 const favicon = (t, cls) => `<span class="fav${cls ? " " + cls : ""}" aria-hidden="true"><span class="fav__l">${esc(t.n.charAt(0).toUpperCase())}</span><img src="https://www.google.com/s2/favicons?domain=${encodeURIComponent(host(t.u))}&amp;sz=64" alt="" width="32" height="32" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.remove()"></span>`;

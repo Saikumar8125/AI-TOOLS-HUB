@@ -1,5 +1,8 @@
 # Changelog
 
+## v3.18.1 · 5 Nov 2026
+- GitHub account renamed to kinggend: all "Source on GitHub", changelog and README links now point to github.com/kinggend/AI-TOOLS-HUB.
+
 ## v3.18 · 5 Nov 2026
 - Intro animation on refresh or first visit: header slides in, page content rises in (other pages), footer fades. In-site navigation keeps the page transition instead, so nothing plays twice.
 - Directory: tool cards now rise in one after another when you search or filter (transform and opacity only).
