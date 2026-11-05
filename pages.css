@@ -275,3 +275,6 @@ html.pal-open { overflow: hidden; }
 .toplinks > a[aria-current="page"] { background: var(--surface-2); }
 .card { transition: border-color var(--d-fast) var(--ease), box-shadow var(--d) var(--ease), transform var(--d) var(--ease); }
 @media (hover: hover) { .card:hover { transform: translateY(-1px); box-shadow: var(--sh-1); } }
+
+/* v3.17 touch targets (UI audit), touch screens only */
+@media (pointer: coarse) { .sbtn, .tbtn { min-height: 44px; } .tbtn { width: 44px; } }

@@ -24,7 +24,7 @@
       /* v3.0: same palette and type as ds.css (light default, deep charcoal dark); --gold now holds the accent */
       :root {
         --bg: #FAF9F6; --surface: #ffffff; --surface-2: #F3F1EC; --line: #E6E2D9; --line-2: #D3CEC2;
-        --text: #101418; --muted: #4F565C; --gold: #0E7C66; --gold-soft: #E3F1EC; --on-gold: #ffffff; --err: #b42318;
+        --text: #101418; --muted: #4F565C; --gold: #0B735F; --gold-soft: #E3F1EC; --on-gold: #ffffff; --err: #b42318;
         --ok: #0f7a45; --ok-soft: #e6f4ec;
         --head: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Geist", system-ui, sans-serif; --body: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Geist", system-ui, sans-serif;
         --r: 12px; --r-l: 16px; --tap: 44px; --g: clamp(16px, 4vw, 32px); --max: 1200px; --ease: cubic-bezier(.23,1,.32,1);
@@ -250,7 +250,8 @@
       }
       .btn-line { min-height: var(--tap); padding: 0 14px; border-radius: 10px; border: 1px solid var(--gold); background: none; color: var(--gold); font-weight: 600; cursor: pointer; }
     </style>
-  </head>
+  <script>/* v3.18 intro on refresh or first visit (not on in-site navigation, which has its own page transition) */(function(d){try{var n=performance.getEntriesByType("navigation")[0],r=document.referrer,x=!r||new URL(r).origin!==location.origin;if((n&&n.type==="reload")||x)d.classList.add("is-intro")}catch(e){}})(document.documentElement)</script>
+</head>
   <body>
     <header class="hdr">
       <div class="wrap">

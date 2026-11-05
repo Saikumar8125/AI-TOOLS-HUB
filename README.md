@@ -25,7 +25,7 @@ Plain HTML, CSS and vanilla JavaScript. No framework, no runtime dependencies. A
 
 `ds.css` holds every token (colour, type scale, spacing, radius, shadow, motion) for the light and dark themes and the shared components:
 buttons, search field, chips, segmented control, switch, badges, favicon logo, tool card, skeleton, empty state, sheet/drawer, dialog, toast.
-One accent (electric blue), Geist font with Inter/system fallback. Icons are [Lucide](https://lucide.dev) (ISC License), copied into
+One accent (teal: #0B735F light, #4FC1A4 dark), Geist font with Inter/system fallback. Icons are [Lucide](https://lucide.dev) (ISC License), copied into
 `icons.svg` as a local sprite, so no icon CDN is loaded. Motion uses transform/opacity with an ease-out curve and turns off under `prefers-reduced-motion`.
 
 ## Files (all in the repo root, so they can be uploaded from GitHub web)

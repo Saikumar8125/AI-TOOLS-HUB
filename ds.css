@@ -28,9 +28,9 @@
   --bg: #FAF9F6; --bg-2: #F3F1EC; --surface: #ffffff; --surface-2: #F3F1EC; --surface-3: #EAE7E0;
   --line: #E6E2D9; --line-2: #D3CEC2;
   --text: #101418; --text-2: #4F565C; --text-3: #5F666C;
-  --accent: #0E7C66; --accent-hover: #0A6352; --accent-soft: #E3F1EC; --accent-line: #B5D9CD; --on-accent: #ffffff;
-  --ok: #0f7a45; --ok-soft: #e6f4ec; --warn: #9a5b00; --warn-soft: #fbf1e1; --danger: #b42318; --danger-soft: #fdecea;
-  --free: #0f7a45; --free-soft: #e6f4ec; --freemium: #0E6A7C; --freemium-soft: #E2EFF2;
+  --accent: #0B735F; --accent-hover: #0A6352; --accent-soft: #E3F1EC; --accent-line: #B5D9CD; --on-accent: #ffffff;
+  --ok: #0d7341; --ok-soft: #e6f4ec; --warn: #8f5400; --warn-soft: #fbf1e1; --danger: #b42318; --danger-soft: #fdecea;
+  --free: #0d7341; --free-soft: #e6f4ec; --freemium: #0E6A7C; --freemium-soft: #E2EFF2;
   --in: #A64B08; --in-soft: #FBEEE3; --in-line: #EBC9AC; --paid: #6b4a00; --paid-soft: #f7efdc;
   --scrim: rgba(16, 20, 24, .42);
   --sh-1: 0 1px 2px rgba(16, 20, 24, .05);
@@ -422,3 +422,36 @@ html:active-view-transition-type(page)::view-transition-new(root) { animation: v
 @keyframes vtOut { to { opacity: 0; transform: perspective(1200px) translateZ(-24px) scale(.985); } }
 @keyframes vtIn { from { opacity: 0; transform: perspective(1200px) rotateX(1.5deg) translateY(10px) scale(1.01); } }
 @media (prefers-reduced-motion: reduce) { @view-transition { navigation: none; } }
+
+/* v3.17 touch targets (UI audit): on touch screens every control is at least 44px tall (40px for chips, tabs and footer links). Desktop sizes unchanged. */
+@media (pointer: coarse) {
+  .btn, .btn--sm { min-height: 44px; }
+  .btn--icon, .btn--icon.btn--sm { width: 44px; min-height: 44px; }
+  .iconbtn { width: 44px; height: 44px; }
+  .tc__foot .visit { min-height: 44px; }
+  .chip, .chips a, .seg button, .switch { min-height: 40px; }
+  .check { min-height: 44px; }
+}
+
+/* ---------- v3.18 motion polish: smoother on phones, intro on refresh, heart pop (transform/opacity only; reduced motion skips all) ---------- */
+@media (pointer: coarse) {
+  /* blur filters are the costliest thing to animate on mid-range Android: drop them on touch screens */
+  .js-words .tw { filter: none; }
+  .dialog { filter: none; }
+  html .hdr { -webkit-backdrop-filter: saturate(160%) blur(12px); backdrop-filter: saturate(160%) blur(12px); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  /* intro: plays on refresh or first visit only (class set in <head>); in-site navigation uses the page transition instead */
+  html.is-intro .hdr { animation: introHdr 520ms var(--ease) both; }
+  html.is-intro main:not(:has(.hero__main)) > :nth-child(-n+4) { animation: introUp 560ms var(--ease) both; }
+  html.is-intro main:not(:has(.hero__main)) > :nth-child(2) { animation-delay: 70ms; }
+  html.is-intro main:not(:has(.hero__main)) > :nth-child(3) { animation-delay: 130ms; }
+  html.is-intro main:not(:has(.hero__main)) > :nth-child(4) { animation-delay: 180ms; }
+  html.is-intro .foot { animation: introFade 700ms var(--ease) 200ms both; }
+  /* saving a tool: the heart pops */
+  .fav-btn.is-pop .i { animation: heartPop 420ms cubic-bezier(.3, 1.6, .5, 1); }
+}
+@keyframes introHdr { from { opacity: 0; transform: translateY(-10px); } }
+@keyframes introUp { from { opacity: 0; transform: translateY(14px); } }
+@keyframes introFade { from { opacity: 0; } }
+@keyframes heartPop { 0% { transform: scale(1); } 35% { transform: scale(1.35); } 60% { transform: scale(.92); } 100% { transform: scale(1); } }

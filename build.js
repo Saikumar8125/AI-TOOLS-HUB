@@ -118,6 +118,7 @@ ${THEME_INIT}
 <link rel="stylesheet" href="/ds.css">
 <link rel="stylesheet" href="/pages.css">
 ${ld}
+<script>/* v3.18 intro on refresh or first visit (not on in-site navigation, which has its own page transition) */(function(d){try{var n=performance.getEntriesByType("navigation")[0],r=document.referrer,x=!r||new URL(r).origin!==location.origin;if((n&&n.type==="reload")||x)d.classList.add("is-intro")}catch(e){}})(document.documentElement)</script>
 </head>
 <body${o.bodyClass ? ` class="${o.bodyClass}"` : ""}${o.tool ? ` data-tool="${esc(o.tool)}"` : ""}>
 <a class="skip" href="#main">Skip to content</a>

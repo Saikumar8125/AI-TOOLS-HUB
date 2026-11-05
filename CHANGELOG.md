@@ -1,5 +1,18 @@
 # Changelog
 
+## v3.18 · 5 Nov 2026
+- Intro animation on refresh or first visit: header slides in, page content rises in (other pages), footer fades. In-site navigation keeps the page transition instead, so nothing plays twice.
+- Directory: tool cards now rise in one after another when you search or filter (transform and opacity only).
+- Saving a tool: the heart pops.
+- Smoother on phones: blur effects (headline words, dialogs) dropped on touch screens and the header blur lightened, since blur is the costliest thing to animate on mid-range Android.
+- All motion off under reduced motion.
+- Fixes: share image (og-image) now says 583 tools (was 585); README accent colour corrected to teal.
+- Also ships the v3.17 contrast and 44px touch-target fixes.
+
+## v3.17 · 5 Nov 2026
+- UI audit (UI/UX Pro Max rules, no redesign). Light-mode teal accent darkened slightly (#0E7C66 to #0B735F) so teal text passes 4.5:1 on every light surface, including the soft teal chips. Free and success green (#0d7341) and warning amber (#8f5400) darkened for the same reason. Dark mode unchanged.
+- Touch screens only: buttons, icon buttons and the header search are at least 44px tall; chips, tabs, segmented controls and footer links at least 40px. Desktop sizes unchanged.
+
 ## v3.16 · 4 Nov 2026
 - Contact is by email only: aitoolshub.support@gmail.com. Suggest a tool, Report a problem and Report a wrong link or price now open a prefilled email instead of a GitHub issue. Source code stays on GitHub.
 - Legal pages: postal address and grievance officer removed at the owner's request; copyright complaints answered every Sunday, 9 am to 5 pm IST. Privacy policy updated for email reports.

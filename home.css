@@ -398,8 +398,11 @@ html:not(.js) .tc--sk { display: none; }
 @keyframes heroIn { from { opacity: 0; transform: translateY(10px); } }
 
 /* directory results: quick cross-fade on filter/search change (opacity only, so typing never jumps) */
-#grid.is-swap > * { animation: gridIn 180ms var(--ease) both; }
-@keyframes gridIn { from { opacity: 0; } }
+#grid.is-swap > * { animation: gridIn 240ms var(--ease) both; }
+#grid.is-swap > :nth-child(2) { animation-delay: 20ms; } #grid.is-swap > :nth-child(3) { animation-delay: 40ms; }
+#grid.is-swap > :nth-child(4) { animation-delay: 60ms; } #grid.is-swap > :nth-child(5) { animation-delay: 80ms; }
+#grid.is-swap > :nth-child(6) { animation-delay: 100ms; } #grid.is-swap > :nth-child(n+7) { animation-delay: 120ms; }
+@keyframes gridIn { from { opacity: 0; transform: translateY(6px); } } /* v3.18: cards rise in one after another (transform only, so the layout never jumps while typing) */
 
 /* finder: ranked results reveal top-down */
 #finder-results.is-swap > * { animation: fadeUp var(--d-slow) var(--ease) both; }
@@ -455,3 +458,11 @@ html:not(.js) .tc--sk { display: none; }
 html[data-theme="dark"] .cat__ico { background: linear-gradient(160deg, #1d2a27 0%, var(--accent-soft) 100%); box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 3px 0 -1px var(--accent-line); }
 html[data-theme="dark"] .cat__ico .i { filter: none; }
 @media (min-width: 720px) { .bento li.is-lg .cat__ico { width: 44px; height: 44px; border-radius: 12px; } }
+
+/* v3.17 touch targets (UI audit), touch screens only */
+@media (pointer: coarse) {
+  .tabs [role="tab"], .sform__seg label, .finder__eg .chip { min-height: 40px; }
+  .foot__col a, .foot__cats a { min-height: 40px; }
+  .search--xl .btn { min-height: 44px; }
+  .hdr__search { height: 44px; }
+}

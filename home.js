@@ -263,6 +263,7 @@
     if (k > -1) saved.splice(k, 1); else saved.unshift(t.n);
     store.set("aith-saved", saved);
     paintSaved(k < 0); syncButtons();
+    if (k < 0) [].forEach.call(doc.querySelectorAll('[data-fav="' + t.i + '"]'), function (el) { replay(el, "is-pop"); });
     toast(k > -1 ? "Removed " + t.n + " from saved" : "Saved " + t.n, k > -1 ? "trash-2" : "heart");
     if (k < 0) sfx("add");
   }
